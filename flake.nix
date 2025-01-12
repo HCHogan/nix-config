@@ -32,13 +32,13 @@
       system = "x86_64-linux";
       specialArgs = { inherit inputs;};
       modules = [
-        ./configuration.nix
+        ./hosts/6800u/configuration.nix
 
 	home-manager.nixosModules.home-manager
 	{
 	  home-manager.useGlobalPkgs = true;
 	  home-manager.useUserPackages = true;
-	  home-manager.users.hank = import ./home.nix;
+	  home-manager.users.hank = import ./home/base/home.nix;
 	  home-manager.extraSpecialArgs = inputs;
 	}
       ];
