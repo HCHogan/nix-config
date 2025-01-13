@@ -22,26 +22,39 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # build helix from source, just for fun
+    wezterm.url = "github:wez/wezterm?dir=nix";
     helix.url = "github:helix-editor/helix/master";
     # kvim.url = "github:HCHogan/kvim/master";
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ...}: {
-    nixosConfigurations."6800u" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs;};
-      modules = [
-        ./hosts/6800u/configuration.nix
-
-	home-manager.nixosModules.home-manager
-	{
-	  home-manager.useGlobalPkgs = true;
-	  home-manager.useUserPackages = true;
-	  home-manager.users.hank = import ./home/base/home.nix;
-	  home-manager.extraSpecialArgs = inputs;
-	}
-      ];
+  outputs = { self, nixpkgs, home-manager, ...} @ inputs: let
+    inherit (self) outputs;
+    systems = [
+      "aarch64-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+    in {
+    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    overlays = import ./overlays {inherit inputs;};
+    nixosConfigurations = {
+      "6800u" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs;};
+        modules = [
+          ./hosts/6800u/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.hank = import ./home/base/home.nix;
+            home-manager.extraSpecialArgs = inputs;
+          }
+        ];
+      };
     };
   };
 }

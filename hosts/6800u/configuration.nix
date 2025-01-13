@@ -10,7 +10,6 @@
       ./hardware-configuration.nix
     ];
 
-  nixpkgs.config.allowUnfree = true;
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = false;
   boot.loader = {
@@ -38,9 +37,16 @@
   networking.proxy.default = "http://192.168.2.151:7897";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 1w";;
+  };
+
   nix.settings = {
     substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
     experimental-features = [ "nix-command" "flakes" ];
+    auto-optimise-store = true;
   };
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";

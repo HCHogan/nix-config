@@ -2,6 +2,13 @@
 
 {
   # home.uesrname = "hank";
+  nixpkgs = {
+    # overlays = [];
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+    };
+  };
   home.homeDirectory = "/home/hank";
 
   # home.file.".config/i3/scripts" = {
@@ -112,6 +119,11 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+  };
+
+  programs.wezterm = {
+    enable = true;
+    package = inputs.wezterm.packages.${pkgs.system}.default;
   };
 
   xdg.configFile = {
