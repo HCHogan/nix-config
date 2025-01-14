@@ -22,7 +22,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wezterm.url = "github:wez/wezterm?dir=nix";
+    # wezterm.url = "github:wez/wezterm?dir=nix";
     helix.url = "github:helix-editor/helix/master";
     # kvim.url = "github:HCHogan/kvim/master";
   };

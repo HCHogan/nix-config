@@ -34,7 +34,7 @@
   time.timeZone = "Asia/HongKong";
 
   # Configure network proxy if necessary
-  networking.proxy.default = "http://192.168.2.151:7897";
+  networking.proxy.default = "http://192.168.1.13:6152";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   nix.gc = {
