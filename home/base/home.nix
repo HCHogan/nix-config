@@ -1,15 +1,13 @@
 { inputs, config, pkgs, ... }:
 
 {
-  # home.uesrname = "hank";
-  nixpkgs = {
-    # overlays = [];
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-    };
-  };
-  home.homeDirectory = "/home/hank";
+  # nixpkgs = {
+  #   # overlays = [];
+  #   config = {
+  #     allowUnfree = true;
+  #     allowUnfreePredicate = _: true;
+  #   };
+  # };
 
   # home.file.".config/i3/scripts" = {
   #   source = ./scripts;
@@ -21,14 +19,14 @@
     text in home.nix
   '';
 
-  # xresources.properties = {
-  #   "Xcursor.size" = 16;
-  #   "Xft.dpi" = 172;
-  # };
-
   home.packages = with pkgs;[
+    microsoft-edge
+    google-chrome
+    clash-verge-rev
+    telegram-desktop
     fastfetch
     yazi
+    wezterm
 
     # archives
     zip
@@ -101,11 +99,6 @@
     nodejs_22
   ];
 
-  programs.git = {
-    enable = true;
-    userName = "Hank Hogan";
-    userEmail = "ysh2291939848@outlook.com";
-  };
 
   programs.starship = {
     enable = true;
@@ -121,9 +114,10 @@
     defaultEditor = true;
   };
 
-  programs.wezterm = {
+  programs.git = {
     enable = true;
-    package = inputs.wezterm.packages.${pkgs.system}.default;
+    userName = "Hank Hogan";
+    userEmail = "ysh2291939848@outlook.com";
   };
 
   xdg.configFile = {
@@ -132,6 +126,12 @@
       repo = "kvim";
       rev = "master";
       sha256 = "sha256-vBko906PUuttA4qF/MnvYZf537bbrxxvctWG/LozMws=";
+    };
+    wezterm.source = pkgs.fetchFromGitHub {
+      owner = "HCHogan";
+      repo = "wezterm";
+      rev = "main";
+      sha256 = "sha256-61x+606WDZch8IJj+988VHPjJnFtJJqdWD0Xjj7I/mI=";
     };
   };
 

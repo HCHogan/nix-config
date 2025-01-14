@@ -22,39 +22,41 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # wezterm.url = "github:wez/wezterm?dir=nix";
+    # wezterm = {
+    #   url = "github:wez/wezterm?dir=nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # }
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+    };
+
     helix.url = "github:helix-editor/helix/master";
     # kvim.url = "github:HCHogan/kvim/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, ...} @ inputs: let
-    inherit (self) outputs;
-    systems = [
-      "aarch64-linux"
-      "x86_64-linux"
-      "aarch64-darwin"
-      "x86_64-darwin"
-    ];
-    forAllSystems = nixpkgs.lib.genAttrs systems;
-    in {
-    packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-    formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
-    overlays = import ./overlays {inherit inputs;};
+  outputs = inputs @ { self, nixpkgs, home-manager, ...}: {
+    # formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+    # overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
-      "6800u" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs;};
-        modules = [
-          ./hosts/6800u/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.hank = import ./home/base/home.nix;
-            home-manager.extraSpecialArgs = inputs;
-          }
-        ];
-      };
+      "6800u" = let 
+        username = "hank";
+        specialArgs = { inherit username inputs; };
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+          system = "x86_64-linux";
+          modules = [
+            ./hosts/6800u
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${username} = import ./home/linux/home.nix;
+              home-manager.extraSpecialArgs = inputs // specialArgs;
+            }
+          ];
+        };
     };
   };
 }
