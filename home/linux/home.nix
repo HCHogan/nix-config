@@ -8,6 +8,7 @@
 
   programs.kitty.enable = true; # required for the default Hyprland config
   programs.firefox.enable = true;
+
   services.hyprpaper = {
     enable = true;
     settings = {
