@@ -12,6 +12,11 @@
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # home manager for managing user config
     home-manager = {
       url = "github:nix-community/home-manager/master";

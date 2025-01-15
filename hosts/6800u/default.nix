@@ -35,15 +35,51 @@
   time.timeZone = "Asia/HongKong";
 
   # Configure network proxy if necessary
-  networking.proxy.default = "http://192.168.1.13:6152";
+  networking.proxy.default = "http://127.0.0.1:7897";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  # drivers.amdgpu.enable = true;
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm = {
+    enable = true;
+    wayland = true;
+  };
   services.xserver.desktopManager.gnome.enable = true;
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            capslock = "overload(control, esc)";
+            esc = "capslock";
+          };
+        };
+      };
+    };
+  };
+
+  programs = {
+    clash-verge = {
+      enable = true;
+    };
+    hyprland = {
+      enable = true;
+      # set the flake package
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # make sure to also set the portal package, so that they are in sync
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    };
+    waybar.enable = true;
+    hyprlock.enable = true;
+    # thunar.enable = true;
+    virt-manager.enable = true;
+    xwayland.enable = true;
+  };
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -63,25 +99,25 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
-  # programs.firefox.enable = true;
+  virtualisation.libvirtd.enable = false;
 
+  hardware.graphics = {
+    enable = true;
+  };
 
   environment = {
     variables = {
       EDITOR = "nvim";
     };
-    sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  programs.mtr.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # List services that you want to enable:
 

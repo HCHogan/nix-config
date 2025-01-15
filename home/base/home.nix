@@ -19,7 +19,14 @@
     text in home.nix
   '';
 
+  home.file.".local/share/fonts/Recursive-Bold.ttf".source = ../../fonts/Recursive-Bold.ttf;
+  home.file.".local/share/fonts/Recursive-Italic.ttf".source = ../../fonts/Recursive-Italic.ttf;
+  home.file.".local/share/fonts/Recursive-Regular.ttf".source = ../../fonts/Recursive-Regular.ttf;
+  home.file.wallpapers.source = ../../wallpapers;
+
   home.packages = with pkgs;[
+    killall
+    hyprpaper
     microsoft-edge
     google-chrome
     clash-verge-rev
@@ -63,6 +70,7 @@
     gnupg
     tree-sitter
     qq
+    wechat-uos
 
     # nix related
     nix-output-monitor
@@ -109,6 +117,11 @@
     # };
   };
 
+
+  programs.rofi = {
+    enable = true;
+  };
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -131,7 +144,7 @@
       owner = "HCHogan";
       repo = "wezterm";
       rev = "main";
-      sha256 = "sha256-61x+606WDZch8IJj+988VHPjJnFtJJqdWD0Xjj7I/mI=";
+      sha256 = "sha256-IAKbtTOOZGGBbbWS/kSlAGUB0pkHTmdQe4kFP6wsDwY=";
     };
   };
 
