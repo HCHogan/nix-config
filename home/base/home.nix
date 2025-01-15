@@ -121,6 +121,7 @@
 
   programs.rofi = {
     enable = true;
+    plugins = [ pkgs.rofi-emoji ];
     # theme = ../../modules/rofi/config.rasi;
   };
 
