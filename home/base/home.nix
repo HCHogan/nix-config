@@ -34,6 +34,7 @@
     fastfetch
     yazi
     wezterm
+    nwg-look
 
     # archives
     zip
@@ -120,6 +121,7 @@
 
   programs.rofi = {
     enable = true;
+    # theme = ../../modules/rofi/config.rasi;
   };
 
   programs.neovim = {

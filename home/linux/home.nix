@@ -23,6 +23,11 @@
       ];
     };
   };
+  home.pointerCursor = {
+    package = pkgs.vanilla-dmz;
+    name = "Vanilla-DMZ";
+    hyprcursor.enable = true;
+  };
   wayland.windowManager.hyprland.systemd.variables = ["--all"];
   wayland.windowManager.hyprland = {
     enable = true; # enable Hyprland
@@ -61,6 +66,10 @@
       "$mod" = "SUPER";
       monitor = [
         "DP-2,1920x1080@240,0x0,1"
+      ];
+      exec-once = [
+        "hyprctl setcursor \"Vanilla-DMZ\" 24"
+        "fcitx5 -d"
       ];
       bindm = [
         "$mod, mouse:272, movewindow"
