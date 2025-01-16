@@ -58,7 +58,16 @@
     git
     gcc
     wqy_microhei
+    ntfs3g
+
+    # make waybar happy
+    (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
+      # select Python packages here
+      pandas
+      requests
+    ]))
   ];
+  environment.localBinInPath = true;
 
   fonts.packages = with pkgs; [
     noto-fonts

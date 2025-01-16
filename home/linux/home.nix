@@ -61,15 +61,20 @@
       };
       input = {
         follow_mouse = 1;
-        sensitivity = -0.5;
+        sensitivity = -0.9;
       };
       "$mod" = "SUPER";
       monitor = [
         "DP-2,1920x1080@240,0x0,1"
+        "eDP-1,1920x1200@60.03,1920x0,1"
       ];
+      # workspace = [
+      #   "1, monitor:DP-2, default:true"
+      # ];
       exec-once = [
         "hyprctl setcursor \"Vanilla-DMZ\" 24"
         "fcitx5 -d"
+        "clash-verge"
       ];
       bindm = [
         "$mod, mouse:272, movewindow"
@@ -82,7 +87,7 @@
           "$mod SHIFT, Q, exit,"
           "$mod, F, fullscreen"
           "$mod, Space, togglefloating"
-          ", Print, exec, grimblast copy area"
+          "$mod SHIFT, S, exec, grimblast copy area"
           "$mod, Return, exec, wezterm"
           "$mod, I, exec, gnome-control-center"
           "$mod, E, exec, nautilus"
@@ -96,6 +101,11 @@
           "$mod, H, movefocus, l"
           "$mod, L, movefocus, r"
           "$mod, A, exec, killall rofi || rofi -show drun -theme ~/.config/rofi/config.rasi"
+          "$mod, P, exec, pavucontrol"
+          "$mod SHIFT, H, movewindow, l"
+          "$mod SHIFT, L, movewindow, r"
+          "$mod SHIFT, K, movewindow, u"
+          "$mod SHIFT, J, movewindow, d"
         ]
         ++ (
           builtins.concatLists (builtins.genList (i:
@@ -112,5 +122,9 @@
 
   # Optional, hint Electron apps to use Wayland:
   home.sessionVariables.NIXOS_OZONE_WL = "1";
+  # Extra directories to add to PATH.
+  home.sessionPath = [
+    "$HOME/.ghcup/bin"
+  ];
 
 }

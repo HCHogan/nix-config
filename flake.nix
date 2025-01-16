@@ -12,6 +12,8 @@
       inputs.nixpkgs.follows = "nixpkgs-darwin";
     };
 
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,7 +42,7 @@
     # kvim.url = "github:HCHogan/kvim/master";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ...}: {
+  outputs = inputs @ { self, nixpkgs, home-manager, nixos-cosmic, ...}: {
     # formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
     # overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
@@ -52,6 +54,13 @@
           inherit specialArgs;
           system = "x86_64-linux";
           modules = [
+            {
+              nix.settings = {
+                substituters = [ "https://cosmic.cachix.org/" ];
+                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+              };
+            }
+            nixos-cosmic.nixosModules.default
             ./hosts/6800u
             home-manager.nixosModules.home-manager
             {

@@ -25,6 +25,7 @@
       canTouchEfiVariables = true;
     };
   };
+  boot.supportedFilesystems = [ "ntfs" ];
 
   networking.hostName = "6800u"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -41,13 +42,27 @@
   # drivers.amdgpu.enable = true;
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm = {
     enable = true;
     wayland = true;
   };
+  programs.uwsm.enable = true;
+  programs.uwsm.waylandCompositors = {
+    hyprland = {
+      prettyName = "Hyprland";
+      comment = "Hyprland compositor managed by UWSM";
+      binPath = "/run/current-system/sw/bin/Hyprland";
+    };
+  };
   services.xserver.desktopManager.gnome.enable = true;
+
+  # services.desktopManager.cosmic.enable = true;
+  # services.displayManager.cosmic-greeter.enable = true;
+
   services.keyd = {
     enable = true;
     keyboards = {
@@ -63,12 +78,14 @@
     };
   };
 
+  xdg.portal.wlr.enable = true;
   programs = {
     clash-verge = {
       enable = true;
     };
     hyprland = {
       enable = true;
+      withUWSM = true;
       # set the flake package
       package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       # make sure to also set the portal package, so that they are in sync
@@ -162,6 +179,7 @@
       };
     };
   };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

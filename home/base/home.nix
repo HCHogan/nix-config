@@ -35,6 +35,9 @@
     yazi
     wezterm
     nwg-look
+    pavucontrol
+    grimblast
+    wl-clipboard
 
     # archives
     zip
@@ -104,8 +107,16 @@
     prettierd
 
     # languages
+    uv
+
     llvm
     nodejs_22
+
+    haskell.compiler.ghc98
+    cabal-install
+    # haskellPackages.haskell-language-server
+    haskell.packages.ghc982.haskell-language-server
+    cabal2nix
   ];
 
 
@@ -121,7 +132,7 @@
 
   programs.rofi = {
     enable = true;
-    plugins = [ pkgs.rofi-emoji ];
+    # plugins = [ pkgs.rofi-emoji ];
     # theme = ../../modules/rofi/config.rasi;
   };
 
@@ -148,6 +159,10 @@
       repo = "wezterm";
       rev = "main";
       sha256 = "sha256-IAKbtTOOZGGBbbWS/kSlAGUB0pkHTmdQe4kFP6wsDwY=";
+    };
+    waybar = {
+      source = ../../modules/waybar;
+      recursive = true;
     };
   };
 
