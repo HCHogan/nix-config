@@ -32,6 +32,7 @@
     clash-verge-rev
     telegram-desktop
     fastfetch
+    neofetch
     yazi
     wezterm
     nwg-look
@@ -61,6 +62,7 @@
     socat
     nmap
     ipcalc
+    blueman
 
     #misc
     cowsay
@@ -114,7 +116,6 @@
 
     haskell.compiler.ghc98
     cabal-install
-    # haskellPackages.haskell-language-server
     haskell.packages.ghc982.haskell-language-server
     cabal2nix
   ];
@@ -162,6 +163,10 @@
     };
     waybar = {
       source = ../../modules/waybar;
+      recursive = true;
+    };
+    neofetch = {
+      source = ../../modules/neofetch;
       recursive = true;
     };
   };
