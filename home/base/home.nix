@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, kvim, ... }:
 
 {
   # nixpkgs = {
@@ -149,12 +149,7 @@
   };
 
   xdg.configFile = {
-    nvim.source = pkgs.fetchFromGitHub {
-      owner = "HCHogan";
-      repo = "kvim";
-      rev = "master";
-      sha256 = "sha256-vBko906PUuttA4qF/MnvYZf537bbrxxvctWG/LozMws=";
-    };
+    nvim.source = "${kvim}";
     wezterm.source = pkgs.fetchFromGitHub {
       owner = "HCHogan";
       repo = "wezterm";
