@@ -46,18 +46,33 @@
   services.udisks2.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm = {
+  # services.xserver.displayManager.gdm = {
+  #   enable = true;
+  #   wayland = true;
+  # };
+  services.greetd = {
     enable = true;
-    wayland = true;
-  };
-  programs.uwsm.enable = true;
-  programs.uwsm.waylandCompositors = {
-    hyprland = {
-      prettyName = "Hyprland";
-      comment = "Hyprland compositor managed by UWSM";
-      binPath = "/run/current-system/sw/bin/Hyprland";
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time";
+        user = "hank";
+      };
     };
   };
+  programs.uwsm.enable = true;
+  programs.zsh = {
+    enable = true;
+    # shellInit = ''
+    # eval "$(starship init zsh)"
+    # '';
+  };
+  # programs.uwsm.waylandCompositors = {
+  #   hyprland = {
+  #     prettyName = "Hyprland";
+  #     comment = "Hyprland compositor managed by UWSM";
+  #     binPath = "/run/current-system/sw/bin/Hyprland";
+  #   };
+  # };
   services.xserver.desktopManager.gnome.enable = true;
 
   # services.desktopManager.cosmic.enable = true;
@@ -180,6 +195,33 @@
     };
   };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    neovim
+    btop
+    git
+    gcc
+    wqy_microhei
+    ntfs3g
+    qemu
+    starship
+    zsh
+
+    inputs.zen-browser.packages."${system}".default
+
+    # pkgsCross.riscv64.gcc14
+
+    # make waybar happy
+    (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
+      # select Python packages here
+      pandas
+      requests
+    ]))
+  ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

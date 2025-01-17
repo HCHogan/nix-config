@@ -3,12 +3,12 @@
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
+    shell = pkgs.zsh;
     isNormalUser = true;
     description = username;
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       tree
-      inputs.zen-browser.packages."${system}".default
     ];
   };
 
@@ -48,25 +48,6 @@
     LC_TIME = "zh_CN.UTF-8";
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    neovim
-    btop
-    git
-    gcc
-    wqy_microhei
-    ntfs3g
-
-    # make waybar happy
-    (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
-      # select Python packages here
-      pandas
-      requests
-    ]))
-  ];
   environment.localBinInPath = true;
 
   fonts.packages = with pkgs; [

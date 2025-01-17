@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, kvim, ... }:
+{ inputs, config, pkgs, kvim, zsh-config, ... }:
 
 {
   # nixpkgs = {
@@ -17,6 +17,10 @@
 
   home.file.".test".text = ''
     text in home.nix
+  '';
+
+  home.file.".zshenv".text = ''
+  ZDOTDIR=$HOME/.config/zsh
   '';
 
   home.file.".local/share/fonts/Recursive-Bold.ttf".source = ../../fonts/Recursive-Bold.ttf;
@@ -39,6 +43,8 @@
     pavucontrol
     grimblast
     wl-clipboard
+
+    rustup
 
     # archives
     zip
@@ -77,6 +83,9 @@
     tree-sitter
     qq
     wechat-uos
+    vlc
+    cider
+    zinit
 
     # nix related
     nix-output-monitor
@@ -120,16 +129,16 @@
     cabal2nix
   ];
 
-
   programs.starship = {
     enable = true;
+    enableTransience = true;
+    enableZshIntegration = true;
     # settings = {
     #   add_newline = false;
     #   aws.disabled = true;
     #   line_break.disabled = true;
     # };
   };
-
 
   programs.rofi = {
     enable = true;
@@ -150,6 +159,7 @@
 
   xdg.configFile = {
     nvim.source = "${kvim}";
+    zsh.source = "${zsh-config}";
     wezterm.source = pkgs.fetchFromGitHub {
       owner = "HCHogan";
       repo = "wezterm";

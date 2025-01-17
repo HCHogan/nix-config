@@ -66,7 +66,7 @@
       "$mod" = "SUPER";
       monitor = [
         "DP-2,1920x1080@240,0x0,1"
-        "eDP-1,1920x1200@60.03,1920x0,1"
+        "eDP-1,1920x1200@60.03,1920x0,1.25"
       ];
       # workspace = [
       #   "1, monitor:DP-2, default:true"

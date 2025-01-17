@@ -28,32 +28,31 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # wezterm = {
-    #   url = "github:wez/wezterm?dir=nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # }
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
     };
 
     helix.url = "github:helix-editor/helix/master";
-        kvim = {
+    kvim = {
       url = "github:HCHogan/kvim";
+      flake = false;
+    };
+    zsh-config = {
+      url = "github:HCHogan/zsh";
       flake = false;
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nixos-cosmic, nix-darwin, kvim, ...}: {
-    # formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+  outputs = inputs @ { self, nixpkgs, home-manager, nixos-cosmic, nix-darwin, kvim, zsh-config, ...}: {
+    # formatter.${system} = nixpkgs.legacyPackages.${system}.
     # overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
       "6800u" = let 
         username = "hank";
         hostname = "6800u";
         system = "x86_64-linux";
-        specialArgs = inputs // {
-          inherit username hostname;
+        specialArgs = {
+          inherit username hostname inputs;
         };
       in
       nixpkgs.lib.nixosSystem {
@@ -73,6 +72,7 @@
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = specialArgs // {
               kvim = kvim.outPath;
+              zsh-config = zsh-config.outPath;
             };
             home-manager.users.${username} = import ./home/linux/home.nix;
           }
@@ -85,8 +85,8 @@
         username = "hank";
         hostname = "m3max";
         system = "aarch64-darwin";
-        specialArgs = inputs // {
-          inherit username hostname;
+        specialArgs = {
+          inherit username hostname inputs;
         };
       in
       nix-darwin.lib.darwinSystem {
