@@ -19,6 +19,7 @@
       device = "nodev";
       efiSupport = true;
       useOSProber = true;
+      theme = "${inputs.grub-catppuccin.outPath}/src/catppuccin-mocha-grub-theme";
     };
     efi = {
       efiSysMountPoint = "/efi";
@@ -60,6 +61,7 @@
     };
   };
   programs.uwsm.enable = true;
+  # programs.light.enable = true;
   programs.zsh = {
     enable = true;
     # shellInit = ''
@@ -106,7 +108,7 @@
       # make sure to also set the portal package, so that they are in sync
       portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
-    waybar.enable = true;
+    # waybar.enable = true;
     hyprlock.enable = true;
     # thunar.enable = true;
     virt-manager.enable = true;
@@ -131,7 +133,18 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
-  virtualisation.libvirtd.enable = false;
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu = {
+        swtpm.enable = true;
+        ovmf.enable = true;
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
+      };
+    };
+    spiceUSBRedirection.enable = true;
+  };
+  services.spice-vdagentd.enable = true;
 
   hardware.graphics = {
     enable = true;
@@ -210,6 +223,29 @@
     qemu
     starship
     zsh
+    brightnessctl
+    waybar
+    nwg-dock-hyprland
+    duf
+    gnumake
+    flex
+    bison
+    elfutils
+    libelf
+    pkg-config
+    clapper
+
+    #virtualisation
+    virt-manager
+    virt-viewer
+    spice 
+    spice-gtk
+    spice-protocol
+    win-virtio
+    win-spice
+    adwaita-icon-theme
+    radeontop
+    corectrl
 
     inputs.zen-browser.packages."${system}".default
 

@@ -11,7 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     hyprland = {
       url = "github:hyprwm/Hyprland";
@@ -32,7 +33,7 @@
       url = "github:0xc000022070/zen-browser-flake";
     };
 
-    helix.url = "github:helix-editor/helix/master";
+    # helix.url = "github:helix-editor/helix/master";
     kvim = {
       url = "github:HCHogan/kvim";
       flake = false;
@@ -41,9 +42,13 @@
       url = "github:HCHogan/zsh";
       flake = false;
     };
+    grub-catppuccin = {
+      url = "github:catppuccin/grub";
+      flake = false;
+    };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nixos-cosmic, nix-darwin, kvim, zsh-config, ...}: {
+  outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, nixos-hardware, kvim, zsh-config, ...}: {
     # formatter.${system} = nixpkgs.legacyPackages.${system}.
     # overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
@@ -58,14 +63,15 @@
       nixpkgs.lib.nixosSystem {
         inherit system specialArgs;
         modules = [
-          {
-            nix.settings = {
-              substituters = [ "https://cosmic.cachix.org/" ];
-              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-            };
-          }
-          nixos-cosmic.nixosModules.default
+          # {
+          #   nix.settings = {
+          #     substituters = [ "https://cosmic.cachix.org/" ];
+          #     trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+          #   };
+          # }
+          # nixos-cosmic.nixosModules.default
           ./hosts/6800u
+          nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen4
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

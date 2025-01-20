@@ -29,6 +29,7 @@
   home.file.wallpapers.source = ../../wallpapers;
 
   home.packages = with pkgs;[
+    nil
     killall
     hyprpaper
     microsoft-edge
@@ -173,6 +174,9 @@
     neofetch = {
       source = ../../modules/neofetch;
       recursive = true;
+    };
+    "starship.toml" = {
+      source = ../../modules/starship/starship.toml;
     };
   };
 

@@ -10,21 +10,27 @@
         "clock",
         // "cpu",
         // "memory",
-        "custom/weather",
+        //"custom/weather",
         "hyprland/workspaces"
     ],
     "modules-center": ["hyprland/window"],
     "modules-right": [
         "tray",
-        // "backlight",
         // "custom/updates",
         // "memory",
         // "custom/language",
         "pulseaudio",
+        "backlight",
         "memory",
         // "pulseaudio#microphone",
         "battery"
     ],
+    "backlight/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal",
+        "device": "intel_backlight"
+    },
 
     "hyprland/window": {
         "format": "{}"
@@ -82,7 +88,7 @@
         "spacing": 10
     },
     //"clock": {
-    //    //"format": "{: %R   %m/%d}",
+    //    "format": "{: %R   %m/%d}",
     //    "format": "{:%H:%M}"
     //    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     //},
@@ -124,5 +130,13 @@
         "format": "{capacity}% {icon}",
         "format-icons": ["󰁻", "󰁽", "󰁿", "󰂁", "󰁹"],
         "max-length": 25
+    },
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "device": "amdgpu_bl1",
+        "format-icons": ["", ""],
+        "on-scroll-up":   "brightnessctl s 1%+",
+        "on-scroll-down": "brightnessctl s 1%-",
+        //"on-click-right": "brightnessctl s 0"
     }
 }

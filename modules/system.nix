@@ -6,7 +6,7 @@
     shell = pkgs.zsh;
     isNormalUser = true;
     description = username;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "libvirtd"];
     packages = with pkgs; [
       tree
     ];

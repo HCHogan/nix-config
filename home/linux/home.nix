@@ -20,6 +20,7 @@
 
       wallpaper = [
         "DP-2,/home/hank/wallpapers/nixos-stroke-4k.png"
+        "eDP-1,/home/hank/wallpapers/nixos-stroke-4k.png"
       ];
     };
   };
@@ -72,6 +73,7 @@
       #   "1, monitor:DP-2, default:true"
       # ];
       exec-once = [
+        "waybar"
         "hyprctl setcursor \"Vanilla-DMZ\" 24"
         "fcitx5 -d"
         "clash-verge"
@@ -127,4 +129,7 @@
     "$HOME/.ghcup/bin"
   ];
 
+    home.packages = with pkgs;[
+      spotify
+    ];
 }
