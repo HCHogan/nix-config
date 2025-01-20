@@ -63,12 +63,6 @@
       nixpkgs.lib.nixosSystem {
         inherit system specialArgs;
         modules = [
-          # {
-          #   nix.settings = {
-          #     substituters = [ "https://cosmic.cachix.org/" ];
-          #     trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-          #   };
-          # }
           # nixos-cosmic.nixosModules.default
           ./hosts/6800u
           nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen4

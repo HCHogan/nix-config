@@ -44,7 +44,7 @@
     pavucontrol
     grimblast
     wl-clipboard
-
+    wkhtmltopdf
     rustup
 
     # archives
