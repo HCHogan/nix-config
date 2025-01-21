@@ -122,8 +122,20 @@ tooltip {
 
 #clock {
     color: #fab387;
-    border-radius: 10px 10px 10px 10px;
-    margin-left: 5px;
+    border-radius: 0px 10px 10px 0px;
+    /*margin-left: 5px;*/
+    border-right: 0px;
+}
+
+#custom-logo {
+    padding: 0px 10px;
+    margin: 3px 0px;
+    margin-top: 10px;
+    border: 1px solid #181825;
+    color: #1e1e2e;
+    background: #b4befe;
+    border-radius: 10px 0px 0px 10px;
+    margin-left: 10px;
     border-right: 0px;
 }
 

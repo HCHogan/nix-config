@@ -29,7 +29,6 @@
   home.file.wallpapers.source = ../../wallpapers;
 
   home.packages = with pkgs;[
-    nil
     killall
     hyprpaper
     microsoft-edge
@@ -97,7 +96,7 @@
     glow
     iotop
     iftop
-    # btop
+    btop-rocm
 
     # syscall monitoring
     strace
@@ -118,6 +117,9 @@
     marksman
     markdownlint-cli
     prettierd
+    lua-language-server
+    bash-language-server
+    nil
 
     # languages
     uv

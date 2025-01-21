@@ -7,6 +7,7 @@
     "gtk-layer-shell": true,
     "height": 0,
     "modules-left": [
+        "custom/logo",
         "clock",
         // "cpu",
         // "memory",
@@ -75,6 +76,9 @@
     //     "format": " {}",
     //     "tooltip": false
     // },
+    "custom/logo": {
+        "format": "󱄅",
+    },
     "custom/weather" : {
         "tooltip" : true,
         "format" : "{}",
