@@ -46,6 +46,7 @@
     wl-clipboard
     wkhtmltopdf
     rustup
+    minicom
 
     # archives
     zip
