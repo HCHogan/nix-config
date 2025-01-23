@@ -129,7 +129,17 @@
     "$HOME/.ghcup/bin"
   ];
 
-    home.packages = with pkgs;[
-      spotify
-    ];
+  home.packages = with pkgs;[
+    spotify
+    killall
+    hyprpaper
+    nwg-look
+    pavucontrol
+    grimblast
+    wl-clipboard
+    wechat-uos
+    cider
+    blueman
+    # mathematica
+  ];
 }

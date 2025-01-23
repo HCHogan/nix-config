@@ -26,12 +26,12 @@
         // "pulseaudio#microphone",
         "battery"
     ],
-    "backlight/slider": {
-        "min": 0,
-        "max": 100,
-        "orientation": "horizontal",
-        "device": "intel_backlight"
-    },
+    //"backlight/slider": {
+    //    "min": 0,
+    //    "max": 100,
+    //    "orientation": "horizontal",
+    //    "device": "intel_backlight"
+    //},
 
     "hyprland/window": {
         "format": "{}"

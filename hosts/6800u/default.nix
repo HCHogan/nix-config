@@ -60,7 +60,7 @@
       };
     };
   };
-  programs.uwsm.enable = true;
+  # programs.uwsm.enable = true;
   # programs.light.enable = true;
   programs.zsh = {
     enable = true;
@@ -93,6 +93,27 @@
         };
       };
     };
+  };
+
+  services.dae = {
+    # enable = true;
+
+    # openFirewall = {
+    #   enable = true;
+    #   port = 12345;
+    # };
+
+    /* default options
+
+    package = inputs.daeuniverse.packages.x86_64-linux.dae;
+    disableTxChecksumIpGeneric = false;
+    configFile = "/etc/dae/config.dae";
+    assets = with pkgs; [ v2ray-geoip v2ray-domain-list-community ];
+
+    */
+
+    # alternative of `assets`, a dir contains geo database.
+    # assetsPath = "/etc/dae";
   };
 
   xdg.portal.wlr.enable = true;
@@ -234,6 +255,7 @@
     pkg-config
     clapper
     bat
+    just
 
     #virtualisation
     virt-manager

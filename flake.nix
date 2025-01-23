@@ -38,14 +38,18 @@
       url = "github:HCHogan/kvim";
       flake = false;
     };
+
     zsh-config = {
       url = "github:HCHogan/zsh";
       flake = false;
     };
+
     grub-catppuccin = {
       url = "github:catppuccin/grub";
       flake = false;
     };
+
+    daeuniverse.url = "github:daeuniverse/flake.nix";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, nixos-hardware, kvim, zsh-config, ...}: {
@@ -65,6 +69,8 @@
         modules = [
           # nixos-cosmic.nixosModules.default
           ./hosts/6800u
+          inputs.daeuniverse.nixosModules.dae
+          inputs.daeuniverse.nixosModules.daed
           nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen4
           home-manager.nixosModules.home-manager
           {

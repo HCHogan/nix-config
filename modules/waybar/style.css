@@ -62,11 +62,16 @@ tooltip {
 #workspaces,
 #tray,
 #backlight {
+
     background: #1e1e2e;
     padding: 0px 10px;
     margin: 3px 0px;
     margin-top: 10px;
     border: 1px solid #181825;
+}
+
+#backlight {
+    color: #fab387;
 }
 
 #memory {
@@ -121,7 +126,8 @@ tooltip {
 }
 
 #clock {
-    color: #fab387;
+    /*color: #fab387;*/
+    color: #b4befe;
     border-radius: 0px 10px 10px 0px;
     /*margin-left: 5px;*/
     border-right: 0px;

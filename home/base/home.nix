@@ -9,12 +9,6 @@
   #   };
   # };
 
-  # home.file.".config/i3/scripts" = {
-  #   source = ./scripts;
-  #   recursive = true;
-  #   executable = true;
-  # };
-
   home.file.".test".text = ''
     text in home.nix
   '';
@@ -29,8 +23,6 @@
   home.file.wallpapers.source = ../../wallpapers;
 
   home.packages = with pkgs;[
-    killall
-    hyprpaper
     microsoft-edge
     google-chrome
     clash-verge-rev
@@ -39,12 +31,7 @@
     neofetch
     yazi
     wezterm
-    nwg-look
-    pavucontrol
-    grimblast
-    wl-clipboard
     wkhtmltopdf
-    rustup
     minicom
 
     # archives
@@ -52,13 +39,6 @@
     xz
     unzip
     p7zip
-
-    # utils
-    ripgrep
-    jq
-    yq-go
-    eza
-    fzf
 
     # networking
     mtr
@@ -69,7 +49,6 @@
     socat
     nmap
     ipcalc
-    blueman
 
     #misc
     cowsay
@@ -83,9 +62,7 @@
     gnupg
     tree-sitter
     qq
-    wechat-uos
     vlc
-    cider
     zinit
 
     # nix related
@@ -96,7 +73,8 @@
     glow
     iotop
     iftop
-    btop-rocm
+    # btop-rocm
+    btop
 
     # syscall monitoring
     strace
@@ -120,17 +98,24 @@
     lua-language-server
     bash-language-server
     nil
+    alejandra
+
+    # utils
+    ripgrep
+    jq
+    yq-go
+    eza
+    fzf
 
     # languages
     uv
-
+    rustup
     llvm
     nodejs_22
-
-    haskell.compiler.ghc98
-    cabal-install
-    haskell.packages.ghc982.haskell-language-server
-    cabal2nix
+    haskell.compiler.ghc982
+    # cabal-install
+    # haskell.packages.ghc982.haskell-language-server
+    # cabal2nix
   ];
 
   programs.starship = {
