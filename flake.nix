@@ -71,6 +71,27 @@
     # formatter.${system} = nixpkgs.legacyPackages.${system}.
     # overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
+      "H610" = let
+        username = "hank";
+        hostname = "6800u";
+        system = "x86_64-linux";
+        specialArgs = {
+          inherit username hostname inputs;
+        };
+      in
+      nixpkgs.lib.nixosSystem {
+        inherit system specialArgs;
+        modules = [
+          ./hosts/H610
+          # home-manager.nixosModules.home-manager
+          # {
+          #   home-manager.useGlobalPkgs = true;
+          #   home-manager.useUserPackages = true;
+          #   home-manager.extraSpecialArgs = specialArgs;
+          #   home-manager.users.${username} = import ./home/linux/home.nix;
+          # }
+        ];
+      };
       "6800u" = let 
         username = "hank";
         hostname = "6800u";
