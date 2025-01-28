@@ -39,6 +39,11 @@
       flake = false;
     };
 
+    wezterm-config = {
+      url = "github:HCHogan/wezterm";
+      flake = false;
+    };
+
     zsh-config = {
       url = "github:HCHogan/zsh";
       flake = false;
@@ -49,10 +54,20 @@
       flake = false;
     };
 
+    dae-config = {
+      url = "git+ssh://git@github.com/HCHogan/dae";
+      flake = false;
+    };
+
+    nur-xddxdd = {
+      url = "github:xddxdd/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     daeuniverse.url = "github:daeuniverse/flake.nix";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, nixos-hardware, kvim, zsh-config, ...}: {
+  outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, nixos-hardware, ...}: {
     # formatter.${system} = nixpkgs.legacyPackages.${system}.
     # overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
@@ -68,18 +83,16 @@
         inherit system specialArgs;
         modules = [
           # nixos-cosmic.nixosModules.default
+          inputs.nur-xddxdd.nixosModules.setupOverlay
+          nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen4
           ./hosts/6800u
           inputs.daeuniverse.nixosModules.dae
           inputs.daeuniverse.nixosModules.daed
-          nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen4
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = specialArgs // {
-              kvim = kvim.outPath;
-              zsh-config = zsh-config.outPath;
-            };
+            home-manager.extraSpecialArgs = specialArgs;
             home-manager.users.${username} = import ./home/linux/home.nix;
           }
         ];
@@ -104,9 +117,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = specialArgs // {
-              kvim = kvim.outPath;
-            };
+            home-manager.extraSpecialArgs = specialArgs;
             home-manager.users.${username} = import ./home/darwin/home.nix;
           }
         ];

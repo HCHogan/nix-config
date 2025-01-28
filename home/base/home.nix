@@ -99,6 +99,7 @@
     bash-language-server
     nil
     alejandra
+    neovide
 
     # utils
     ripgrep
@@ -110,12 +111,26 @@
     # languages
     uv
     rustup
-    llvm
     nodejs_22
-    haskell.compiler.ghc982
-    # cabal-install
+    haskell.compiler.ghc910
+    cabal-install
+    haskell.packages.ghc9101.haskell-language-server
+    # haskell.packages.ghc984.haskell-language-server
     # haskell.packages.ghc982.haskell-language-server
-    # cabal2nix
+    # haskellPackages.haskell-language-server
+    cabal2nix
+
+    llvmPackages_latest.clangUseLLVM
+    llvmPackages_latest.clang-tools
+    llvmPackages_latest.compiler-rt
+    # llvmPackages_latest.bintools
+    llvmPackages_latest.llvm
+    llvmPackages_latest.llvm-manpages
+    llvmPackages_latest.mlir
+    llvmPackages_latest.lldb
+    llvmPackages_latest.lld
+    llvmPackages_latest.libcxx
+
   ];
 
   programs.starship = {
@@ -147,14 +162,9 @@
   };
 
   xdg.configFile = {
-    nvim.source = "${kvim}";
-    zsh.source = "${zsh-config}";
-    wezterm.source = pkgs.fetchFromGitHub {
-      owner = "HCHogan";
-      repo = "wezterm";
-      rev = "main";
-      sha256 = "sha256-IAKbtTOOZGGBbbWS/kSlAGUB0pkHTmdQe4kFP6wsDwY=";
-    };
+    nvim.source = inputs.kvim.outPath;
+    zsh.source = inputs.zsh-config.outPath;
+    wezterm.source = inputs.wezterm-config.outPath;
     waybar = {
       source = ../../modules/waybar;
       recursive = true;

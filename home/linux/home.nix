@@ -61,8 +61,8 @@
         enabled = true;
       };
       input = {
-        follow_mouse = 1;
         sensitivity = -0.9;
+        follow_mouse = 1;
       };
       "$mod" = "SUPER";
       monitor = [
@@ -120,6 +120,17 @@
             9)
         );
     };
+    extraConfig = ''
+      device {
+          name = syna8019:00-06cb:ce68-touchpad
+          sensitivity = -0
+          natural_scroll = true
+      }
+      device {
+          name = ninjutso-ninjutso-sora-v2-mouse
+          sensitivity = -0.9
+      }
+    '';
   };
 
   # Optional, hint Electron apps to use Wayland:
@@ -140,6 +151,9 @@
     wechat-uos
     cider
     blueman
+    jetbrains.idea-ultimate
+    android-tools
+    inputs.nur-xddxdd.packages.${system}.baidunetdisk
     # mathematica
   ];
 }

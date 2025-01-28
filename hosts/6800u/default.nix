@@ -95,20 +95,39 @@
     };
   };
 
+  services.power-profiles-daemon.enable = false;
+  services.auto-cpufreq = {
+    enable = false;
+    # settings = {
+    #   charger = {
+    #     governor = "performance";
+    #     turbo = "auto";
+    #   };
+    #   battery = {
+    #     governor = "powersave";
+    #     turbo = "auto";
+    #   };
+    # };
+  };
+  # services.tlp = {
+  #   enable = true;
+  # };
+
   services.dae = {
-    # enable = true;
+    enable = false;
 
     # openFirewall = {
     #   enable = true;
     #   port = 12345;
     # };
 
+    # configFile = "${inputs.dae-config.outPath}/config.dae";
+    configFile = "/etc/dae/config.dae";
+    assets = with pkgs; [ v2ray-geoip v2ray-domain-list-community ];
     /* default options
 
     package = inputs.daeuniverse.packages.x86_64-linux.dae;
     disableTxChecksumIpGeneric = false;
-    configFile = "/etc/dae/config.dae";
-    assets = with pkgs; [ v2ray-geoip v2ray-domain-list-community ];
 
     */
 
@@ -268,6 +287,7 @@
     adwaita-icon-theme
     radeontop
     corectrl
+    # daed
 
     inputs.zen-browser.packages."${system}".default
 
