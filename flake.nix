@@ -73,7 +73,7 @@
     nixosConfigurations = {
       "H610" = let
         usernames = ["hank" "genisys"];
-        hostname = "6800u";
+        hostname = "H610";
         system = "x86_64-linux";
         specialArgs = {
           inherit usernames hostname inputs system;
