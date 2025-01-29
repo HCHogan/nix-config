@@ -72,32 +72,37 @@
     # overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
       "H610" = let
-        username = "hank";
+        usernames = ["hank" "genisys"];
         hostname = "6800u";
         system = "x86_64-linux";
         specialArgs = {
-          inherit username hostname inputs;
+          inherit usernames hostname inputs system;
         };
       in
       nixpkgs.lib.nixosSystem {
         inherit system specialArgs;
         modules = [
           ./hosts/H610
-          # home-manager.nixosModules.home-manager
-          # {
-          #   home-manager.useGlobalPkgs = true;
-          #   home-manager.useUserPackages = true;
-          #   home-manager.extraSpecialArgs = specialArgs;
-          #   home-manager.users.${username} = import ./home/linux/home.nix;
-          # }
+          inputs.nur-xddxdd.nixosModules.setupOverlay
+          inputs.daeuniverse.nixosModules.dae
+          inputs.daeuniverse.nixosModules.daed
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = specialArgs;
+            home-manager.users = nixpkgs.lib.genAttrs usernames (username: 
+              import (./home + "/${username}.nix")
+            );
+          }
         ];
       };
       "6800u" = let 
-        username = "hank";
+        usernames = ["hank"];
         hostname = "6800u";
         system = "x86_64-linux";
         specialArgs = {
-          inherit username hostname inputs;
+          inherit usernames hostname inputs system;
         };
       in
       nixpkgs.lib.nixosSystem {
@@ -114,7 +119,9 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = specialArgs;
-            home-manager.users.${username} = import ./home/linux/home.nix;
+            home-manager.users = nixpkgs.lib.genAttrs usernames (username: 
+              import (./home + "/${username}.nix")
+            );
           }
         ];
       };

@@ -1,18 +1,18 @@
-{ pkgs, lib, username, inputs, ... }:
+{ pkgs, lib, usernames, inputs, ... }:
 
 {
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.${username} = {
+  users.users = lib.genAttrs usernames (name: {
     shell = pkgs.zsh;
     isNormalUser = true;
-    description = username;
+    description = name;
     extraGroups = ["networkmanager" "wheel" "libvirtd" "dialout"];
     packages = with pkgs; [
       tree
     ];
-  };
+  });
 
-  nix.settings.trusted-users = [username];
+  nix.settings.trusted-users = usernames;
 
   nix.gc = {
     automatic = true;

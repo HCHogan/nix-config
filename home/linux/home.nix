@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../core.nix
     ../base/home.nix
   ];
 
@@ -148,7 +147,7 @@
     pavucontrol
     grimblast
     wl-clipboard
-    wechat-uos
+    # wechat-uos-sandboxed
     cider
     blueman
     jetbrains.idea-ultimate
