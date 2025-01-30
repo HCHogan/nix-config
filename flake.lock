@@ -528,6 +528,22 @@
         "type": "github"
       }
     },
+    "mihomo-config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738221362,
+        "narHash": "sha256-hw62HrIKfRSeFWYdiCbOXSB2nsjgxTlGca7z8D7h/3E=",
+        "ref": "refs/heads/main",
+        "rev": "23e820b0f098cffe57e68a46d617f52c988da216",
+        "revCount": 1,
+        "type": "git",
+        "url": "ssh://git@github.com/HCHogan/mihomo-config"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/HCHogan/mihomo-config"
+      }
+    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -808,6 +824,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "kvim": "kvim",
+        "mihomo-config": "mihomo-config",
         "nix-darwin": "nix-darwin",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",

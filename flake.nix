@@ -59,10 +59,16 @@
       flake = false;
     };
 
+    mihomo-config = {
+      url = "git+ssh://git@github.com/HCHogan/mihomo-config";
+      flake = false;
+    };
+
     nur-xddxdd = {
       url = "github:xddxdd/nur-packages";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
 
     daeuniverse.url = "github:daeuniverse/flake.nix";
   };

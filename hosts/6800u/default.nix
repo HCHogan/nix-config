@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ../../modules/system.nix
       ./hardware-configuration.nix
+      ../../modules/mihomo
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -37,8 +38,8 @@
   time.timeZone = "Asia/HongKong";
 
   # Configure network proxy if necessary
-  networking.proxy.default = "http://127.0.0.1:7897";
-  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # networking.proxy.default = "http://127.0.0.1:7897";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # drivers.amdgpu.enable = true;
   # Enable the X11 windowing system.
@@ -137,9 +138,6 @@
 
   xdg.portal.wlr.enable = true;
   programs = {
-    clash-verge = {
-      enable = true;
-    };
     hyprland = {
       enable = true;
       withUWSM = true;
@@ -275,6 +273,7 @@
     clapper
     bat
     just
+    mihomo
 
     #virtualisation
     virt-manager

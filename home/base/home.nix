@@ -25,7 +25,7 @@
   home.packages = with pkgs;[
     microsoft-edge
     google-chrome
-    clash-verge-rev
+    # clash-verge-rev
     telegram-desktop
     fastfetch
     neofetch

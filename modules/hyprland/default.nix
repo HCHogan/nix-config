@@ -76,7 +76,7 @@
         "waybar"
         "hyprctl setcursor \"Vanilla-DMZ\" 24"
         "fcitx5 -d"
-        "clash-verge"
+        # "clash-verge"
       ];
       bindm = [
         "$mod, mouse:272, movewindow"
