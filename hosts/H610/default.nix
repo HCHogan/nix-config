@@ -216,6 +216,7 @@
     clapper
     bat
     just
+    mihomo
 
     #virtualisation
     virt-manager
