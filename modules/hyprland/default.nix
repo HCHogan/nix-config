@@ -2,7 +2,7 @@
 { inputs, config, pkgs, ... }:
 
 let 
-  hostname = builtins.getEnv "HOSTNAME";
+  hostname = builtins.getEnv "HOST";
 in
 {
   services.hyprpaper = {
