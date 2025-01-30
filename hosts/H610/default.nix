@@ -25,13 +25,7 @@
       efiSysMountPoint = "/efi";
     };
   };
-
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-    };
-  };
+  boot.supportedFilesystems = [ "ntfs" ];
 
   networking.hostName = "H610"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -68,7 +62,7 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = false;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.enable = false;
 
   programs.zsh = {
     enable = true;
