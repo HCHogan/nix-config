@@ -1,9 +1,6 @@
 # This module is used in home-manager
-{ inputs, config, pkgs, ... }:
+{ inputs, config, pkgs, hostname, ... }:
 
-let 
-  hostname = builtins.getEnv "HOST";
-in
 {
   services.hyprpaper = {
     enable = true;
