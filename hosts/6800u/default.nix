@@ -47,11 +47,6 @@
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm = {
-  #   enable = true;
-  #   wayland = true;
-  # };
   services.greetd = {
     enable = true;
     settings = {
@@ -61,22 +56,15 @@
       };
     };
   };
-  # programs.uwsm.enable = true;
-  # programs.light.enable = true;
   programs.zsh = {
     enable = true;
     # shellInit = ''
     # eval "$(starship init zsh)"
     # '';
   };
-  # programs.uwsm.waylandCompositors = {
-  #   hyprland = {
-  #     prettyName = "Hyprland";
-  #     comment = "Hyprland compositor managed by UWSM";
-  #     binPath = "/run/current-system/sw/bin/Hyprland";
-  #   };
-  # };
-  services.xserver.desktopManager.gnome.enable = true;
+
+  services.blueman.enable = true;
+
 
   # services.desktopManager.cosmic.enable = true;
   # services.displayManager.cosmic-greeter.enable = true;
@@ -289,6 +277,7 @@
     adwaita-icon-theme
     radeontop
     corectrl
+    nautilus
     # daed
 
     inputs.zen-browser.packages."${system}".default
