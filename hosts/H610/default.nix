@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ../../modules/system.nix
       ./hardware-configuration.nix
+      ../../modules/mihomo
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -88,9 +89,9 @@
 
   xdg.portal.wlr.enable = true;
   programs = {
-    clash-verge = {
-      enable = true;
-    };
+    # clash-verge = {
+    #   enable = true;
+    # };
     hyprland = {
       enable = true;
       withUWSM = true;
