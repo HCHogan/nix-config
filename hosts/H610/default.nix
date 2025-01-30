@@ -234,6 +234,7 @@
     radeontop
     corectrl
     # daed
+    ddns-go
 
     inputs.zen-browser.packages."${system}".default
 
