@@ -42,8 +42,8 @@
   time.timeZone = "Hongkong";
 
   # Configure network proxy if necessary
-  # networking.proxy.default = "http://192.168.1.7:7897";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  networking.proxy.default = "http://192.168.1.7:7897";
+  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
@@ -56,11 +56,124 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time";
+        user = "hank";
+      };
+    };
+  };
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.enable = false;
   services.xserver.desktopManager.gnome.enable = true;
 
+  programs.zsh = {
+    enable = true;
+    # shellInit = ''
+    # eval "$(starship init zsh)"
+    # '';
+  };
+
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      default = {
+        ids = [ "*" ];
+        settings = {
+          main = {
+            capslock = "overload(control, esc)";
+            esc = "capslock";
+          };
+        };
+      };
+    };
+  };
+
+  xdg.portal.wlr.enable = true;
+  programs = {
+    clash-verge = {
+      enable = true;
+    };
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+      # set the flake package
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # make sure to also set the portal package, so that they are in sync
+      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    };
+    # waybar.enable = true;
+    hyprlock.enable = true;
+    # thunar.enable = true;
+    virt-manager.enable = true;
+    xwayland.enable = true;
+  };
+
+  virtualisation = {
+    libvirtd = {
+      enable = true;
+      qemu = {
+        swtpm.enable = true;
+        ovmf.enable = true;
+        ovmf.packages = [ pkgs.OVMFFull.fd ];
+      };
+    };
+    spiceUSBRedirection.enable = true;
+  };
+  services.spice-vdagentd.enable = true;
+
+  hardware.graphics = {
+    enable = true;
+  };
+
+  environment = {
+    variables = {
+      EDITOR = "nvim";
+    };
+  };
+
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+  };
+  i18n.inputMethod.fcitx5 = {
+    waylandFrontend = true;
+    addons = with pkgs; [
+      fcitx5-chinese-addons
+      fcitx5-mozc
+      fcitx5-gtk #  Fcitx5 gtk im module and glib based dbus client library
+      fcitx5-material-color
+    ];
+    settings = {
+      addons = {
+        classicui.globalSection.Theme = "Material-Color-deepPurple";
+        classicui.globalSection.DarkTheme = "Material-Color-deepPurple";
+        # pinyin.globalSection = {
+        #   PageSize = 9;
+        #   CloudPinyinEnabled = "True";
+        #   CloudPinyinIndex = 2;
+        # };
+        # cloudpinyin.globalSection = {
+        #   Backend = "Baidu";
+        # };
+      };
+      #globalOptions = { "Hotkey/TriggerKeys" = { "0" = "Alt+space"; }; };
+      inputMethod = {
+        "Groups/0" = {
+          Name = "Default";
+          "Default Layout" = "us";
+          DefaultIM = "keyboard-us";
+        };
+        "Groups/0/Items/0".Name = "keyboard-us";
+        "Groups/0/Items/1".Name = "shuangpin";
+        GroupOrder."0" = "Default";
+      };
+    };
+  };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -86,10 +199,52 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    neovim
     wget
-    ddns-go
+    neovim
     git
+    gcc
+    wqy_microhei
+    ntfs3g
+    qemu
+    starship
+    zsh
+    brightnessctl
+    waybar
+    nwg-dock-hyprland
+    duf
+    gnumake
+    flex
+    bison
+    elfutils
+    libelf
+    pkg-config
+    clapper
+    bat
+    just
+
+    #virtualisation
+    virt-manager
+    virt-viewer
+    spice 
+    spice-gtk
+    spice-protocol
+    win-virtio
+    win-spice
+    adwaita-icon-theme
+    radeontop
+    corectrl
+    # daed
+
+    inputs.zen-browser.packages."${system}".default
+
+    # pkgsCross.riscv64.gcc14
+
+    # make waybar happy
+    (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
+      # select Python packages here
+      pandas
+      requests
+    ]))
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
