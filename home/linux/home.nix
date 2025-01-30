@@ -148,7 +148,6 @@
     grimblast
     wl-clipboard
     # wechat-uos-sandboxed
-    cider
     blueman
     jetbrains.idea-ultimate
     android-tools
