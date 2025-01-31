@@ -1,92 +1,15 @@
-{ inputs, config, pkgs, kvim, zsh-config, ... }:
-
-{
-  # nixpkgs = {
-  #   # overlays = [];
-  #   config = {
-  #     allowUnfree = true;
-  #     allowUnfreePredicate = _: true;
-  #   };
-  # };
-
+{pkgs, ...}: {
   home.file.".test".text = ''
     text in home.nix
   '';
 
-  home.file.".zshenv".text = ''
-  ZDOTDIR=$HOME/.config/zsh
-  '';
-
-  home.file.".local/share/fonts/Recursive-Bold.ttf".source = ../../fonts/Recursive-Bold.ttf;
-  home.file.".local/share/fonts/Recursive-Italic.ttf".source = ../../fonts/Recursive-Italic.ttf;
-  home.file.".local/share/fonts/Recursive-Regular.ttf".source = ../../fonts/Recursive-Regular.ttf;
-  home.file.wallpapers.source = ../../wallpapers;
-
-  home.packages = with pkgs;[
+  home.packages = with pkgs; [
     microsoft-edge
     google-chrome
-    # clash-verge-rev
-    telegram-desktop
     fastfetch
     neofetch
     yazi
     wezterm
-    wkhtmltopdf
-    minicom
-
-    # archives
-    zip
-    xz
-    unzip
-    p7zip
-
-    # networking
-    mtr
-    iperf3
-    dnsutils
-    ldns
-    aria2
-    socat
-    nmap
-    ipcalc
-
-    #misc
-    cowsay
-    file
-    which
-    tree
-    gnused
-    gnutar
-    gawk
-    zstd
-    gnupg
-    tree-sitter
-    qq
-    vlc
-    zinit
-
-    # nix related
-    nix-output-monitor
-
-    # productivity
-    hugo
-    glow
-    iotop
-    iftop
-    # btop-rocm
-    btop
-
-    # syscall monitoring
-    strace
-    ltrace
-    lsof
-
-    # system tools
-    sysstat
-    lm_sensors
-    ethtool
-    pciutils # lspci
-    usbutils # lsusb
 
     # neovim dependencies
     typst
@@ -130,53 +53,7 @@
     llvmPackages_latest.lldb
     llvmPackages_latest.lld
     llvmPackages_latest.libcxx
-
   ];
-
-  programs.starship = {
-    enable = true;
-    enableTransience = true;
-    enableZshIntegration = true;
-    # settings = {
-    #   add_newline = false;
-    #   aws.disabled = true;
-    #   line_break.disabled = true;
-    # };
-  };
-
-  programs.rofi = {
-    enable = true;
-    # plugins = [ pkgs.rofi-emoji ];
-    # theme = ../../modules/rofi/config.rasi;
-  };
-
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Hank Hogan";
-    userEmail = "ysh2291939848@outlook.com";
-  };
-
-  xdg.configFile = {
-    nvim.source = inputs.kvim.outPath;
-    zsh.source = inputs.zsh-config.outPath;
-    wezterm.source = inputs.wezterm-config.outPath;
-    waybar = {
-      source = ../../modules/waybar;
-      recursive = true;
-    };
-    neofetch = {
-      source = ../../modules/neofetch;
-      recursive = true;
-    };
-    "starship.toml" = {
-      source = ../../modules/starship/starship.toml;
-    };
-  };
 
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;

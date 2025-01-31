@@ -69,11 +69,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
     daeuniverse.url = "github:daeuniverse/flake.nix";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, nix-darwin, nixos-hardware, ...}: {
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    home-manager,
+    nix-darwin,
+    nixos-hardware,
+    ...
+  }: let
+    pkgs = nixpkgs;
+  in {
     # formatter.${system} = nixpkgs.legacyPackages.${system}.
     # overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
@@ -85,25 +93,26 @@
           inherit usernames hostname inputs system;
         };
       in
-      nixpkgs.lib.nixosSystem {
-        inherit system specialArgs;
-        modules = [
-          ./hosts/H610
-          inputs.nur-xddxdd.nixosModules.setupOverlay
-          inputs.daeuniverse.nixosModules.dae
-          inputs.daeuniverse.nixosModules.daed
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = specialArgs;
-            home-manager.users = nixpkgs.lib.genAttrs usernames (username: 
-              import (./home + "/${username}.nix")
-            );
-          }
-        ];
-      };
-      "6800u" = let 
+        pkgs.lib.nixosSystem {
+          inherit system specialArgs;
+          modules = [
+            ./hosts/H610
+            inputs.nur-xddxdd.nixosModules.setupOverlay
+            inputs.daeuniverse.nixosModules.dae
+            inputs.daeuniverse.nixosModules.daed
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.users = pkgs.lib.genAttrs usernames (
+                username:
+                  import (./home + "/${username}.nix")
+              );
+            }
+          ];
+        };
+      "6800u" = let
         usernames = ["hank"];
         hostname = "6800u";
         system = "x86_64-linux";
@@ -111,26 +120,27 @@
           inherit usernames hostname inputs system;
         };
       in
-      nixpkgs.lib.nixosSystem {
-        inherit system specialArgs;
-        modules = [
-          # nixos-cosmic.nixosModules.default
-          inputs.nur-xddxdd.nixosModules.setupOverlay
-          nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen4
-          ./hosts/6800u
-          inputs.daeuniverse.nixosModules.dae
-          inputs.daeuniverse.nixosModules.daed
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = specialArgs;
-            home-manager.users = nixpkgs.lib.genAttrs usernames (username: 
-              import (./home + "/${username}.nix")
-            );
-          }
-        ];
-      };
+        pkgs.lib.nixosSystem {
+          inherit system specialArgs;
+          modules = [
+            # nixos-cosmic.nixosModules.default
+            inputs.nur-xddxdd.nixosModules.setupOverlay
+            nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen4
+            ./hosts/6800u
+            inputs.daeuniverse.nixosModules.dae
+            inputs.daeuniverse.nixosModules.daed
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users = pkgs.lib.genAttrs usernames (
+                username:
+                  import (./home + "/${username}.nix") {inherit username system inputs pkgs;}
+              );
+              home-manager.extraSpecialArgs = specialArgs;
+            }
+          ];
+        };
     };
 
     darwinConfigurations = {
@@ -142,20 +152,20 @@
           inherit username hostname inputs;
         };
       in
-      nix-darwin.lib.darwinSystem {
-        inherit system specialArgs;
-        modules = [ 
-          ./hosts/m3max
-          # home manager
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = specialArgs;
-            home-manager.users.${username} = import ./home/darwin/home.nix;
-          }
-        ];
-      };
+        nix-darwin.lib.darwinSystem {
+          inherit system specialArgs;
+          modules = [
+            ./hosts/m3max
+            # home manager
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.users.${username} = import ./home/darwin/home.nix;
+            }
+          ];
+        };
     };
   };
 }

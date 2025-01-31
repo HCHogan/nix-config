@@ -1,27 +1,66 @@
-{ system, lib, ... }: {
-  imports = [
-    # ./core.nix
-  ]
-  ++ lib.optional (lib.hasInfix "linux" system) ./linux/home.nix
-  ++ lib.optional (lib.hasInfix "darwin" system) ./darwin/home.nix;
+{
+  inputs,
+  pkgs,
+  system,
+  username,
+  ...
+}: let
+  lib = pkgs.lib;
+in {
+  imports =
+    [
+      (import ./core.nix {inherit username;})
+      ./base/home.nix
+    ]
+    ++ lib.optional (lib.hasInfix "linux" system) ./linux/home.nix
+    ++ lib.optional (lib.hasInfix "darwin" system) ./darwin/home.nix;
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home = {
-    username = "hank";
-    homeDirectory = "/home/hank";
-
-    # This value determines the Home Manager release that your
-    # configuration is compatible with. This helps avoid breakage
-    # when a new Home Manager release introduces backwards
-    # incompatible changes.
-    #
-    # You can update Home Manager without changing this value. See
-    # the Home Manager release notes for a list of state version
-    # changes in each release.
-    stateVersion = "24.11";
+  programs.git = {
+    enable = true;
+    userName = "Hank Hogan";
+    userEmail = "ysh2291939848@outlook.com";
   };
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    enableTransience = true;
+    enableZshIntegration = true;
+  };
+
+  programs.rofi = {
+    enable = true;
+    # plugins = [ pkgs.rofi-emoji ];
+    # theme = ../../modules/rofi/config.rasi;
+  };
+
+  xdg.configFile = {
+    nvim.source = inputs.kvim.outPath;
+    zsh.source = inputs.zsh-config.outPath;
+    wezterm.source = inputs.wezterm-config.outPath;
+    waybar = {
+      source = ../modules/waybar;
+      recursive = true;
+    };
+    neofetch = {
+      source = ../modules/neofetch;
+      recursive = true;
+    };
+    "starship.toml" = {
+      source = ../modules/starship/starship.toml;
+    };
+  };
+
+  home.file.".zshenv".text = ''
+    ZDOTDIR=$HOME/.config/zsh
+  '';
+
+  home.file.".local/share/fonts/Recursive-Bold.ttf".source = ../fonts/Recursive-Bold.ttf;
+  home.file.".local/share/fonts/Recursive-Italic.ttf".source = ../fonts/Recursive-Italic.ttf;
+  home.file.".local/share/fonts/Recursive-Regular.ttf".source = ../fonts/Recursive-Regular.ttf;
+  home.file.wallpapers.source = ../wallpapers;
 }

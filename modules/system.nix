@@ -34,6 +34,7 @@
       "https://cache.garnix.io"
       "https://hyprland.cachix.org"
       "https://attic.xuyh0120.win/lantian"
+      "https://cache.nixos.org"
       # "https://cosmic.cachix.org/"
     ];
     trusted-public-keys = [
