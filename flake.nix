@@ -33,7 +33,6 @@
       url = "github:0xc000022070/zen-browser-flake";
     };
 
-    # helix.url = "github:helix-editor/helix/master";
     kvim = {
       url = "github:HCHogan/kvim";
       flake = false;

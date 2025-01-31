@@ -1,1 +1,2 @@
-# Hank's Nix configuration for both NixOS & macOS
+# nix-config
+My nix stuff
