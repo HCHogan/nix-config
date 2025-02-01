@@ -4,7 +4,7 @@
   username,
   ...
 }: let
-  pkgs = inputs.pkgs;
+  pkgs = inputs.nixpkgs;
   lib = pkgs.lib;
 in {
   imports =
