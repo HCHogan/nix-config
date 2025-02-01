@@ -81,8 +81,6 @@
   }: let
     pkgs = nixpkgs;
   in {
-    # formatter.${system} = nixpkgs.legacyPackages.${system}.
-    # overlays = import ./overlays {inherit inputs;};
     nixosConfigurations = {
       "H610" = let
         usernames = ["hank" "genisys"];
@@ -106,7 +104,7 @@
               home-manager.extraSpecialArgs = specialArgs;
               home-manager.users = pkgs.lib.genAttrs usernames (
                 username:
-                  import (./home + "/${username}.nix")
+                  import (./home + "/${username}.nix") {inherit username system inputs pkgs;}
               );
             }
           ];
