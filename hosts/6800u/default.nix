@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    import ../../modules/system.nix { inherit inputs usernames; }
+    (import ../../modules/system.nix {inherit usernames inputs;})
     ../../modules/mihomo
     ../../modules/grub
     ../../modules/tuigreet
@@ -20,7 +20,7 @@
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  time.timeZone = "Asia/HongKong";
+  time.timeZone = "HongKong";
 
   # Configure network proxy if necessary
   networking.proxy.default = "http://127.0.0.1:7890";

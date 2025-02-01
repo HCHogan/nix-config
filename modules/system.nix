@@ -1,18 +1,18 @@
-{ inputs, usernames, ... }:
-let
-  pkgs = inputs.nixpkgs;
-  lib = pkgs.lib;
-in
 {
+  inputs,
+  usernames,
+}: {pkgs, ...}: let
+  lib = pkgs.lib;
+in {
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users = lib.genAttrs usernames (name: {
     shell = pkgs.zsh;
     isNormalUser = true;
     description = name;
     extraGroups = ["networkmanager" "wheel" "libvirtd" "dialout"];
-    packages = with pkgs; [
-      tree
-    ];
+    # packages = with pkgs; [
+    #   tree
+    # ];
   });
 
   nix.settings.trusted-users = usernames;
@@ -32,7 +32,7 @@ in
   };
 
   nix.settings = {
-    substituters = [ 
+    substituters = [
       "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://cache.garnix.io"
       "https://hyprland.cachix.org"
@@ -46,7 +46,7 @@ in
       "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       # "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
     ];
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
     auto-optimise-store = true;
   };
 
@@ -65,5 +65,4 @@ in
   };
 
   environment.localBinInPath = true;
-
 }
