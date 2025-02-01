@@ -2,8 +2,6 @@
   description = "Hank's nix configuration for both NixOS & macOS";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     # macos
     nix-darwin = {
@@ -14,18 +12,9 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # home manager for managing user config
     home-manager = {
       url = "github:nix-community/home-manager/master";
-
-      # The `follows` keyword in inputs is used for inheritance.
-      # Here, `inputs.nixpkgs` of home-manager is kept consistent with the 1inputs.nixpkgs` of the current flake,
-      # to avoid problems caused by different version of nixpkgs denpendencies.
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

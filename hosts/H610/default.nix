@@ -1,37 +1,24 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, inputs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ../../modules/system.nix
-      ./hardware-configuration.nix
-      ../../modules/mihomo
-    ];
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = false;
-  boot.loader = {
-    grub = {
-      device = "nodev";
-      enable = true;
-      efiSupport = true;
-      useOSProber = true;
-    };
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/efi";
-    };
-  };
-  boot.supportedFilesystems = [ "ntfs" ];
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ../../modules/system.nix
+    ./hardware-configuration.nix
+    ../../modules/mihomo
+    ../../modules/grub
+    ../../modules/tuigreet
+    ../../modules/keyd
+    ../../modules/fcitx5
+    ../../modules/nerdfonts
+  ];
 
   networking.hostName = "H610"; # Define your hostname.
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Hongkong";
@@ -40,26 +27,8 @@
   networking.proxy.default = "http://127.0.0.1:7890";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time";
-        user = "hank";
-      };
-    };
-  };
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = false;
@@ -67,38 +36,13 @@
 
   programs.zsh = {
     enable = true;
-    # shellInit = ''
-    # eval "$(starship init zsh)"
-    # '';
-  };
-
-  services.keyd = {
-    enable = true;
-    keyboards = {
-      default = {
-        ids = [ "*" ];
-        settings = {
-          main = {
-            capslock = "overload(control, esc)";
-            esc = "capslock";
-          };
-        };
-      };
-    };
   };
 
   xdg.portal.wlr.enable = true;
   programs = {
-    # clash-verge = {
-    #   enable = true;
-    # };
     hyprland = {
       enable = true;
       withUWSM = true;
-      # set the flake package
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-      # make sure to also set the portal package, so that they are in sync
-      portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     };
     # waybar.enable = true;
     hyprlock.enable = true;
@@ -113,7 +57,7 @@
       qemu = {
         swtpm.enable = true;
         ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
+        ovmf.packages = [pkgs.OVMFFull.fd];
       };
     };
     spiceUSBRedirection.enable = true;
@@ -130,65 +74,15 @@
     };
   };
 
-  i18n.inputMethod = {
-    enable = true;
-    type = "fcitx5";
-  };
-  i18n.inputMethod.fcitx5 = {
-    waylandFrontend = true;
-    addons = with pkgs; [
-      fcitx5-chinese-addons
-      fcitx5-mozc
-      fcitx5-gtk #  Fcitx5 gtk im module and glib based dbus client library
-      fcitx5-material-color
-    ];
-    settings = {
-      addons = {
-        classicui.globalSection.Theme = "Material-Color-deepPurple";
-        classicui.globalSection.DarkTheme = "Material-Color-deepPurple";
-        # pinyin.globalSection = {
-        #   PageSize = 9;
-        #   CloudPinyinEnabled = "True";
-        #   CloudPinyinIndex = 2;
-        # };
-        # cloudpinyin.globalSection = {
-        #   Backend = "Baidu";
-        # };
-      };
-      #globalOptions = { "Hotkey/TriggerKeys" = { "0" = "Alt+space"; }; };
-      inputMethod = {
-        "Groups/0" = {
-          Name = "Default";
-          "Default Layout" = "us";
-          DefaultIM = "keyboard-us";
-        };
-        "Groups/0/Items/0".Name = "keyboard-us";
-        "Groups/0/Items/1".Name = "shuangpin";
-        GroupOrder."0" = "Default";
-      };
-    };
-  };
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
   services.pipewire = {
     enable = true;
     pulse.enable = true;
   };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
-  # programs.firefox.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -221,7 +115,7 @@
     #virtualisation
     virt-manager
     virt-viewer
-    spice 
+    spice
     spice-gtk
     spice-protocol
     win-virtio
@@ -237,11 +131,12 @@
     # pkgsCross.riscv64.gcc14
 
     # make waybar happy
-    (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
-      # select Python packages here
-      pandas
-      requests
-    ]))
+    (pkgs.python3.withPackages (python-pkgs:
+      with python-pkgs; [
+        # select Python packages here
+        pandas
+        requests
+      ]))
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -261,8 +156,8 @@
     enable = true;
     description = "Simple and easy to use DDNS. Automatically update domain name resolution to public IP (Support Aliyun, Tencent Cloud, Dnspod, Cloudflare, Callback, Huawei Cloud, Baidu Cloud, Porkbun, GoDaddy...)";
 
-    wants = [ "network.target" ];
-    after = [ "network-online.target" ];
+    wants = ["network.target"];
+    after = ["network-online.target"];
 
     serviceConfig = {
       StartLimitInterval = 5;
@@ -273,7 +168,7 @@
       EnvironmentFile = "-/etc/sysconfig/ddns-go";
     };
 
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
   };
 
   # Open ports in the firewall.
@@ -305,5 +200,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }
