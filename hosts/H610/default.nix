@@ -1,20 +1,18 @@
 {
-  config,
-  lib,
   pkgs,
   inputs,
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
-    ../../modules/system.nix
     ./hardware-configuration.nix
+    ../../modules/system.nix
     ../../modules/mihomo
     ../../modules/grub
     ../../modules/tuigreet
     ../../modules/keyd
     ../../modules/fcitx5
     ../../modules/nerdfonts
+    ../../modules/virtualisation
   ];
 
   networking.hostName = "H610"; # Define your hostname.
@@ -51,17 +49,6 @@
     xwayland.enable = true;
   };
 
-  virtualisation = {
-    libvirtd = {
-      enable = true;
-      qemu = {
-        swtpm.enable = true;
-        ovmf.enable = true;
-        ovmf.packages = [pkgs.OVMFFull.fd];
-      };
-    };
-    spiceUSBRedirection.enable = true;
-  };
   services.spice-vdagentd.enable = true;
 
   hardware.graphics = {
