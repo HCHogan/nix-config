@@ -1,10 +1,10 @@
 {
   inputs,
-  pkgs,
   system,
   username,
   ...
 }: let
+  pkgs = inputs.pkgs;
   lib = pkgs.lib;
 in {
   imports =
