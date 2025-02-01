@@ -24,7 +24,7 @@
       else inputs.home-manager.nixosModules.home-manager;
   in
     lib {
-      specialArgs = {inherit usernames system;};
+      # specialArgs = {inherit usernames system;};
       modules =
         [
           (import ./../hosts/${hostname} {inherit inputs usernames pkgs;})

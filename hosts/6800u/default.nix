@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    import ../../modules/system.nix { inherit usernames; }
+    import ../../modules/system.nix { inherit inputs usernames; }
     ../../modules/mihomo
     ../../modules/grub
     ../../modules/tuigreet

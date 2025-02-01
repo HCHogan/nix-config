@@ -1,11 +1,12 @@
 {
   pkgs,
   inputs,
+  usernames,
   ...
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/system.nix
+    ../../modules/system.nix { inherit inputs usernames; }
     ../../modules/mihomo
     ../../modules/grub
     ../../modules/tuigreet
