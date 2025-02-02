@@ -1,7 +1,9 @@
 # This module is used in home-manager
-{ inputs, config, pkgs, hostname, ... }:
-
 {
+  pkgs,
+  hostname,
+  ...
+}: {
   services.hyprpaper = {
     enable = true;
     settings = {
@@ -11,13 +13,18 @@
         "/home/hank/wallpapers/nixos-stroke-4k.png"
       ];
 
-      wallpaper = if hostname == "6800u" then [
-        "DP-2,/home/hank/wallpapers/nixos-stroke-4k.png"
-        "eDP-1,/home/hank/wallpapers/nixos-stroke-4k.png"
-      ] else if hostname == "H610" then [
-        "DP-2,/home/hank/wallpapers/nixos-stroke-4k.png"
-      ] else [
-      ];
+      wallpaper =
+        if hostname == "6800u"
+        then [
+          "DP-2,/home/hank/wallpapers/nixos-stroke-4k.png"
+          "eDP-1,/home/hank/wallpapers/nixos-stroke-4k.png"
+        ]
+        else if hostname == "H610"
+        then [
+          "DP-2,/home/hank/wallpapers/nixos-stroke-4k.png"
+        ]
+        else [
+        ];
     };
   };
   home.pointerCursor = {
@@ -46,7 +53,7 @@
           new_optimizations = true;
         };
         shadow = {
-          enabled = true;
+          enabled = false;
           ignore_window = true;
           offset = "2 2";
           range = 4;
@@ -59,16 +66,23 @@
       input = {
         sensitivity = -0.9;
         follow_mouse = 1;
+        touchpad = {
+          scroll_factor = 0.1;
+        };
       };
       "$mod" = "SUPER";
-      monitor = if hostname == "6800u" then [
-        "DP-2,1920x1080@240,0x0,1"
-        "eDP-1,1920x1200@60.03,1920x0,1.25"
-      ] else if hostname == "H610" then [
-        "DP-2,3440x1440@144,0x0,1"
-      ] else [
-
-      ];
+      monitor =
+        if hostname == "6800u"
+        then [
+          "DP-2,1920x1080@240,0x0,1"
+          "eDP-1,1920x1200@60.03,1920x0,1.25"
+        ]
+        else if hostname == "H610"
+        then [
+          "DP-2,3440x1440@144,0x0,1"
+        ]
+        else [
+        ];
       # workspace = [
       #   "1, monitor:DP-2, default:true"
       # ];
@@ -110,8 +124,9 @@
           "$mod SHIFT, J, movewindow, d"
         ]
         ++ (
-          builtins.concatLists (builtins.genList (i:
-              let ws = i + 1;
+          builtins.concatLists (builtins.genList (
+              i: let
+                ws = i + 1;
               in [
                 "$mod, ${toString ws}, workspace, ${toString ws}"
                 "$mod SHIFT, ${toString ws}, movetoworkspace, ${toString ws}"

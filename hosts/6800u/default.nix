@@ -98,8 +98,10 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+  };
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
