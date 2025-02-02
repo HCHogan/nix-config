@@ -38,7 +38,7 @@
     xwayland.enable = true;
     settings = {
       general = {
-        border_size = 2;
+        border_size = 0;
         gaps_in = 5;
         gaps_out = 10;
         resize_on_border = true;
@@ -61,7 +61,7 @@
         };
       };
       animations = {
-        enabled = true;
+        enabled = false;
       };
       input = {
         sensitivity = -0.9;
@@ -116,7 +116,8 @@
           "$mod, K, movefocus, u"
           "$mod, H, movefocus, l"
           "$mod, L, movefocus, r"
-          "$mod, A, exec, killall rofi || rofi -show drun -theme ~/.config/rofi/config.rasi"
+          # "$mod, A, exec, killall rofi || rofi -show drun -theme ~/.config/rofi/config.rasi"
+          "$mod, A, exec, killall tofi-drun || tofi-drun --drun-launch=true"
           "$mod, P, exec, pavucontrol"
           "$mod SHIFT, H, movewindow, l"
           "$mod SHIFT, L, movewindow, r"

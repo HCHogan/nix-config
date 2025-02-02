@@ -32,10 +32,8 @@ in {
     enableZshIntegration = true;
   };
 
-  programs.rofi = {
+  programs.tofi = {
     enable = true;
-    # plugins = [ pkgs.rofi-emoji ];
-    # theme = ../../modules/rofi/config.rasi;
   };
 
   xdg.configFile = {
