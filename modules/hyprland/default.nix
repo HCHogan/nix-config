@@ -9,6 +9,22 @@
   programs.hyprpanel = {
     enable = true;
     theme = "catppuccin_mocha";
+    layout = {
+      "bar.layouts" = {
+        "*" = {
+          left = ["dashboard" "workspaces" "windowtitle"];
+          middle = ["media"];
+          right = [
+            "volume"
+            "network"
+            "bluetooth"
+            "systray"
+            "clock"
+            "notifications"
+          ];
+        };
+      };
+    };
     settings = {
       theme.font.size = "15";
       bar = {
@@ -18,7 +34,7 @@
           monitorSpecific = false;
         };
         clock = {
-          format = "%I:%M";
+          format = "%H:%M";
           icon = "";
         };
       };
@@ -26,12 +42,16 @@
         transparent = false;
         outer_spacing = "0.2em";
       };
+      theme.osd.orientation = "horizontal";
+      theme.osd.location = "bottom";
+      theme.osd.margins = "0px 0px 20px 0px";
       menus.dashboard.shortcuts.left.shortcut1.command = "zen";
       menus.dashboard.shortcuts.left.shortcut2.command = "spotify";
       menus.dashboard.shortcuts.left.shortcut4.icon = "";
       menus.dashboard.shortcuts.left.shortcut4.command = "nautilus";
+      menus.dashboard.directories.enabled = false;
       menus.dashboard.stats.interval = 1000;
-      menus.dashboard.stats.enable_gpu = true;
+      # menus.dashboard.stats.enable_gpu = true;
       menus.clock = {
         time = {
           military = true;
@@ -124,14 +144,26 @@
         ]
         else [
         ];
-      # workspace = [
-      #   "1, monitor:DP-2, default:true"
-      # ];
       exec-once = [
         "hyprpanel"
         "hyprctl setcursor \"Vanilla-DMZ\" 24"
         "fcitx5 -d"
         # "clash-verge"
+      ];
+      # l -> do stuff even when locked
+      # e -> repeats when key is held
+      bindle = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86MonBrightnessUp, exec, brightnessctl s 5%+"
+        ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+        ", XF86Search, exec, tofi-drun"
+      ];
+      bindl = [
+        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ", XF86AudioPlay, exec, playerctl play-pause" # the stupid key is called play , but it toggles
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPrev, exec, playerctl previous"
       ];
       bindm = [
         "$mod, mouse:272, movewindow"

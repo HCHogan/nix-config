@@ -35,6 +35,7 @@
     wkhtmltopdf
     minicom
     vscode
+    playerctl
 
     # archives
     zip
