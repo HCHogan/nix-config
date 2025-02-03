@@ -36,6 +36,7 @@
     minicom
     vscode
     playerctl
+    # cosmic-launcher
 
     # archives
     zip
@@ -76,7 +77,6 @@
     glow
     iotop
     iftop
-    btop
 
     # syscall monitoring
     strace

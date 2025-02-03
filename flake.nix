@@ -10,7 +10,7 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    # nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     # home manager for managing user config
     home-manager = {
@@ -83,7 +83,7 @@
           usernames = ["hank"];
           system = "x86_64-linux";
           extraModules = [
-            # nixos-cosmic.nixosModules.default
+            # inputs.nixos-cosmic.nixosModules.default
             inputs.nur-xddxdd.nixosModules.setupOverlay
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen4
             inputs.daeuniverse.nixosModules.dae

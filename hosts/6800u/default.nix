@@ -140,13 +140,13 @@
     win-spice
     adwaita-icon-theme
     radeontop
+    rocmPackages.rocm-smi
+    btop-rocm
     corectrl
     nautilus
     # daed
 
     inputs.zen-browser.packages."${system}".default
-
-    # pkgsCross.riscv64.gcc14
 
     # make waybar happy
     (pkgs.python3.withPackages (python-pkgs:
@@ -157,10 +157,8 @@
       ]))
   ];
 
-  # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
   system.stateVersion = "24.11"; # Did you read the comment?
