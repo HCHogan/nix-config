@@ -30,6 +30,8 @@
       menus.dashboard.shortcuts.left.shortcut2.command = "spotify";
       menus.dashboard.shortcuts.left.shortcut4.icon = "";
       menus.dashboard.shortcuts.left.shortcut4.command = "nautilus";
+      menus.dashboard.stats.interval = 1000;
+      menus.dashboard.stats.enable_gpu = true;
       menus.clock = {
         time = {
           military = true;
