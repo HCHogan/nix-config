@@ -32,10 +32,6 @@ in {
     enableZshIntegration = true;
   };
 
-  programs.tofi = {
-    enable = true;
-  };
-
   xdg.configFile = {
     nvim.source = inputs.kvim.outPath;
     zsh.source = inputs.zsh-config.outPath;

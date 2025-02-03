@@ -5,6 +5,7 @@
 }: {
   imports = [
     ../../modules/hyprland
+    ../../modules/tofi
   ];
 
   programs.kitty.enable = true; # required for the default Hyprland config
@@ -33,6 +34,7 @@
     telegram-desktop
     wkhtmltopdf
     minicom
+    vscode
 
     # archives
     zip
@@ -73,7 +75,6 @@
     glow
     iotop
     iftop
-    # btop-rocm
     btop
 
     # syscall monitoring
@@ -87,6 +88,5 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
-    # mathematica
   ];
 }
