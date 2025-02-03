@@ -57,6 +57,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+
     daeuniverse.url = "github:daeuniverse/flake.nix";
   };
 

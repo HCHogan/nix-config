@@ -24,7 +24,9 @@ in {
   };
 
   nixpkgs = {
-    # overlays = [];
+    overlays = [
+      inputs.hyprpanel.overlay
+    ];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;

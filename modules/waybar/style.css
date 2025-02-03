@@ -3,7 +3,7 @@
     border-radius: 0;
     font-family: Cartograph CF Nerd Font, monospace;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
     min-height: 0;
 }
 
@@ -15,7 +15,7 @@ window#waybar {
 tooltip {
     background: #1e1e2e;
     border-radius: 10px;
-    border-width: 2px;
+    /*border-width: 2px;*/
     border-style: solid;
     border-color: #11111b;
 }
@@ -62,12 +62,13 @@ tooltip {
 #workspaces,
 #tray,
 #backlight {
-
     background: #1e1e2e;
     padding: 0px 10px;
-    margin: 3px 0px;
+    margin: 3px 0px 0px 0px;
     margin-top: 10px;
-    border: 1px solid #181825;
+    /*border: 1px solid #181825;*/
+    border: 0;
+    border-width: 0;
 }
 
 #backlight {
@@ -81,7 +82,7 @@ tooltip {
 }
 
 #cpu {
-	color:#f5deab;
+    color:#f5deab;
     border-left: 0px;
     border-right: 0px;
 }
@@ -137,7 +138,6 @@ tooltip {
     padding: 0px 10px;
     margin: 3px 0px;
     margin-top: 10px;
-    border: 1px solid #181825;
     color: #1e1e2e;
     background: #b4befe;
     border-radius: 10px 0px 0px 10px;

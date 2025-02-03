@@ -1,9 +1,44 @@
 # This module is used in home-manager
 {
+  inputs,
   pkgs,
   hostname,
   ...
 }: {
+  imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
+  programs.hyprpanel = {
+    enable = true;
+    theme = "catppuccin_mocha";
+    settings = {
+      theme.font.size = "15";
+      bar = {
+        launcher.autoDetectIcon = true;
+        workspaces = {
+          show_icons = true;
+          monitorSpecific = false;
+        };
+        clock = {
+          format = "%I:%M";
+          icon = "";
+        };
+      };
+      theme.bar = {
+        transparent = false;
+        outer_spacing = "0.2em";
+      };
+      menus.dashboard.shortcuts.left.shortcut1.command = "zen";
+      menus.dashboard.shortcuts.left.shortcut2.command = "spotify";
+      menus.dashboard.shortcuts.left.shortcut4.icon = "";
+      menus.dashboard.shortcuts.left.shortcut4.command = "nautilus";
+      menus.clock = {
+        time = {
+          military = true;
+        };
+        weather.unit = "metric";
+      };
+    };
+  };
+
   services.hyprpaper = {
     enable = true;
     settings = {
@@ -11,13 +46,14 @@
       splash = false;
       preload = [
         "/home/hank/wallpapers/nixos-stroke-4k.png"
+        "/home/hank/wallpapers/nixos-blue-4k.png"
       ];
 
       wallpaper =
         if hostname == "6800u"
         then [
-          "DP-2,/home/hank/wallpapers/nixos-stroke-4k.png"
-          "eDP-1,/home/hank/wallpapers/nixos-stroke-4k.png"
+          "DP-2,/home/hank/wallpapers/nixos-blue-4k.png"
+          "eDP-1,/home/hank/wallpapers/nixos-blue-4k.png"
         ]
         else if hostname == "H610"
         then [
@@ -32,6 +68,9 @@
     name = "Vanilla-DMZ";
     hyprcursor.enable = true;
   };
+  home.packages = with pkgs; [
+    hyprpanel
+  ];
   wayland.windowManager.hyprland.systemd.variables = ["--all"];
   wayland.windowManager.hyprland = {
     enable = true; # enable Hyprland
@@ -87,7 +126,7 @@
       #   "1, monitor:DP-2, default:true"
       # ];
       exec-once = [
-        "waybar"
+        "hyprpanel"
         "hyprctl setcursor \"Vanilla-DMZ\" 24"
         "fcitx5 -d"
         # "clash-verge"
