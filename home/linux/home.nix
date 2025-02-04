@@ -35,6 +35,7 @@
     wkhtmltopdf
     minicom
     vscode
+    code-cursor
     playerctl
     # cosmic-launcher
 
