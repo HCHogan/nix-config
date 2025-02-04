@@ -5,7 +5,8 @@
 }: {
   imports = [
     ../../modules/hyprland
-    ../../modules/tofi
+    inputs.walker.homeManagerModules.default
+    ../../modules/walker
   ];
 
   programs.kitty.enable = true; # required for the default Hyprland config
@@ -19,18 +20,17 @@
   ];
 
   home.packages = with pkgs; [
-    spotify
     hyprpaper
     nwg-look
     pavucontrol
     grimblast
     wl-clipboard
-    # wechat-uos
     blueman
     jetbrains.idea-ultimate
     android-tools
-    inputs.nur-xddxdd.packages.${system}.baidunetdisk
-    # clash-verge-rev
+    nur.repos.xddxdd.baidunetdisk
+    nur.repos.nltch.spotify-adblock
+    nur.repos.novel2430.wechat-universal-bwrap
     telegram-desktop
     wkhtmltopdf
     minicom

@@ -52,11 +52,12 @@
       flake = false;
     };
 
-    nur-xddxdd = {
-      url = "github:xddxdd/nur-packages";
+    nur = {
+      url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    walker.url = "github:abenz1267/walker";
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
     daeuniverse.url = "github:daeuniverse/flake.nix";
@@ -73,7 +74,6 @@
           usernames = ["hank" "genisys"];
           system = "x86_64-linux";
           extraModules = [
-            inputs.nur-xddxdd.nixosModules.setupOverlay
             inputs.daeuniverse.nixosModules.dae
             inputs.daeuniverse.nixosModules.daed
           ];
@@ -84,7 +84,6 @@
           system = "x86_64-linux";
           extraModules = [
             # inputs.nixos-cosmic.nixosModules.default
-            inputs.nur-xddxdd.nixosModules.setupOverlay
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen4
             inputs.daeuniverse.nixosModules.dae
             inputs.daeuniverse.nixosModules.daed

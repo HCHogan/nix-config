@@ -147,14 +147,6 @@
     # daed
 
     inputs.zen-browser.packages."${system}".default
-
-    # make waybar happy
-    (pkgs.python3.withPackages (python-pkgs:
-      with python-pkgs; [
-        # select Python packages here
-        pandas
-        requests
-      ]))
   ];
 
   # networking.firewall.allowedTCPPorts = [ ... ];

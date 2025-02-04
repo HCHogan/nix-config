@@ -150,6 +150,9 @@
         "fcitx5 -d"
         # "clash-verge"
       ];
+      windowrule = [
+        "noblur,^(?!org\.wezfurlong\.wezterm$).*"
+      ];
       # l -> do stuff even when locked
       # e -> repeats when key is held
       bindle = [
@@ -157,7 +160,7 @@
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ", XF86MonBrightnessUp, exec, brightnessctl s 5%+"
         ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
-        ", XF86Search, exec, tofi-drun"
+        ", XF86Search, exec, walker"
       ];
       bindl = [
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -190,7 +193,8 @@
           "$mod, H, movefocus, l"
           "$mod, L, movefocus, r"
           # "$mod, A, exec, killall rofi || rofi -show drun -theme ~/.config/rofi/config.rasi"
-          "$mod, A, exec, killall tofi-drun || tofi-drun --drun-launch=true"
+          # "$mod, A, exec, killall walker || tofi-drun --drun-launch=true"
+          "$mod, A, exec, walker"
           "$mod, P, exec, pavucontrol"
           "$mod SHIFT, H, movewindow, l"
           "$mod SHIFT, L, movewindow, r"
