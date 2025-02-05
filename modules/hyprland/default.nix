@@ -200,6 +200,7 @@
           "$mod SHIFT, L, movewindow, r"
           "$mod SHIFT, K, movewindow, u"
           "$mod SHIFT, J, movewindow, d"
+          "$mod SHIFT, Return, togglespecialworkspace"
         ]
         ++ (
           builtins.concatLists (builtins.genList (
