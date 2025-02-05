@@ -26,6 +26,8 @@
   networking.proxy.default = "http://127.0.0.1:7890";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  nixpkgs.config.rocmSupport = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = false;
   services.gvfs.enable = true;
@@ -47,6 +49,39 @@
     configFile = "/etc/dae/config.dae";
     assets = with pkgs; [v2ray-geoip v2ray-domain-list-community];
   };
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+
+      PLATFORM_PROFILE_ON_AC = "performance";
+      PLATFORM_PROFILE_ON_BAT = "low-power";
+
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0;
+
+      CPU_HWP_DYN_BOOST_ON_AC = 1;
+      CPU_HWP_DYN_BOOST_ON_BAT = 0;
+
+      #CPU_MIN_PERF_ON_AC = 0;
+      #CPU_MAX_PERF_ON_AC = 100;
+      #CPU_MIN_PERF_ON_BAT = 0;
+      #CPU_MAX_PERF_ON_BAT = 20;
+
+      STOP_CHARGE_THRESH_BAT0 = 95;
+    };
+  };
+
+  # services.ollama = {
+  #   enable = true;
+  #   acceleration = "rocm";
+  #   rocmOverrideGfx = "10.3.0";
+  # };
 
   xdg.portal.wlr.enable = true;
   programs = {
@@ -77,6 +112,9 @@
 
   hardware.graphics = {
     enable = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+    ];
   };
 
   environment = {
@@ -93,8 +131,6 @@
     enableSSHSupport = true;
   };
 
-  # List services that you want to enable:
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
@@ -102,8 +138,7 @@
     NIXOS_OZONE_WL = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
   };
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -129,6 +164,7 @@
     bat
     just
     mihomo
+    clinfo
 
     #virtualisation
     virt-manager

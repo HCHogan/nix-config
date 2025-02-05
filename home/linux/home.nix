@@ -36,6 +36,8 @@
     minicom
     vscode
     code-cursor
+    davinci-resolve
+    obs-studio
     playerctl
     # cosmic-launcher
 
