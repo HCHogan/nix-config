@@ -7,7 +7,7 @@
 }: {
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
   programs.hyprpanel = {
-    enable = true;
+    enable = hostname == "6800u";
     theme = "catppuccin_mocha";
     layout = {
       "bar.layouts" = {
