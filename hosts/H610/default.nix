@@ -26,6 +26,8 @@
   networking.proxy.default = "http://127.0.0.1:7890";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  nixpkgs.config.rocmSupport = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -52,8 +54,17 @@
 
   services.spice-vdagentd.enable = true;
 
+  services.ollama = {
+    enable = true;
+    acceleration = "rocm";
+    rocmOverrideGfx = "10.1.0";
+  };
+
   hardware.graphics = {
     enable = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+    ];
   };
 
   environment = {
