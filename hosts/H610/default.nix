@@ -124,6 +124,7 @@
     corectrl
     # daed
     ddns-go
+    btop-rocm
 
     inputs.zen-browser.packages."${system}".default
 
