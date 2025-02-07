@@ -14,6 +14,7 @@
     ../../modules/fcitx5
     ../../modules/nerdfonts
     ../../modules/virtualisation
+    ../../modules/catppuccin
   ];
 
   networking.hostName = "6800u"; # Define your hostname.

@@ -9,12 +9,9 @@
       fcitx5-chinese-addons
       fcitx5-mozc
       fcitx5-gtk #  Fcitx5 gtk im module and glib based dbus client library
-      fcitx5-material-color
     ];
     settings = {
       addons = {
-        classicui.globalSection.Theme = "Material-Color-deepPurple";
-        classicui.globalSection.DarkTheme = "Material-Color-deepPurple";
         # pinyin.globalSection = {
         #   PageSize = 9;
         #   CloudPinyinEnabled = "True";

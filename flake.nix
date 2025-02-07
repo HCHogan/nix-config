@@ -37,10 +37,7 @@
       flake = false;
     };
 
-    grub-catppuccin = {
-      url = "github:catppuccin/grub";
-      flake = false;
-    };
+    catppuccin.url = "github:catppuccin/nix";
 
     dae-config = {
       url = "git+ssh://git@github.com/HCHogan/dae";
@@ -87,6 +84,7 @@
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen4
             inputs.daeuniverse.nixosModules.dae
             inputs.daeuniverse.nixosModules.daed
+            inputs.catppuccin.nixosModules.catppuccin
           ];
         }
         {

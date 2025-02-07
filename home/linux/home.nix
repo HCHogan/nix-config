@@ -6,8 +6,18 @@
   imports = [
     ../../modules/hyprland
     inputs.walker.homeManagerModules.default
+    inputs.catppuccin.homeManagerModules.catppuccin
     ../../modules/walker
   ];
+
+  catppuccin.gtk = {
+    enable = true;
+    accent = "lavender";
+    icon.enable = true;
+    icon.accent = "lavender";
+  };
+  catppuccin.yazi.enable = true;
+  catppuccin.zellij.enable = true;
 
   programs.kitty.enable = true; # required for the default Hyprland config
   programs.firefox.enable = true;
@@ -39,6 +49,7 @@
     davinci-resolve
     obs-studio
     playerctl
+    warp-terminal
     # cosmic-launcher
 
     # archives
