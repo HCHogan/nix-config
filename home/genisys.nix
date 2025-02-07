@@ -1,11 +1,10 @@
-{
+{username}: {
   inputs,
   system,
-  username,
+  pkgs,
   ...
 }: let
-  pkgs = inputs.nixpkgs;
-  lib = pkgs.lib;
+  lib = inputs.nixpkgs.lib;
 in {
   imports =
     [

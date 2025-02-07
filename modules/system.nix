@@ -1,7 +1,10 @@
 {
   inputs,
   usernames,
-}: {pkgs, ...}: let
+  system,
+  ...
+}: let
+  pkgs = inputs.nixpkgs.legacyPackages.${system};
   lib = pkgs.lib;
 in {
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -10,9 +13,6 @@ in {
     isNormalUser = true;
     description = name;
     extraGroups = ["networkmanager" "wheel" "libvirtd" "dialout"];
-    # packages = with pkgs; [
-    #   tree
-    # ];
   });
 
   nix.settings.trusted-users = usernames;

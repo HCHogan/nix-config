@@ -6,7 +6,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    (import ../../modules/system.nix {inherit usernames inputs;})
     ../../modules/mihomo
     ../../modules/grub
     ../../modules/tuigreet
@@ -141,7 +140,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     neovim
     git
@@ -152,8 +151,6 @@
     starship
     zsh
     brightnessctl
-    waybar
-    nwg-dock-hyprland
     duf
     gnumake
     flex

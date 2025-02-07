@@ -1,7 +1,7 @@
 {inputs}: {configurations}: let
-  pkgs = inputs.nixpkgs;
+  nixpkgs = inputs.nixpkgs;
   listToAttrs = builtins.listToAttrs;
-  hasInfix = pkgs.lib.hasInfix;
+  hasInfix = nixpkgs.lib.hasInfix;
   mapConfigurations = builtins.map (
     config: {
       name = config.hostname;
@@ -28,15 +28,19 @@
       inherit specialArgs;
       modules =
         [
+          ./../modules/system.nix
           ./../hosts/${hostname}
           home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = specialArgs;
-            home-manager.users = pkgs.lib.genAttrs usernames (
-              username:
-                import (./../home + "/${username}.nix") {inherit username system inputs;}
+            home-manager.users = nixpkgs.lib.genAttrs usernames (
+              username: {
+                imports = [
+                  (import ./../home/${username}.nix {inherit username;})
+                ];
+              }
             );
           }
         ]
