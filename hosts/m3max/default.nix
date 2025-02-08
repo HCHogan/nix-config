@@ -1,10 +1,16 @@
-{ pkgs, inputs, usernames, hostname, ... }:
-let
-  lib = inputs.nixpkgs.lib;
-in
 {
+  inputs,
+  hostname,
+  ...
+}: let
+  lib = inputs.nixpkgs.lib;
+in {
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
+  imports = [
+    ../../modules/aerospace
+    ../../modules/nerdfonts
+  ];
   system.stateVersion = 5;
 
   system.defaults = {
@@ -16,19 +22,19 @@ in
     screensaver.askForPasswordDelay = 10;
   };
 
-  # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
-
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-     vim
-     nil
-     # neovim
-  ];
+  # environment.systemPackages = with pkgs; [
+  # ];
 
   # host-users
   networking.hostName = hostname;
   networking.computerName = hostname;
   system.defaults.smb.NetBIOSName = hostname;
+
+  homebrew = {
+    enable = true;
+    caskArgs.no_quarantine = true;
+    global.brewfile = true;
+    # casks = ["raycast"];
+  };
 }
