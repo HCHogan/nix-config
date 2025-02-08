@@ -1,21 +1,19 @@
-{username, ...}: {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
+{
+  username,
+  system,
+  inputs,
+  ...
+}: let
+  lib = inputs.nixpkgs.lib;
+in {
   home = {
     inherit username;
-    homeDirectory = "/home/${username}";
-
-    # This value determines the Home Manager release that your
-    # configuration is compatible with. This helps avoid breakage
-    # when a new Home Manager release introduces backwards
-    # incompatible changes.
-    #
-    # You can update Home Manager without changing this value. See
-    # the Home Manager release notes for a list of state version
-    # changes in each release.
+    homeDirectory =
+      if lib.hasInfix "darwin" system
+      then /Users/${username}
+      else /home/${username};
     stateVersion = "24.11";
   };
 
-  # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

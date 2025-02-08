@@ -8,18 +8,24 @@
   lib = pkgs.lib;
 in {
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users = lib.genAttrs usernames (name: {
-    shell = pkgs.zsh;
-    isNormalUser = true;
-    description = name;
-    extraGroups = ["networkmanager" "wheel" "libvirtd" "dialout"];
-  });
+  users.users = lib.genAttrs usernames (name:
+    {
+      shell = pkgs.zsh;
+      description = name;
+    }
+    // lib.optionalAttrs (!(lib.hasInfix "darwin" system)) {
+      extraGroups = ["networkmanager" "wheel" "libvirtd" "dialout"];
+      isNormalUser = true;
+    }
+    // lib.optionalAttrs (lib.hasInfix "darwin" system) {
+      home = /Users/${name};
+    });
 
   nix.settings.trusted-users = usernames;
+  nix.optimise.automatic = true;
 
   nix.gc = {
     automatic = true;
-    dates = "weekly";
     options = "--delete-older-than 1w";
   };
 
@@ -57,22 +63,5 @@ in {
       # "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
     ];
     experimental-features = ["nix-command" "flakes"];
-    auto-optimise-store = true;
   };
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "zh_CN.UTF-8";
-    LC_IDENTIFICATION = "zh_CN.UTF-8";
-    LC_MEASUREMENT = "zh_CN.UTF-8";
-    LC_MONETARY = "zh_CN.UTF-8";
-    LC_NAME = "zh_CN.UTF-8";
-    LC_NUMERIC = "zh_CN.UTF-8";
-    LC_PAPER = "zh_CN.UTF-8";
-    LC_TELEPHONE = "zh_CN.UTF-8";
-    LC_TIME = "zh_CN.UTF-8";
-  };
-
-  environment.localBinInPath = true;
 }

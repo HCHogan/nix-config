@@ -1,5 +1,2 @@
-{ username, kvim, ... }:
-
-{
-
+{pkgs, ...}: {
 }

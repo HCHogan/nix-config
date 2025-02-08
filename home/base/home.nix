@@ -4,11 +4,6 @@
   '';
 
   home.packages = with pkgs; [
-    microsoft-edge
-    google-chrome
-    fastfetch
-    neofetch
-    yazi
     wezterm
 
     # neovim dependencies
@@ -23,36 +18,26 @@
     nil
     alejandra
     neovide
+    nodejs_22
 
     # utils
+    fastfetch
+    neofetch
+    yazi
     ripgrep
     jq
     yq-go
     eza
     fzf
+    duf
 
     # languages
     uv
     rustup
-    nodejs_22
     haskell.compiler.ghc910
-    cabal-install
     haskell.packages.ghc9101.haskell-language-server
-    # haskell.packages.ghc984.haskell-language-server
-    # haskell.packages.ghc982.haskell-language-server
-    # haskellPackages.haskell-language-server
+    cabal-install
     cabal2nix
-
-    llvmPackages_latest.clangUseLLVM
-    llvmPackages_latest.clang-tools
-    llvmPackages_latest.compiler-rt
-    # llvmPackages_latest.bintools
-    llvmPackages_latest.llvm
-    llvmPackages_latest.llvm-manpages
-    llvmPackages_latest.mlir
-    llvmPackages_latest.lldb
-    llvmPackages_latest.lld
-    llvmPackages_latest.libcxx
   ];
 
   home.stateVersion = "24.11";

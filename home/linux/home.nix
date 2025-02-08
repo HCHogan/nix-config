@@ -1,5 +1,9 @@
-{pkgs, ...}: {
+{pkgs, inputs,  ...}: {
   imports = [
+    ../modules/hyprland
+    ../modules/walker
+    inputs.walker.homeManagerModules.default
+    inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
   home.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -62,5 +66,42 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
+
+    nur.repos.xddxdd.baidunetdisk
+    nur.repos.nltch.spotify-adblock
+    nur.repos.novel2430.wechat-universal-bwrap
+    jetbrains.idea-ultimate
+    android-tools
+    telegram-desktop
+    wkhtmltopdf
+    minicom
+    vscode
+    code-cursor
+    davinci-resolve
+    obs-studio
+    warp-terminal
+    qq
+    vlc
+
+    llvmPackages_latest.clangUseLLVM
+    llvmPackages_latest.clang-tools
+    llvmPackages_latest.compiler-rt
+    # llvmPackages_latest.bintools
+    llvmPackages_latest.llvm
+    llvmPackages_latest.llvm-manpages
+    llvmPackages_latest.mlir
+    llvmPackages_latest.lldb
+    llvmPackages_latest.lld
+    llvmPackages_latest.libcxx
   ];
+
+  catppuccin.gtk = {
+    enable = true;
+    accent = "lavender";
+    icon.enable = true;
+    icon.accent = "lavender";
+  };
+  catppuccin.yazi.enable = true;
+  catppuccin.zellij.enable = true;
+  catppuccin.btop.enable = true;
 }
