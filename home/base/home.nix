@@ -30,6 +30,8 @@
     eza
     fzf
     duf
+    btop
+    tldr
 
     # languages
     uv

@@ -2,9 +2,7 @@
   inputs,
   hostname,
   ...
-}: let
-  lib = inputs.nixpkgs.lib;
-in {
+}: {
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   imports = [
@@ -35,6 +33,8 @@ in {
     enable = true;
     caskArgs.no_quarantine = true;
     global.brewfile = true;
-    # casks = ["raycast"];
+    casks = [
+      "orbstack"
+    ];
   };
 }
