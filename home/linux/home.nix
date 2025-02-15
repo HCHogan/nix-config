@@ -4,8 +4,8 @@
   ...
 }: {
   imports = [
-    ../modules/hyprland
-    ../modules/walker
+    ../../modules/hyprland
+    ../../modules/walker
     inputs.walker.homeManagerModules.default
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
