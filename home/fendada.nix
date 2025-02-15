@@ -8,7 +8,7 @@
 in {
   imports =
     [
-      (import ./core.nix {inherit username;})
+      ./core.nix
       ./base/home.nix
     ]
     ++ lib.optional (lib.hasInfix "linux" system) ./linux/home.nix
