@@ -88,6 +88,11 @@
           ];
         }
         {
+          hostname = "tank";
+          usernames = ["hank" "fendada" "linwhite"];
+          system = "x86_64-linux";
+        }
+        {
           hostname = "m3max";
           usernames = ["hank"];
           system = "aarch64-darwin";
