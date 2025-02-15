@@ -32,6 +32,7 @@
     duf
     btop
     tldr
+    tmux
 
     # languages
     uv

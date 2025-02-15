@@ -14,7 +14,7 @@ in {
       description = name;
     }
     // lib.optionalAttrs (!(lib.hasInfix "darwin" system)) {
-      extraGroups = ["networkmanager" "wheel" "libvirtd" "dialout"];
+      extraGroups = ["networkmanager" "wheel" "libvirtd" "dialout" "qemu-libvirtd" "video" "audio" "disk"];
       isNormalUser = true;
     }
     // lib.optionalAttrs (lib.hasInfix "darwin" system) {

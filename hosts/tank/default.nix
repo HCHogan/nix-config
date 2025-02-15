@@ -5,7 +5,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    # ../../modules/mihomo
+    ../../modules/mihomo
     ../../modules/grub
     ../../modules/tuigreet
     ../../modules/keyd
@@ -21,7 +21,7 @@
   time.timeZone = "Hongkong";
 
   # Configure network proxy if necessary
-  networking.proxy.default = "http://192.168.1.16:6152";
+  networking.proxy.default = "http://127.0.0.1:7890";
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   nixpkgs.config.rocmSupport = true;
@@ -148,6 +148,56 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.vscode-server.enable = true;
+  services.homepage-dashboard = {
+    enable = true;
+  };
+  services.thymis-controller = {
+    enable = true;
+    system-binfmt-aarch64-enable = true; # enables emulation of aarch64 binaries, default is true on x86_64, needed for building aarch64 images on x86_64
+    system-binfmt-x86_64-enable = false; # enables emulation of x86_64 binaries, default is false
+    recommended-nix-gc-settings-enable = true; # enables recommended Nix garbage collection settings, default is true
+    # repo-path = "/var/lib/thymis/repository"; # directory where the controller will store the repository holding the project
+    # database-url = "sqlite:////var/lib/thymis/thymis.sqlite"; # URL of the database
+    base-url = "https://my-thymis-controller/"; # base URL of the controller, how it will be accessed from the outside
+    agent-access-url = "https://my-thymis-controller/"; # URL of the controller to be used by the agents
+    auth-basic = true; # whether to enable authentication using a basic username/password
+    auth-basic-username = "admin"; # username for basic authentication
+    auth-basic-password-file = "/var/lib/thymis/auth-basic-password"; # file containing the password for basic authentication
+    # content will be automatically generated if it does not exist
+    listen-host = "0.0.0.0"; # host on which the controller listens for incoming connections
+    listen-port = 8000; # port on which the controller listens for incoming connections
+    nginx-vhost-enable = true; # whether to enable the Nginx virtual host
+    nginx-vhost-name = "thymis"; # name of the Nginx virtual host
+  };
+  # Configure the Nginx virtual host
+  services.nginx = {
+    enable = true;
+    virtualHosts."thymis" = {
+      serverName = "my-thymis-controller";
+      enableACME = false;
+      forceSSL = false;
+    };
+  };
+
+  systemd.services.ddns-go = {
+    enable = true;
+    description = "Simple and easy to use DDNS. Automatically update domain name resolution to public IP (Support Aliyun, Tencent Cloud, Dnspod, Cloudflare, Callback, Huawei Cloud, Baidu Cloud, Porkbun, GoDaddy...)";
+
+    wants = ["network.target"];
+    after = ["network-online.target"];
+
+    serviceConfig = {
+      StartLimitInterval = 5;
+      StartLimitBurst = 10;
+      ExecStart = "${pkgs.ddns-go.outPath}/bin/ddns-go \"-l\" \":9876\" \"-f\" \"300\" \"-cacheTimes\" \"5\" \"-c\" \"/home/genisys/.ddns_go_config.yaml\"";
+      Restart = "always";
+      RestartSec = 120;
+      EnvironmentFile = "-/etc/sysconfig/ddns-go";
+    };
+
+    wantedBy = ["multi-user.target"];
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -155,9 +205,14 @@
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
+  networking.useDHCP = false;
+  # networking.interfaces.enp6s0.useDHCP = true;
+  networking.interfaces.br0.useDHCP = true;
+  networking.bridges = {
+    "br0" = {
+      interfaces = ["enp6s0"];
+    };
+  };
+
   system.stateVersion = "24.11"; # Did you read the comment?
 }

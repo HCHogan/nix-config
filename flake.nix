@@ -58,6 +58,8 @@
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 
     daeuniverse.url = "github:daeuniverse/flake.nix";
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
+    thymis.url = "github:Thymis-io/thymis/v0.3";
   };
 
   outputs = inputs
@@ -73,6 +75,7 @@
           extraModules = [
             inputs.daeuniverse.nixosModules.dae
             inputs.daeuniverse.nixosModules.daed
+            inputs.vscode-server.nixosModules.default
           ];
         }
         {
@@ -85,12 +88,17 @@
             inputs.daeuniverse.nixosModules.dae
             inputs.daeuniverse.nixosModules.daed
             inputs.catppuccin.nixosModules.catppuccin
+            inputs.vscode-server.nixosModules.default
           ];
         }
         {
           hostname = "tank";
-          usernames = ["hank" "fendada" "linwhite"];
+          usernames = ["hank" "fendada" "linwhite" "genisys"];
           system = "x86_64-linux";
+          extraModules = [
+            inputs.vscode-server.nixosModules.default
+            inputs.thymis.nixosModules.thymis-controller
+          ];
         }
         {
           hostname = "m3max";

@@ -133,6 +133,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.vscode-server.enable = true;
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";

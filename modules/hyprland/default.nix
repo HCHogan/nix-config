@@ -81,8 +81,11 @@
         then [
           "DP-2,/home/hank/wallpapers/nixos-stroke-4k.png"
         ]
-        else [
-        ];
+        else if hostname == "tank"
+        then [
+          "DP-2,/home/hank/wallpapers/nixos-blue-4k.png"
+        ]
+        else [];
     };
   };
   home.pointerCursor = {
@@ -139,6 +142,10 @@
           "eDP-1,1920x1200@60.03,1920x0,1.25"
         ]
         else if hostname == "H610"
+        then [
+          "DP-2,3440x1440@144,0x0,1"
+        ]
+        else if hostname == "tank"
         then [
           "DP-2,3440x1440@144,0x0,1"
         ]

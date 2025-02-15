@@ -149,6 +149,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.vscode-server.enable = true;
 
   systemd.services.ddns-go = {
     enable = true;
