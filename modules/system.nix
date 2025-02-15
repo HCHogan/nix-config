@@ -18,7 +18,7 @@ in {
       isNormalUser = true;
     }
     // lib.optionalAttrs (lib.hasInfix "darwin" system) {
-      home = /Users/${name};
+      home = "/Users/${name}";
     });
 
   nix.settings.trusted-users = usernames;
