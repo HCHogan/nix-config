@@ -87,16 +87,16 @@
     qq
     vlc
 
-    llvmPackages_latest.clangUseLLVM
-    llvmPackages_latest.clang-tools
-    llvmPackages_latest.compiler-rt
+    # llvmPackages_latest.clangUseLLVM
+    # llvmPackages_latest.clang-tools
+    # llvmPackages_latest.compiler-rt
     # llvmPackages_latest.bintools
-    llvmPackages_latest.llvm
-    llvmPackages_latest.llvm-manpages
-    llvmPackages_latest.mlir
-    llvmPackages_latest.lldb
-    llvmPackages_latest.lld
-    llvmPackages_latest.libcxx
+    # llvmPackages_latest.llvm
+    # llvmPackages_latest.llvm-manpages
+    # llvmPackages_latest.mlir
+    # llvmPackages_latest.lldb
+    # llvmPackages_latest.lld
+    # llvmPackages_latest.libcxx
   ];
 
   catppuccin.gtk = {
