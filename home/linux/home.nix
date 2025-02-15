@@ -74,7 +74,7 @@
     nur.repos.xddxdd.baidunetdisk
     nur.repos.nltch.spotify-adblock
     nur.repos.novel2430.wechat-universal-bwrap
-    jetbrains.idea-ultimate
+    # jetbrains.idea-ultimate
     android-tools
     telegram-desktop
     wkhtmltopdf
