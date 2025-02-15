@@ -14,6 +14,22 @@
     ../../modules/virtualisation
   ];
 
+  boot.initrd.kernelModules = [
+    "dm-snapshot" # when you are using snapshots
+    "dm-raid" # e.g. when you are configuring raid1 via: `lvconvert -m1 /dev/pool/home`
+    "dm-cache-default" # when using volumes set up with lvmcache
+  ];
+  boot.supportedFilesystems = ["xfs"];
+
+  fileSystems."/mnt/storage" = {
+    device = "/dev/vg1/lv_storage";
+    fsType = "xfs";
+    options = ["rw" "uid=1000"];
+  };
+
+  services.lvm.boot.thin.enable = true; # when using thin provisioning or caching
+  services.lvm.enable = true;
+
   networking.hostName = "tank"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
@@ -32,6 +48,49 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = false;
   services.xserver.desktopManager.gnome.enable = false;
+
+  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
+
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "startplasma-x11";
+  services.xrdp.openFirewall = true;
+
+  services.samba = {
+    enable = true;
+    securityType = "user";
+    openFirewall = true;
+    settings = {
+      global = {
+        "workgroup" = "WORKGROUP";
+        "server string" = "tank";
+        "netbios name" = "tank";
+        "security" = "user";
+        #"use sendfile" = "yes";
+        #"max protocol" = "smb2";
+        # note: localhost is the ipv6 localhost ::1
+        "hosts allow" = "0.0.0.0";
+        # "hosts deny" = "0.0.0.0/0";
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+      };
+      "public" = {
+        "path" = "/mnt/storage/share";
+        "browseable" = "yes";
+        "read only" = "no";
+        "guest ok" = "yes";
+        "create mask" = "0644";
+        "directory mask" = "0755";
+        # "force user" = "username";
+        # "force group" = "groupname";
+      };
+    };
+  };
+
+  services.samba-wsdd = {
+    enable = true;
+    openFirewall = true;
+  };
 
   programs.zsh = {
     enable = true;
@@ -107,6 +166,7 @@
     bat
     just
     mihomo
+    xfsprogs
 
     #virtualisation
     virt-manager
