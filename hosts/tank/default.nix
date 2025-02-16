@@ -57,34 +57,35 @@
   services.xrdp.openFirewall = true;
 
   services.samba = {
+    package = pkgs.samba4Full;
     enable = true;
     securityType = "user";
     openFirewall = true;
-    settings = {
-      global = {
-        "workgroup" = "WORKGROUP";
-        "server string" = "tank";
-        "netbios name" = "tank";
-        "security" = "user";
-        #"use sendfile" = "yes";
-        #"max protocol" = "smb2";
-        # note: localhost is the ipv6 localhost ::1
-        "hosts allow" = "0.0.0.0";
-        # "hosts deny" = "0.0.0.0/0";
-        "guest account" = "nobody";
-        "map to guest" = "bad user";
-      };
-      "public" = {
-        "path" = "/mnt/storage/share";
-        "browseable" = "yes";
-        "read only" = "no";
-        "guest ok" = "yes";
-        "create mask" = "0644";
-        "directory mask" = "0755";
-        # "force user" = "username";
-        # "force group" = "groupname";
-      };
+    shares.public = {
+      path = "/mnt/storage/share";
+      writable = "true";
+      comment = "Hello World!";
+      extraConfig = ''
+        server smb encrypt = required
+        # ^^ Note: Breaks `smbclient -L <ip/host> -U%` by default, might require the client to set `client min protocol`?
+        server min protocol = SMB3_00
+      '';
     };
+  };
+
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  services.avahi = {
+    publish.enable = true;
+    publish.userServices = true;
+    # ^^ Needed to allow samba to automatically register mDNS records (without the need for an `extraServiceFile`
+    nssmdns4 = true;
+    # ^^ Not one hundred percent sure if this is needed- if it aint broke, don't fix it
+    enable = true;
+    openFirewall = true;
   };
 
   services.samba-wsdd = {
@@ -112,8 +113,9 @@
   services.spice-vdagentd.enable = true;
 
   services.ollama = {
-    enable = false;
+    enable = true;
     acceleration = "rocm";
+    rocmOverrideGfx = "10.3.0";
   };
 
   hardware.graphics = {
@@ -182,6 +184,9 @@
     # daed
     ddns-go
     btop-rocm
+    pkgs.jellyfin
+    pkgs.jellyfin-web
+    pkgs.jellyfin-ffmpeg
 
     inputs.zen-browser.packages."${system}".default
 
