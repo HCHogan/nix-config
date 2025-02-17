@@ -10,6 +10,14 @@
     inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
+  # use qemu system session
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+  };
+
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   home.packages = with pkgs; [
