@@ -326,11 +326,11 @@
     "kvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1739794049,
-        "narHash": "sha256-vR6nrbx9siCsyrepLpCi8wHpseJ0Vr/sZnrJo93uR6k=",
+        "lastModified": 1739868140,
+        "narHash": "sha256-ah3QYgldvbMKPYGWzQowo2DXT7IshIPP/tIP3rZVkOM=",
         "owner": "HCHogan",
         "repo": "kvim",
-        "rev": "207d5d0164469fc14cd55d05c827174db9c73b42",
+        "rev": "0b3d64d17233b926ebf32a0bf7662af41f7414fa",
         "type": "github"
       },
       "original": {
@@ -376,11 +376,11 @@
     "mihomo-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1739603211,
-        "narHash": "sha256-6ubazjHD04hXVmGOI4/L4w5fSJeDl44HxMDomp03LAM=",
+        "lastModified": 1739799233,
+        "narHash": "sha256-nN9zex4f43Pcqa8puNnblq+06x/wLly301uhWFFEfDQ=",
         "ref": "refs/heads/main",
-        "rev": "0dcb967a3aec36bd5d6325d85eb2e652ab2cb42e",
-        "revCount": 2,
+        "rev": "2e7256a1cec404c2211416b9df31f95579fc02b8",
+        "revCount": 3,
         "type": "git",
         "url": "ssh://git@github.com/HCHogan/mihomo-config"
       },

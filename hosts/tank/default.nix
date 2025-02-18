@@ -67,7 +67,6 @@
       comment = "Hello World!";
       extraConfig = ''
         server smb encrypt = required
-        # ^^ Note: Breaks `smbclient -L <ip/host> -U%` by default, might require the client to set `client min protocol`?
         server min protocol = SMB3_00
       '';
     };

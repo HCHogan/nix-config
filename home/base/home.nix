@@ -47,4 +47,10 @@
 
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = true;
+    nix-direnv.enable = true;
+  };
 }
