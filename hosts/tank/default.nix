@@ -59,6 +59,9 @@
   services.cockpit = {
     enable = true;
     openFirewall = true;
+    settings = {
+      AllowUnencrypted = true;
+    };
   };
 
   services.samba = {
