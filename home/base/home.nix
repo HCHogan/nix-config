@@ -33,16 +33,6 @@
     btop
     tldr
     tmux
-
-    # languages
-    uv
-    rustup
-    # haskell.compiler.ghc910
-    # haskell.packages.ghc9101.haskell-language-server
-    # cabal-install
-    # cabal2nix
-    # cmake
-    # ninja
   ];
 
   home.stateVersion = "24.11";
