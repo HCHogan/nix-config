@@ -56,6 +56,11 @@
   services.xrdp.defaultWindowManager = "startplasma-x11";
   services.xrdp.openFirewall = true;
 
+  services.cockpit = {
+    enable = true;
+    openFirewall = true;
+  };
+
   services.samba = {
     package = pkgs.samba4Full;
     enable = true;
