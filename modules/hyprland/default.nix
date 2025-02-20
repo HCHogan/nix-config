@@ -7,7 +7,7 @@
 }: {
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
   programs.hyprpanel = {
-    enable = hostname == "6800u";
+    enable = hostname == "6800u" || hostname == "b660";
     theme = "catppuccin_mocha";
     layout = {
       "bar.layouts" = {
@@ -85,6 +85,10 @@
         then [
           "DP-2,/home/hank/wallpapers/nixos-blue-4k.png"
         ]
+        else if hostname == "b660"
+        then [
+          "DP-4,/home/hank/wallpapers/nixos-blue-4k.png"
+        ]
         else [];
     };
   };
@@ -149,8 +153,11 @@
         then [
           "DP-2,3440x1440@144,0x0,1"
         ]
-        else [
-        ];
+        else if hostname == "b660"
+        then [
+          "DP-4,3840x2160@240,0x0,1.5"
+        ]
+        else [];
       exec-once = [
         "hyprpanel"
         "hyprctl setcursor \"Vanilla-DMZ\" 24"
