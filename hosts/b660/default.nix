@@ -51,6 +51,7 @@
   };
 
   services.spice-vdagentd.enable = true;
+  services.blueman.enable = true;
 
   services.ollama = {
     enable = true;
@@ -107,6 +108,7 @@
     bat
     just
     mihomo
+    hmcl
 
     adwaita-icon-theme
     radeontop

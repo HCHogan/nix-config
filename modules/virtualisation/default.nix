@@ -8,6 +8,9 @@
     win-spice
   ];
   virtualisation = {
+    docker = {
+      enable = true;
+    };
     libvirtd = {
       enable = true;
       qemu = {
