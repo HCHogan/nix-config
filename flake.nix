@@ -79,6 +79,11 @@
           ];
         }
         {
+          hostname = "b660";
+          usernames = ["hank"];
+          system = "x86_64-linux";
+        }
+        {
           hostname = "6800u";
           usernames = ["hank"];
           system = "x86_64-linux";
