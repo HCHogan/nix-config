@@ -106,6 +106,11 @@
           ];
         }
         {
+          hostname = "r5s";
+          usernames = ["nix"];
+          system = "aarch64-linux";
+        }
+        {
           hostname = "m3max";
           usernames = ["hank"];
           system = "aarch64-darwin";
