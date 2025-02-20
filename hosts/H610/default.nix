@@ -52,6 +52,12 @@
 
   services.spice-vdagentd.enable = true;
 
+  services.cockpit = {
+    enable = true;
+    openFirewall = true;
+    port = 9091;
+  };
+
   services.ollama = {
     enable = true;
     acceleration = "rocm";
