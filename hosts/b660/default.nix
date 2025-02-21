@@ -64,6 +64,7 @@
     enable = true;
     acceleration = "rocm";
     rocmOverrideGfx = "11.0.0";
+    host = "0.0.0.0";
   };
 
   # services.llama-cpp = {
