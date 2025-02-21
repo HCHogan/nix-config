@@ -26,3 +26,8 @@ gc:
   # garbage collect all unused nix store entries
   sudo nix store gc --debug
   sudo nix-collect-garbage --delete-old
+
+push:
+  git add .
+  git commit -am "update"
+  git push -u origin main

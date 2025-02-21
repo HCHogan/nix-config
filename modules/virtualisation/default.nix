@@ -12,7 +12,7 @@
   ];
   virtualisation = {
     docker = {
-      enable = true;
+      enable = false;
     };
     # podman = {
     #   enable = true;
