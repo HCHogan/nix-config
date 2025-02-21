@@ -1,0 +1,10 @@
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+
+  ];
+
+}

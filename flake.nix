@@ -109,6 +109,9 @@
           hostname = "r5s";
           usernames = ["nix"];
           system = "aarch64-linux";
+          extraModules = [
+            inputs.nixos-hardware.nixosModules.friendlyarm-nanopi-r5s
+          ];
         }
         {
           hostname = "m3max";
