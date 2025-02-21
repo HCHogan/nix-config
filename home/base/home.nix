@@ -33,6 +33,7 @@
     btop
     tldr
     tmux
+    posting
   ];
 
   home.stateVersion = "24.11";

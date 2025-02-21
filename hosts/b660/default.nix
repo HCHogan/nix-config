@@ -12,6 +12,7 @@
     ../../modules/fcitx5
     ../../modules/nerdfonts
     ../../modules/virtualisation
+    ../../modules/man
   ];
 
   networking.hostName = "b660"; # Define your hostname.
@@ -62,7 +63,12 @@
   services.ollama = {
     enable = true;
     acceleration = "rocm";
+    rocmOverrideGfx = "11.0.0";
   };
+
+  # services.llama-cpp = {
+  #   enable = true;
+  # };
 
   hardware.graphics = {
     enable = true;

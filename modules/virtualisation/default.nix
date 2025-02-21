@@ -6,11 +6,19 @@
     spice-protocol
     win-virtio
     win-spice
+    dive
+    # podman-tui
+    # podman-compose
   ];
   virtualisation = {
     docker = {
       enable = true;
     };
+    # podman = {
+    #   enable = true;
+    #   dockerCompat = true;
+    #   defaultNetwork.settings.dns_enabled = true;
+    # };
     libvirtd = {
       enable = true;
       qemu = {

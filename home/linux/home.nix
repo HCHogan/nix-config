@@ -61,16 +61,15 @@
     # nix related
     nix-output-monitor
 
-    # productivity
+    # monitor
     hugo
     glow
     iotop
     iftop
-
-    # syscall monitoring
     strace
     ltrace
     lsof
+    pstree
 
     # system tools
     sysstat

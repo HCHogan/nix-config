@@ -39,10 +39,6 @@ in {
     nvim.source = inputs.kvim.outPath;
     zsh.source = inputs.zsh-config.outPath;
     wezterm.source = inputs.wezterm-config.outPath;
-    waybar = {
-      source = ../modules/waybar;
-      recursive = true;
-    };
     neofetch = {
       source = ../modules/neofetch;
       recursive = true;
