@@ -21,12 +21,11 @@ in {
     just
   ];
 
-  home.file.".zshenv".text = ''
-    ZDOTDIR=$HOME/.config/zsh
+  home.file.".zshrc".text = ''
+    eval "$(starship init zsh)"
   '';
 
   xdg.configFile = {
-    zsh.source = inputs.zsh-config.outPath;
     neofetch = {
       source = ../modules/neofetch;
       recursive = true;

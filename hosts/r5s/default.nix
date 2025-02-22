@@ -103,6 +103,7 @@
     btop
     neofetch
     ripgrep
+    starship
   ];
 
   security.sudo.wheelNeedsPassword = false;
