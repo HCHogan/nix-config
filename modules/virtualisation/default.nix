@@ -10,15 +10,18 @@
     # podman-tui
     # podman-compose
   ];
+
+  virtualisation.containers.enable = true;
+
   virtualisation = {
-    docker = {
-      enable = false;
+    containerd = {
+      enable = true;
     };
-    # podman = {
-    #   enable = true;
-    #   dockerCompat = true;
-    #   defaultNetwork.settings.dns_enabled = true;
-    # };
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
     libvirtd = {
       enable = true;
       qemu = {
