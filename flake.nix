@@ -110,7 +110,7 @@
           usernames = ["nix"];
           system = "aarch64-linux";
           extraModules = [
-            inputs.nixos-hardware.nixosModules.friendlyarm-nanopi-r5s
+            # inputs.nixos-hardware.nixosModules.friendlyarm-nanopi-r5s
           ];
         }
         {

@@ -14,6 +14,14 @@ in {
     # ++ lib.optional (lib.hasInfix "linux" system) ./linux/home.nix
     # ++ lib.optional (lib.hasInfix "darwin" system) ./darwin/home.nix;
 
+  home.packages = with pkgs; [
+    lua-language-server
+    nil
+    alejandra
+    duf
+    just
+  ];
+
   _module.args = {
     inherit inputs system username;
   };
