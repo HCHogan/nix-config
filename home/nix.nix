@@ -35,8 +35,6 @@ in {
     };
   };
 
-  home-manager.backupFileExtension = "backup";
-
   _module.args = {
     inherit inputs system username;
   };
