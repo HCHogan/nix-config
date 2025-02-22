@@ -22,6 +22,11 @@ in {
   ];
 
   xdg.configFile = {
+    zsh.source = inputs.zsh-config.outPath;
+    neofetch = {
+      source = ../modules/neofetch;
+      recursive = true;
+    };
     "starship.toml" = {
       source = ../modules/starship/starship.toml;
     };
