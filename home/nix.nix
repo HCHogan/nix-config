@@ -21,6 +21,10 @@ in {
     just
   ];
 
+  home.file.".zshenv".text = ''
+    ZDOTDIR=$HOME/.config/zsh
+  '';
+
   xdg.configFile = {
     zsh.source = inputs.zsh-config.outPath;
     neofetch = {
