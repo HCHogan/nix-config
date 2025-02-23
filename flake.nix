@@ -121,7 +121,7 @@
         {
           hostname = "rpi4";
           usernames = ["hank" "genisys"];
-          system = "aarch64-darwin";
+          system = "aarch64-linux";
         }
       ];
     };
