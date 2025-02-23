@@ -68,6 +68,16 @@
     ];
   };
 
+  users.users.nix = {
+    isNormalUser = true;
+    description = "nix";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+    password = "nix";
+  };
+
   # programs.firefox.enable = true;
 
   # List packages installed in system profile. To search, run:

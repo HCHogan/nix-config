@@ -120,7 +120,7 @@
         }
         {
           hostname = "rpi4";
-          usernames = ["hank" "genisys"];
+          usernames = ["nix"];
           system = "aarch64-linux";
         }
       ];
