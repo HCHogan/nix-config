@@ -4,6 +4,9 @@ rebuild:
 debug:
   nixos-rebuild switch --flake . --use-remote-sudo --show-trace --verbose
 
+deploy:
+  nixos-rebuild switch --flake .#rpi4 --use-remote-sudo --target-host nix@192.168.2.38 --build-host localhost
+
 up:
   nix flake update
 

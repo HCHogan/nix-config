@@ -4,7 +4,9 @@
   pkgs,
   hostname,
   ...
-}: {
+}: let
+  lib = pkgs.lib;
+in {
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
   programs.hyprpanel = {
     enable = hostname == "6800u" || hostname == "b660";
@@ -157,16 +159,22 @@
         then [
           "DP-4,3840x2160@240,0x0,1.5"
         ]
-        else [];
-      exec-once = [
-        "hyprpanel"
-        "hyprctl setcursor \"Vanilla-DMZ\" 24"
-        "fcitx5 -d"
-        # "clash-verge"
-      ];
-      windowrule = [
-        "noblur,^(?!org\.wezfurlong\.wezterm$).*"
-      ];
+        else if hostname == "rpi4"
+        then [
+          "HDMI-A-1,1920x1080@120,0x0,1"
+        ]
+        else [
+        ];
+      exec-once =
+        [
+          "hyprctl setcursor \"Vanilla-DMZ\" 24"
+          "fcitx5 -d"
+        ]
+        ++ (
+          if (hostname == "b660" || hostname == "6800u")
+          then ["hyprpanel"]
+          else []
+        );
       # l -> do stuff even when locked
       # e -> repeats when key is held
       bindle = [
@@ -207,8 +215,6 @@
           "$mod, H, movefocus, l"
           "$mod, L, movefocus, r"
           # "$mod, A, exec, killall rofi || rofi -show drun -theme ~/.config/rofi/config.rasi"
-          # "$mod, A, exec, killall walker || tofi-drun --drun-launch=true"
-          "$mod, A, exec, walker"
           "$mod, P, exec, pavucontrol"
           "$mod SHIFT, H, movewindow, l"
           "$mod SHIFT, L, movewindow, r"
@@ -226,6 +232,15 @@
               ]
             )
             9)
+        )
+        ++ (
+          if (hostname == "b660" || hostname == "6800u")
+          then [
+            "$mod, A, exec, walker"
+          ]
+          else [
+            "$mod, A, exec, killall tofi-drun || tofi-drun --drun-launch=true"
+          ]
         );
     };
     extraConfig = ''
