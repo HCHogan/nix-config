@@ -3,6 +3,7 @@
     raycast
     warp-terminal
     jdk
+    wezterm
   ];
 
   programs.vscode = {

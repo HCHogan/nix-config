@@ -93,6 +93,7 @@
     warp-terminal
     qq
     vlc
+    wezterm
   ];
 
   catppuccin.gtk = {

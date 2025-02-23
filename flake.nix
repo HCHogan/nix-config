@@ -118,6 +118,11 @@
           usernames = ["hank"];
           system = "aarch64-darwin";
         }
+        {
+          hostname = "rpi4";
+          usernames = ["hank" "genisys"];
+          system = "aarch64-darwin";
+        }
       ];
     };
 }
