@@ -123,6 +123,11 @@
           usernames = ["nix"];
           system = "aarch64-linux";
         }
+        {
+          hostname = "wsl";
+          usernames = ["hank"];
+          system = "x86_64-linux";
+        }
       ];
     };
 }
