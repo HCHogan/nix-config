@@ -207,7 +207,7 @@ in {
           "$mod, F, fullscreen"
           "$mod, Space, togglefloating"
           "$mod SHIFT, S, exec, grimblast copy area"
-          "$mod, Return, exec, wezterm"
+          "$mod, Return, exec, kitty"
           "$mod, I, exec, gnome-control-center"
           "$mod, E, exec, nautilus"
           "$mod, W, exec, zen"
