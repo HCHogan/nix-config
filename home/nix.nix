@@ -11,6 +11,7 @@ in {
     ./base/home.nix
     ../modules/hyprland
     ../modules/tofi
+    ../modules/kitty
   ];
   # ++ lib.optional (lib.hasInfix "linux" system) ./linux/home.nix
   # ++ lib.optional (lib.hasInfix "darwin" system) ./darwin/home.nix;
@@ -22,7 +23,6 @@ in {
     duf
     just
     starship
-    wezterm
   ];
 
   programs.git = {
@@ -47,7 +47,6 @@ in {
   xdg.configFile = {
     nvim.source = inputs.kvim.outPath;
     zsh.source = inputs.zsh-config.outPath;
-    wezterm.source = inputs.wezterm-config.outPath;
     neofetch = {
       source = ../modules/neofetch;
       recursive = true;

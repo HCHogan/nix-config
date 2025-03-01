@@ -79,11 +79,30 @@
     tree-sitter
     nodejs_22
     chromium
+    ddns-go
   ];
 
   programs.zsh.enable = true;
 
   services.openssh.enable = true;
+  systemd.services.ddns-go = {
+    enable = true;
+    description = "Simple and easy to use DDNS. Automatically update domain name resolution to public IP (Support Aliyun, Tencent Cloud, Dnspod, Cloudflare, Callback, Huawei Cloud, Baidu Cloud, Porkbun, GoDaddy...)";
+
+    wants = ["network.target"];
+    after = ["network-online.target"];
+
+    serviceConfig = {
+      StartLimitInterval = 5;
+      StartLimitBurst = 10;
+      ExecStart = "${pkgs.ddns-go.outPath}/bin/ddns-go \"-l\" \":9876\" \"-f\" \"300\" \"-cacheTimes\" \"5\" \"-c\" \"/home/nix/.ddns_go_config.yaml\"";
+      Restart = "always";
+      RestartSec = 120;
+      EnvironmentFile = "-/etc/sysconfig/ddns-go";
+    };
+
+    wantedBy = ["multi-user.target"];
+  };
 
   networking.firewall.enable = false;
   system.stateVersion = "25.05"; # Did you read the comment?
