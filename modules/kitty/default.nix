@@ -1,4 +1,4 @@
-{...}: let
+{pkgs, system, ...}: let
   catppuccin-mocha = {
     foreground = "#cdd6f4";
     background = "#1d1e2e";
@@ -38,13 +38,14 @@
     color7 = "#bac2de";
     color15 = "#a6adc8";
   };
+  lib = pkgs.lib;
 in {
   programs.kitty = {
     enable = true;
     settings =
       {
         font_family = "Recursive";
-        font_size = 11.5;
+        font_size = if lib.hasInfix "linux" system then 11.5 else 15;
         cursor_shape = "beam";
         cursor_shape_unfocused = "hollow";
         cursor_trail = 1;
