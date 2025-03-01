@@ -100,6 +100,11 @@ in {
     hyprcursor.enable = true;
   };
   home.packages = with pkgs; [
+    nwg-look
+    pavucontrol
+    grimblast
+    wl-clipboard
+    playerctl
     hyprpanel
   ];
   wayland.windowManager.hyprland.systemd.variables = ["--all"];

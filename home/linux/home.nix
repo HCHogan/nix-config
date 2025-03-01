@@ -3,12 +3,16 @@
   inputs,
   ...
 }: {
-  imports = [
-    ../../modules/hyprland
-    ../../modules/walker
-    inputs.walker.homeManagerModules.default
-    inputs.catppuccin.homeManagerModules.catppuccin
-  ];
+  imports =
+    [
+      ../../modules/hyprland
+      ../../modules/walker
+      inputs.walker.homeManagerModules.default
+      inputs.catppuccin.homeManagerModules.catppuccin
+      ../../modules/kitty
+      ../../modules/gui
+    ];
+    # ++ pkgs.lib.optional true ../../modules/gui;
 
   # use qemu system session
   dconf.settings = {
@@ -21,14 +25,6 @@
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   home.packages = with pkgs; [
-    nwg-look
-    pavucontrol
-    grimblast
-    wl-clipboard
-    blueman
-    playerctl
-    # cosmic-launcher
-
     # archives
     zip
     xz
@@ -58,9 +54,6 @@
     tree-sitter
     zinit
 
-    # nix related
-    nix-output-monitor
-
     # monitor
     hugo
     glow
@@ -77,23 +70,6 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
-
-    nur.repos.xddxdd.baidunetdisk
-    nur.repos.nltch.spotify-adblock
-    nur.repos.novel2430.wechat-universal-bwrap
-    # jetbrains.idea-ultimate
-    android-tools
-    telegram-desktop
-    wkhtmltopdf
-    minicom
-    vscode
-    code-cursor
-    davinci-resolve
-    obs-studio
-    warp-terminal
-    qq
-    vlc
-    wezterm
   ];
 
   catppuccin.gtk = {
