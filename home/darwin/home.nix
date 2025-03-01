@@ -1,4 +1,7 @@
 {pkgs, ...}: {
+  imports = [
+    ../../modules/kitty
+  ];
   home.packages = with pkgs; [
     raycast
     warp-terminal
