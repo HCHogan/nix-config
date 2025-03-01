@@ -50,6 +50,7 @@ in {
         cursor_shape_unfocused = "hollow";
         cursor_trail = 1;
         background_opacity = "0.85";
+        hide_window_decorations = true;
         tab_bar_min_tabs = 1;
         tab_bar_edge = "bottom";
         tab_bar_style = "powerline";
