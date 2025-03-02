@@ -1,6 +1,9 @@
 rebuild:
   nixos-rebuild switch --flake . --use-remote-sudo
 
+darwin:
+  darwin-rebuild switch --flake . switch
+
 debug:
   nixos-rebuild switch --flake . --use-remote-sudo --show-trace --verbose
 
@@ -28,7 +31,7 @@ clean:
 gc:
   # garbage collect all unused nix store entries
   sudo nix store gc --debug
-  sudo nix-collect-garbage --delete-old
+  sudo nix-collect-garbage -d
 
 push:
   git add .

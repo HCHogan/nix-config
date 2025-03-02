@@ -1,4 +1,8 @@
-{pkgs, system, ...}: let
+{
+  pkgs,
+  system,
+  ...
+}: let
   catppuccin-mocha = {
     foreground = "#cdd6f4";
     background = "#1d1e2e";
@@ -39,18 +43,26 @@
     color15 = "#a6adc8";
   };
   lib = pkgs.lib;
+  isLinux = lib.hasInfix "linux" system;
 in {
   programs.kitty = {
     enable = true;
     settings =
       {
         font_family = "Recursive";
-        font_size = if lib.hasInfix "linux" system then 11.5 else 15;
+        font_size =
+          if isLinux
+          then 11.5
+          else 15;
         cursor_shape = "beam";
         cursor_shape_unfocused = "hollow";
         cursor_trail = 1;
         background_opacity = "0.85";
-        hide_window_decorations = true;
+        background_blur =
+          if isLinux
+          then 0
+          else 5;
+        hide_window_decorations = "titlebar-only";
         tab_bar_min_tabs = 1;
         tab_bar_edge = "bottom";
         tab_bar_style = "powerline";
@@ -58,6 +70,30 @@ in {
         tab_title_template = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
         wayland_titlebar_color = "system";
         macos_titlebar_color = "system";
+        sync_to_monitor = true;
+        symbol_map = let
+          mappings = [
+            "U+23FB-U+23FE"
+            "U+2B58"
+            "U+E200-U+E2A9"
+            "U+E0A0-U+E0A3"
+            "U+E0B0-U+E0BF"
+            "U+E0C0-U+E0C8"
+            "U+E0CC-U+E0CF"
+            "U+E0D0-U+E0D2"
+            "U+E0D4"
+            "U+E700-U+E7C5"
+            "U+F000-U+F2E0"
+            "U+2665"
+            "U+26A1"
+            "U+F400-U+F4A8"
+            "U+F67C"
+            "U+E000-U+E00A"
+            "U+F300-U+F313"
+            "U+E5FA-U+E62B"
+          ];
+        in
+          (builtins.concatStringsSep "," mappings) + " FiraCode Nerd Font Mono";
       }
       // catppuccin-mocha;
   };
