@@ -32,6 +32,7 @@
     tldr
     tmux
     posting
+    just
   ];
   programs.zsh.enable = true;
 
