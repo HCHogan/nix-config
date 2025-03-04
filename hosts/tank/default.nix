@@ -288,6 +288,7 @@
       interfaces = ["enp6s0"];
     };
   };
+  systemd.enableEmergencyMode=false;
 
   system.stateVersion = "24.11"; # Did you read the comment?
 }
