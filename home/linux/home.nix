@@ -12,7 +12,7 @@
       ../../modules/kitty
       ../../modules/gui
     ];
-    # ++ pkgs.lib.optional true ../../modules/gui;
+    # ++ pkgs.lib.optional (hostname == "b660") [../../modules/gui];
 
   # use qemu system session
   dconf.settings = {

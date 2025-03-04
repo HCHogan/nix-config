@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  hostname,
+  ...
+}:
+if hostname == "b660"
+then {
   home.packages = with pkgs; [
     blueman
     nix-output-monitor
@@ -20,3 +26,4 @@
     wezterm
   ];
 }
+else {}
