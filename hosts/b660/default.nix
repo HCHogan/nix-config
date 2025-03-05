@@ -13,10 +13,11 @@
     ../../modules/nerdfonts
     ../../modules/virtualisation
     ../../modules/man
+    ../../modules/vfio
   ];
 
   boot.binfmt = {
-    emulatedSystems = [ "aarch64-linux" ];
+    emulatedSystems = ["aarch64-linux"];
     preferStaticEmulators = true;
   };
 
@@ -37,6 +38,18 @@
   networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   nixpkgs.config.rocmSupport = true;
+
+  security.pam.loginLimits = [
+    { domain = "@kvm"; type = "soft"; item = "memlock"; value = "unlimited"; }
+    { domain = "@kvm"; type = "hard"; item = "memlock"; value = "unlimited"; }
+    { domain = "@libvirt"; type = "soft"; item = "memlock"; value = "unlimited"; }
+    { domain = "@libvirt"; type = "hard"; item = "memlock"; value = "unlimited"; }
+    
+  ];
+
+  services.udev.extraRules = ''
+    SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
+  '';
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -175,12 +188,16 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
+  networking.useDHCP = false;
+  # networking.interfaces.enp6s0.useDHCP = true;
+  networking.interfaces.br0.useDHCP = true;
+  networking.bridges = {
+    "br0" = {
+      interfaces = ["enp6s0"];
+    };
+  };
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
   # accidentally delete configuration.nix.

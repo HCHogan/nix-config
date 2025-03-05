@@ -10,6 +10,7 @@ in {
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
   programs.hyprpanel = {
     enable = hostname == "6800u" || hostname == "b660";
+    systemd.enable = true;
     theme = "catppuccin_mocha";
     layout = {
       "bar.layouts" = {

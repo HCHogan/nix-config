@@ -24,6 +24,7 @@ then {
     qq
     vlc
     wezterm
+    nautilus
   ];
 }
 else {}
