@@ -7,6 +7,7 @@
     warp-terminal
     jdk
     wezterm
+    spotify
   ];
 
   programs.vscode = {

@@ -62,7 +62,7 @@ in {
           if isLinux
           then 0
           else 5;
-        hide_window_decorations = "titlebar-only";
+        hide_window_decorations = true;
         tab_bar_min_tabs = 1;
         tab_bar_edge = "bottom";
         tab_bar_style = "powerline";
