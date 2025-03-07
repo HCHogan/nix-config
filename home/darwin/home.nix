@@ -8,6 +8,8 @@
     jdk
     wezterm
     spotify
+    discord
+    harper
   ];
 
   programs.vscode = {
