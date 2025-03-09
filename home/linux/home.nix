@@ -55,8 +55,6 @@
     zinit
 
     # monitor
-    hugo
-    glow
     iotop
     iftop
     strace
