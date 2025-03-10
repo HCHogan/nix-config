@@ -47,9 +47,11 @@
 in {
   programs.kitty = {
     enable = true;
+    font.name = "Recursive";
+    shellIntegration.enableZshIntegration = true;
     settings =
       {
-        font_family = "Recursive";
+        # font_family = "Recursive";
         font_size =
           if isLinux
           then 11.5
