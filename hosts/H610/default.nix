@@ -37,6 +37,8 @@
     enable = true;
   };
 
+  programs.nix-ld.enable = true;
+
   xdg.portal.wlr.enable = true;
   programs = {
     hyprland = {
@@ -87,6 +89,10 @@
     pulse.enable = true;
   };
 
+  # services.steam-servers.servers = {
+  #   palworld.server1.enable = true;
+  # };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -131,6 +137,7 @@
     btop-rocm
 
     inputs.zen-browser.packages."${system}".default
+    steamcmd
 
     # pkgsCross.riscv64.gcc14
 

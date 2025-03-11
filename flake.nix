@@ -60,6 +60,7 @@
     daeuniverse.url = "github:daeuniverse/flake.nix";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     thymis.url = "github:Thymis-io/thymis/v0.3";
+    steam-servers.url = "github:scottbot95/nix-steam-servers";
   };
 
   outputs = inputs
@@ -76,6 +77,7 @@
             inputs.daeuniverse.nixosModules.dae
             inputs.daeuniverse.nixosModules.daed
             inputs.vscode-server.nixosModules.default
+            inputs.steam-servers.nixosModules.default
           ];
         }
         {

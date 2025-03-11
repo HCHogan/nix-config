@@ -8,7 +8,7 @@
     win-spice
     dive
     # podman-tui
-    # podman-compose
+    podman-compose
   ];
 
   virtualisation.containers.enable = true;
