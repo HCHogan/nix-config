@@ -16,7 +16,7 @@
     ../../modules/catppuccin
   ];
 
-  networking.hostName = "6800u"; # Define your hostname.
+  networking.hostName = "7540u"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.

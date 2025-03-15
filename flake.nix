@@ -86,7 +86,7 @@
           system = "x86_64-linux";
         }
         {
-          hostname = "6800u";
+          hostname = "7540u";
           usernames = ["hank"];
           system = "x86_64-linux";
           extraModules = [
