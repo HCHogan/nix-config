@@ -9,7 +9,7 @@
 in {
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
   programs.hyprpanel = {
-    enable = hostname == "6800u" || hostname == "b660";
+    enable = hostname == "7540u" || hostname == "b660";
     systemd.enable = true;
     theme = "catppuccin_mocha";
     layout = {
@@ -21,8 +21,9 @@ in {
             "volume"
             "network"
             "bluetooth"
-            "systray"
+            "battery"
             "clock"
+            "systray"
             "notifications"
           ];
         };
@@ -75,7 +76,7 @@ in {
       ];
 
       wallpaper =
-        if hostname == "6800u"
+        if hostname == "7540u"
         then [
           "DP-2,/home/hank/wallpapers/nixos-blue-4k.png"
           "eDP-1,/home/hank/wallpapers/nixos-blue-4k.png"
@@ -148,7 +149,7 @@ in {
       };
       "$mod" = "SUPER";
       monitor =
-        if hostname == "6800u"
+        if hostname == "7540u"
         then [
           "DP-2,1920x1080@240,0x0,1"
           "eDP-1,1920x1200@60.03,1920x0,1.25"
@@ -177,7 +178,7 @@ in {
           "fcitx5 -d"
         ]
         ++ (
-          if (hostname == "b660" || hostname == "6800u")
+          if (hostname == "b660" || hostname == "7540u")
           then ["hyprpanel"]
           else []
         );
@@ -240,7 +241,7 @@ in {
             9)
         )
         ++ (
-          if (hostname == "b660" || hostname == "6800u")
+          if (hostname == "b660" || hostname == "7540u")
           then [
             "$mod, A, exec, walker"
           ]
@@ -251,7 +252,7 @@ in {
     };
     extraConfig = ''
       device {
-          name = syna8019:00-06cb:ce68-touchpad
+          name = elan0676:00-04f3:3195-touchpad
           sensitivity = -0
           natural_scroll = true
       }
