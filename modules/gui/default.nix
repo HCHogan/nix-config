@@ -19,7 +19,6 @@ then {
     minicom
     vscode
     code-cursor
-    davinci-resolve
     obs-studio
     warp-terminal
     qq
