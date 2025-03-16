@@ -3,7 +3,7 @@
   hostname,
   ...
 }:
-if hostname == "b660"
+if (hostname == "b660" || hostname == "7540u")
 then {
   home.packages = with pkgs; [
     blueman

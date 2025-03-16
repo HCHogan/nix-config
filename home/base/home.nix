@@ -17,6 +17,8 @@
     alejandra
     neovide
     nodejs_22
+    sqlite
+    sqlite-interactive
 
     # utils
     fastfetch
