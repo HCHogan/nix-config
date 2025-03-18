@@ -150,7 +150,7 @@ in {
       monitor =
         if hostname == "7540u"
         then [
-          "DP-2,1920x1080@240,0x0,1"
+          "DP-2,3840x2160@240,0x0,1.5"
           "eDP-1,1920x1200@60.03,1920x0,1.25"
         ]
         else if hostname == "H610"
