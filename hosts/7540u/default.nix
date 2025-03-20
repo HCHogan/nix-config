@@ -37,6 +37,8 @@
     enable = true;
   };
 
+  programs.nix-ld.enable = true;
+
   services.blueman.enable = true;
 
   # services.desktopManager.cosmic.enable = true;

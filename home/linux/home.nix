@@ -10,6 +10,7 @@
       inputs.walker.homeManagerModules.default
       inputs.catppuccin.homeManagerModules.catppuccin
       ../../modules/kitty
+      ../../modules/ghostty
       ../../modules/gui
     ];
     # ++ pkgs.lib.optional (hostname == "b660") [../../modules/gui];
