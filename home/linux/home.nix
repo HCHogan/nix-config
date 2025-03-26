@@ -7,6 +7,7 @@
     [
       ../../modules/hyprland
       ../../modules/walker
+      ../../modules/tofi
       inputs.walker.homeManagerModules.default
       inputs.catppuccin.homeManagerModules.catppuccin
       ../../modules/kitty

@@ -1,6 +1,6 @@
 {hostname, ...}: {
   programs.walker = {
-    enable = (hostname == "b660" || hostname == "7540u");
+    enable = (hostname == "b660");
     runAsService = true;
 
     # All options from the config.json can be used here.

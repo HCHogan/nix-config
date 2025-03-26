@@ -18,9 +18,9 @@ in {
           left = ["dashboard" "workspaces" "windowtitle"];
           middle = ["media"];
           right = [
+            "cpu"
+            "ram"
             "volume"
-            "network"
-            "bluetooth"
             "systray"
             "clock"
             "notifications"
@@ -240,7 +240,7 @@ in {
             9)
         )
         ++ (
-          if (hostname == "b660" || hostname == "7540u")
+          if (hostname == "b660")
           then [
             "$mod, A, exec, walker"
           ]
