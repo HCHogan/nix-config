@@ -47,7 +47,7 @@
 in {
   programs.kitty = {
     enable = true;
-    font.name = "Recursive";
+    font.name = if isLinux then "Recursive" else "FiraCode Nerd Font Mono";
     shellIntegration.enableZshIntegration = true;
     settings =
       {
