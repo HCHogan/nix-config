@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  imports = [
+    ../../modules/vim
+  ];
+
   home.file.".test".text = ''
     text in home.nix
   '';
