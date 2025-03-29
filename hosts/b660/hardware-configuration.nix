@@ -25,7 +25,7 @@
   #   };
 
   fileSystems."/efi" =
-    { device = "/dev/disk/by-uuid/7CD2-73C0";
+    { device = "/dev/nvme0n1p1";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
