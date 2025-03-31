@@ -27,6 +27,11 @@
       flake = false;
     };
 
+    hvim = {
+      url = "github:HCHogan/hvim";
+      flake = false;
+    };
+
     wezterm-config = {
       url = "github:HCHogan/wezterm";
       flake = false;

@@ -436,6 +436,22 @@
         "type": "github"
       }
     },
+    "hvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743400500,
+        "narHash": "sha256-B9lhYCG3oBHemI2Pk+xZoNitq0PikH1kqwGMQZzML60=",
+        "owner": "HCHogan",
+        "repo": "hvim",
+        "rev": "d017020b58a780a2adb7f5563b14260da70ddd42",
+        "type": "github"
+      },
+      "original": {
+        "owner": "HCHogan",
+        "repo": "hvim",
+        "type": "github"
+      }
+    },
     "hyprpanel": {
       "inputs": {
         "ags": "ags",
@@ -458,11 +474,11 @@
     "kvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1743145857,
-        "narHash": "sha256-aBjWLLTuQe94LZWHKU/KWQlMNdRSsIpUi4yiMXPIfTg=",
+        "lastModified": 1743343689,
+        "narHash": "sha256-Z1n2iAhZqbuznLcj6uPtvDIdLwm/vP/UteHxJdhAaBM=",
         "owner": "HCHogan",
         "repo": "kvim",
-        "rev": "b9e9ca61d31bc08190180a69ed147502fea84ade",
+        "rev": "9b42e6509cc05c4746b6a7298df0eb64c9be2092",
         "type": "github"
       },
       "original": {
@@ -1067,6 +1083,7 @@
         "dae-config": "dae-config",
         "daeuniverse": "daeuniverse",
         "home-manager": "home-manager",
+        "hvim": "hvim",
         "hyprpanel": "hyprpanel",
         "kvim": "kvim",
         "mihomo-config": "mihomo-config",
@@ -1538,11 +1555,11 @@
     "zsh-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1739035191,
-        "narHash": "sha256-zqf2T1h78hVgKQOtAUz0iDHxMqXsVaSbCQCykFoqfcU=",
+        "lastModified": 1743312004,
+        "narHash": "sha256-FiLp8U1ANUJwFm+tk7qKEoBNTZv8trsOb6Z9m35P/5o=",
         "owner": "HCHogan",
         "repo": "zsh",
-        "rev": "06c9ce04829f6f99796f2825133371ea7b061042",
+        "rev": "028c90d23b52ad758bb85b9dedf1ac8cfbdccfc1",
         "type": "github"
       },
       "original": {
