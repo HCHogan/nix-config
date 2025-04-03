@@ -24,7 +24,15 @@
   fileSystems."/mnt/storage" = {
     device = "/dev/vg1/lv_storage";
     fsType = "xfs";
-    options = ["rw" "uid=1000"];
+    options = [
+      "defaults"
+      # "rw"
+      # "group=wheel"
+    ];
+    # postMount = ''
+    #   chown root:wheel /mnt/storage
+    #   chmod 2775 /mnt/storage
+    # '';
   };
 
   services.lvm.boot.thin.enable = true; # when using thin provisioning or caching
@@ -49,11 +57,10 @@
   services.xserver.displayManager.gdm.enable = false;
   services.xserver.desktopManager.gnome.enable = false;
 
-  services.xserver.desktopManager.plasma5.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
 
   services.xrdp.enable = true;
-  services.xrdp.defaultWindowManager = "startplasma-x11";
+  services.xrdp.defaultWindowManager = "xfce4-session";
   services.xrdp.openFirewall = true;
 
   services.cockpit = {
@@ -71,7 +78,7 @@
     enable = true;
     securityType = "user";
     openFirewall = true;
-    shares.public = {
+    settings.public = {
       path = "/mnt/storage/share";
       writable = "true";
       comment = "Hello World!";
@@ -288,7 +295,7 @@
       interfaces = ["enp6s0"];
     };
   };
-  systemd.enableEmergencyMode=false;
+  systemd.enableEmergencyMode = false;
 
   system.stateVersion = "24.11"; # Did you read the comment?
 }
