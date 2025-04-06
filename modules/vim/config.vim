@@ -64,6 +64,9 @@ map ]b :tabprev<CR>
 set guicursor=n-v-c:block,i:ver25
 
 nnoremap <leader>e :NERDTreeToggle<CR>
+map s <Plug>(easymotion-prefix)
+map <ENTER> <Plug>(wildfire-fuel)
+vmap <BS> <Plug>(wildfire-water)
 
 let g:lightline = { 'colorscheme': 'iceberg' }
 

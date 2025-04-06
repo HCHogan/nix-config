@@ -1521,11 +1521,11 @@
     "wezterm-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1739034878,
-        "narHash": "sha256-Kec9dVBaKRAU3qrCcNdvkgEqNDotkpEwDDuaigew1ys=",
+        "lastModified": 1743751042,
+        "narHash": "sha256-7cC3WPekw6wRTJECVzZTvdmfJZuzLGxDwW/rKvvlqFM=",
         "owner": "HCHogan",
         "repo": "wezterm",
-        "rev": "16c82667e0901f91ef4574cb6d137db188c58e68",
+        "rev": "c7178abcb77194412bc36cfab4b481f625f5b361",
         "type": "github"
       },
       "original": {
