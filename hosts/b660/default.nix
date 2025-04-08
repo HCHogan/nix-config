@@ -195,7 +195,7 @@
   networking.interfaces.br0.useDHCP = true;
   networking.bridges = {
     "br0" = {
-      interfaces = ["enp6s0"];
+      interfaces = ["eno1"];
     };
   };
   # Copy the NixOS configuration file and link it from the resulting system

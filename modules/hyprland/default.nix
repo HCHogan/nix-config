@@ -11,24 +11,23 @@ in {
   programs.hyprpanel = {
     enable = hostname == "7540u" || hostname == "b660";
     systemd.enable = true;
-    theme = "catppuccin_mocha";
-    layout = {
-      "bar.layouts" = {
-        "*" = {
-          left = ["dashboard" "workspaces" "windowtitle"];
-          middle = ["media"];
-          right = [
-            "ram"
-            "network"
-            "volume"
-            "systray"
-            "clock"
-            "notifications"
-          ];
+    # theme = "catppuccin_mocha";
+    settings = {
+      layout = {
+        "bar.layouts" = {
+          "*" = {
+            left = ["dashboard" "workspaces" "windowtitle"];
+            middle = ["media"];
+            right = [
+              "ram"
+              "volume"
+              "systray"
+              "clock"
+              "notifications"
+            ];
+          };
         };
       };
-    };
-    settings = {
       theme.font.size = "15";
       bar = {
         launcher.autoDetectIcon = true;
@@ -90,7 +89,7 @@ in {
         ]
         else if hostname == "b660"
         then [
-          "DP-4,/home/hank/wallpapers/nixos-blue-4k.png"
+          "DP-2,/home/hank/wallpapers/nixos-blue-4k.png"
         ]
         else [];
     };
@@ -163,7 +162,7 @@ in {
         ]
         else if hostname == "b660"
         then [
-          "DP-4,3840x2160@240,0x0,1.5"
+          "DP-2,3840x2160@240,0x0,1.5"
         ]
         else if hostname == "rpi4"
         then [

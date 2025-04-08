@@ -111,6 +111,7 @@ in {
         cursor_shape = "beam";
         cursor_shape_unfocused = "hollow";
         cursor_trail = 1;
+        cursor_blink_interval = 0;
         background_opacity = "0.85";
         background_blur =
           if isLinux

@@ -45,13 +45,13 @@ in {
 
   nix.settings = {
     substituters = [
-      "https://mirrors.ustc.edu.cn/nix-channels/store"
       "https://cache.garnix.io"
       "https://hyprland.cachix.org"
       "https://attic.xuyh0120.win/lantian"
-      "https://cache.nixos.org"
       "https://walker.cachix.org"
       "https://walker-git.cachix.org"
+      "https://cache.nixos.org"
+      "https://mirrors.ustc.edu.cn/nix-channels/store"
       # "https://cosmic.cachix.org/"
     ];
     trusted-public-keys = [

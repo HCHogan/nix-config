@@ -9,7 +9,7 @@
       ../../modules/walker
       ../../modules/tofi
       inputs.walker.homeManagerModules.default
-      inputs.catppuccin.homeManagerModules.catppuccin
+      inputs.catppuccin.homeModules.catppuccin
       ../../modules/kitty
       ../../modules/ghostty
       ../../modules/gui
