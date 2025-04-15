@@ -89,6 +89,11 @@
           hostname = "b660";
           usernames = ["hank"];
           system = "x86_64-linux";
+          extraModules = [
+            inputs.nixos-cosmic.nixosModules.default
+            inputs.catppuccin.nixosModules.catppuccin
+            inputs.vscode-server.nixosModules.default
+          ];
         }
         {
           hostname = "7540u";

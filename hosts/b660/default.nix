@@ -21,11 +21,11 @@
     preferStaticEmulators = true;
   };
 
-  boot.extraModprobeConfig = ''
-    options kvm_intel nested=1
-    options kvm_intel emulate_invalid_guest_state=0
-    options kvm ignore_msrs=1
-  '';
+  # boot.extraModprobeConfig = ''
+  #   options kvm_intel nested=1
+  #   options kvm_intel emulate_invalid_guest_state=0
+  #   options kvm ignore_msrs=1
+  # '';
 
   networking.hostName = "b660"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -40,11 +40,30 @@
   nixpkgs.config.rocmSupport = true;
 
   security.pam.loginLimits = [
-    { domain = "@kvm"; type = "soft"; item = "memlock"; value = "unlimited"; }
-    { domain = "@kvm"; type = "hard"; item = "memlock"; value = "unlimited"; }
-    { domain = "@libvirt"; type = "soft"; item = "memlock"; value = "unlimited"; }
-    { domain = "@libvirt"; type = "hard"; item = "memlock"; value = "unlimited"; }
-    
+    {
+      domain = "@kvm";
+      type = "soft";
+      item = "memlock";
+      value = "unlimited";
+    }
+    {
+      domain = "@kvm";
+      type = "hard";
+      item = "memlock";
+      value = "unlimited";
+    }
+    {
+      domain = "@libvirt";
+      type = "soft";
+      item = "memlock";
+      value = "unlimited";
+    }
+    {
+      domain = "@libvirt";
+      type = "hard";
+      item = "memlock";
+      value = "unlimited";
+    }
   ];
 
   services.udev.extraRules = ''
@@ -57,6 +76,9 @@
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = false;
   services.xserver.desktopManager.gnome.enable = false;
+
+  services.desktopManager.cosmic.enable = true;
+  services.flatpak.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -109,6 +131,9 @@
   };
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
+  systemd.packages = [pkgs.observatory];
+  systemd.services.monitord.wantedBy = ["multi-user.target"];
 
   services.printing.enable = true;
 
