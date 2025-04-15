@@ -100,7 +100,7 @@
           usernames = ["hank"];
           system = "x86_64-linux";
           extraModules = [
-            # inputs.nixos-cosmic.nixosModules.default
+            inputs.nixos-cosmic.nixosModules.default
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen4
             inputs.daeuniverse.nixosModules.dae
             inputs.daeuniverse.nixosModules.daed
