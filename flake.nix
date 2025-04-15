@@ -2,6 +2,7 @@
   description = "Hank's nix configuration for both NixOS & macOS";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.follows = "nixos-cosmic/nixpkgs";
 
     # macos
     nix-darwin = {
