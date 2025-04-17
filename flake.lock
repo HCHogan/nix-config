@@ -460,11 +460,11 @@
     "hvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1744652416,
-        "narHash": "sha256-GdA+Yk+BKhdOVk1ZmTBiACecE3IHMLvt062K4B2FYdg=",
+        "lastModified": 1744869291,
+        "narHash": "sha256-FXT71GVpiYwib1W2wqrflaJqJSzLAeuFAPDYfRhaDbE=",
         "owner": "HCHogan",
         "repo": "hvim",
-        "rev": "205c25f97cd69c94c79c08f56ad241daeba83af4",
+        "rev": "2e4c2800e51b8a31130a101bb8bb0695f43060ca",
         "type": "github"
       },
       "original": {
@@ -495,11 +495,11 @@
     "kvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1744690996,
-        "narHash": "sha256-9XwkL3UBTr7wrzDdvwS0t5QIhSXwleAV12RmMYw0ngY=",
+        "lastModified": 1744813455,
+        "narHash": "sha256-WK0hSGoyJNiZ/5NbNjMuBHaKH45YAKgX7RmHM/aP+7g=",
         "owner": "HCHogan",
         "repo": "kvim",
-        "rev": "f46fc5e0a8a69a70d34d43427d6b3782835bf9f3",
+        "rev": "c3f76edcdb0355a6dadbd81947c6ae7d6dd058c9",
         "type": "github"
       },
       "original": {
