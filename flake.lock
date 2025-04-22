@@ -460,11 +460,11 @@
     "hvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1744869291,
-        "narHash": "sha256-FXT71GVpiYwib1W2wqrflaJqJSzLAeuFAPDYfRhaDbE=",
+        "lastModified": 1745311119,
+        "narHash": "sha256-gCWSKzUGwbUKollbhILId36AayUVcZPTRLZfubKsnG8=",
         "owner": "HCHogan",
         "repo": "hvim",
-        "rev": "2e4c2800e51b8a31130a101bb8bb0695f43060ca",
+        "rev": "c6ed186971883da2c2246b074a1299d7a9d7713b",
         "type": "github"
       },
       "original": {
@@ -1548,11 +1548,11 @@
         "nixpkgs": "nixpkgs_11"
       },
       "locked": {
-        "lastModified": 1744682635,
-        "narHash": "sha256-OUT678QP6m76y6kV1TdYAtaEfcz25uifGSvdPwamKUk=",
+        "lastModified": 1745111733,
+        "narHash": "sha256-FVsS0LcSYwt4qiw1inlI8F9dc7PZaRaWAr4vqvvnekg=",
         "owner": "0xc000022070",
         "repo": "zen-browser-flake",
-        "rev": "6a9daeae2f8564a23db2ca9d8e4fcad1686daa51",
+        "rev": "67df3e64a216db8ac3c8bc669143af090bf4e6ad",
         "type": "github"
       },
       "original": {
