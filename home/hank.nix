@@ -24,6 +24,10 @@ in {
     userEmail = "ysh2291939848@outlook.com";
   };
 
+  programs.emacs = {
+    enable = true;
+  };
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;

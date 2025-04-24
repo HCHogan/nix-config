@@ -3,10 +3,6 @@
     ../../modules/vim
   ];
 
-  home.file.".test".text = ''
-    text in home.nix
-  '';
-
   home.packages = with pkgs; [
     # neovim dependencies
     typst
