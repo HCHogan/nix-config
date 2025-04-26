@@ -8,7 +8,7 @@
     ./hardware-configuration.nix
     ../../modules/mihomo
     ../../modules/grub
-    ../../modules/tuigreet
+    # ../../modules/tuigreet
     ../../modules/keyd
     ../../modules/fcitx5
     ../../modules/nerdfonts
@@ -42,7 +42,9 @@
   services.blueman.enable = true;
 
   services.desktopManager.cosmic.enable = true;
-  # services.displayManager.cosmic-greeter.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
 
   services.power-profiles-daemon.enable = false;
 
