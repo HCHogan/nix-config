@@ -25,7 +25,7 @@ in {
   };
 
   programs.emacs = {
-    enable = true;
+    enable = false;
   };
 
   programs.neovim = {

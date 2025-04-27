@@ -98,12 +98,12 @@ in {
     enable = true;
     font.name =
       if isLinux
-      then "Recursive"
+      then "RecMonoSmCasual Nerd Font Propo"
       else "FiraCode Nerd Font Mono";
     shellIntegration.enableZshIntegration = true;
     settings =
       {
-        # font_family = "Recursive";
+        font_family = "RecMonoDuotone Nerd Font Mono";
         font_size =
           if isLinux
           then 11.5
@@ -150,6 +150,6 @@ in {
         in
           (builtins.concatStringsSep "," mappings) + " FiraCode Nerd Font Mono";
       }
-      // iceberg;
+      // catppuccin-mocha;
   };
 }
