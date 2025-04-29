@@ -460,11 +460,11 @@
     "hvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1745748365,
-        "narHash": "sha256-Vw/PthC3KjiXSQOtFOwFmpwW3qFjpP0gvV3Zaqndevs=",
+        "lastModified": 1745766829,
+        "narHash": "sha256-COAB8N3S7IWqIsDp1rftgJTBl2MtKu7nNnjHX2UhOd8=",
         "owner": "HCHogan",
         "repo": "hvim",
-        "rev": "765d5b068210ed932f3966d5e47c499ebbd3bcfb",
+        "rev": "6b099a7d5e80bbd220d5ccba449ca27501fe2cf1",
         "type": "github"
       },
       "original": {
@@ -1529,11 +1529,11 @@
     "wezterm-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1745754105,
-        "narHash": "sha256-TGhN8yYCIWeoz3Q4p5Xr8uts64EqdN9gpGs7JgwEQ+k=",
+        "lastModified": 1745819645,
+        "narHash": "sha256-udVS+yozOtL+tus8xfvxrEtGCclMVcorKl43uFQU1Iw=",
         "owner": "HCHogan",
         "repo": "wezterm",
-        "rev": "4823f9f804bf79238b9b46c415140aefccd60eea",
+        "rev": "8f49cacd5a2d4d5f441274e18bb3f919336062ef",
         "type": "github"
       },
       "original": {

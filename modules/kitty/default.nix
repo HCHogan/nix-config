@@ -98,12 +98,11 @@ in {
     enable = true;
     font.name =
       if isLinux
-      then "RecMonoSmCasual Nerd Font Propo"
-      else "FiraCode Nerd Font Mono";
+      then "Recursive"
+      else "RecMonoSmCasual Nerd Font Propo";
     shellIntegration.enableZshIntegration = true;
     settings =
       {
-        font_family = "RecMonoDuotone Nerd Font Mono";
         font_size =
           if isLinux
           then 11.5
