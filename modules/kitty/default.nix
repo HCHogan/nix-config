@@ -3,47 +3,8 @@
   system,
   ...
 }: let
-  catppuccin-mocha = {
-    foreground = "#cdd6f4";
-    background = "#1d1e2e";
-    selection_foreground = "#1e1e2e";
-    selection_background = "#f5e0dc";
-    cursor = "#f5e0dc";
-    cursor_text_color = "#1e1e2e";
-    url_color = "#f5e0dc";
-    active_border_color = "#b4befe";
-    inactive_border_color = "#6c7086";
-    bell_border_color = "#f9e2af";
-    active_tab_foreground = "#11111b";
-    active_tab_background = "#cba6f7";
-    inactive_tab_foreground = "#cdd6f4";
-    inactive_tab_background = "#181825";
-    tab_bar_background = "#11111b";
-    mark1_foreground = "#1e1e2e";
-    mark1_background = "#b4befe";
-    mark2_foreground = "#1e1e2e";
-    mark2_background = "#cba6f7";
-    mark3_foreground = "#1e1e2e";
-    mark3_background = "#74c7ec";
-    color0 = "#45475a";
-    color8 = "#585b70";
-    color1 = "#f38ba8";
-    color9 = "#f38ba8";
-    color2 = "#a6e3a1";
-    color10 = "#a6e3a1";
-    color3 = "#f9e2af";
-    color11 = "#f9e2af";
-    color4 = "#89b4fa";
-    color12 = "#89b4fa";
-    color5 = "#f5c2e7";
-    color13 = "#f5c2e7";
-    color6 = "#94e2d5";
-    color14 = "#94e2d5";
-    color7 = "#bac2de";
-    color15 = "#a6adc8";
-  };
-  iceberg = {
-    background = "#161821";
+  noir = {
+    background = "#121212";
     foreground = "#c6c8d1";
 
     selection_background = "#1e2132";
@@ -52,43 +13,43 @@
     cursor = "#d2d4de";
 
     # black
-    color0 = "#161821";
-    color8 = "#6b7089";
+    color0 = "#121212";
+    color8 = "#212121";
 
     # red
-    color1 = "#e27878";
-    color9 = "#e98989";
+    color1 = "#bf616a";
+    color9 = "#bf616a";
 
     # green
-    color2 = "#b4be82";
-    color10 = "#c0ca8e";
+    color2 = "#a3be8c";
+    color10 = "#a3be8c";
 
     # yellow/orange
-    color3 = "#e2a478";
-    color11 = "#e9b189";
+    color3 = "#ebcb8b";
+    color11 = "#ebcb8b";
 
     # blue
-    color4 = "#84a0c6";
-    color12 = "#91acd1";
+    color4 = "#8fbcbb";
+    color12 = "#8fbcbb";
 
     # magenta/purple
     color5 = "#a093c7";
     color13 = "#ada0d3";
 
     # cyan
-    color6 = "#89b8c2";
-    color14 = "#95c4ce";
+    color6 = "#47eae0";
+    color14 = "#47eae0";
 
     # white
-    color7 = "#c6c8d1";
-    color15 = "#d2d4de";
+    color7 = "#f5f5f5";
+    color15 = "#ffffff";
 
     # tab bar
-    active_tab_foreground = "#161821";
-    active_tab_background = "#84a0c6";
-    inactive_tab_foreground = "#d2d4de";
-    inactive_tab_background = "#353a50";
-    tab_bar_background = "#0f1117";
+    active_tab_foreground = "#131313";
+    active_tab_background = "#a3be8c";
+    inactive_tab_foreground = "#d5d5d5";
+    inactive_tab_background = "#323232";
+    tab_bar_background = "#131313";
   };
 
   lib = pkgs.lib;
@@ -99,7 +60,7 @@ in {
     font.name =
       if isLinux
       then "Recursive"
-      else "RecMonoSmCasual Nerd Font Propo";
+      else "RecMonoLinear Nerd Font Mono";
     shellIntegration.enableZshIntegration = true;
     settings =
       {
@@ -111,11 +72,11 @@ in {
         cursor_shape_unfocused = "hollow";
         cursor_trail = 1;
         cursor_blink_interval = 0;
-        background_opacity = "0.85";
+        background_opacity = 0.85;
         background_blur =
           if isLinux
           then 0
-          else 5;
+          else 20;
         hide_window_decorations = true;
         tab_bar_min_tabs = 1;
         tab_bar_edge = "bottom";
@@ -124,6 +85,7 @@ in {
         tab_title_template = "{title}{' :{}:'.format(num_windows) if num_windows > 1 else ''}";
         wayland_titlebar_color = "system";
         macos_titlebar_color = "system";
+        macos_option_as_alt = true;
         sync_to_monitor = true;
         symbol_map = let
           mappings = [
@@ -149,6 +111,6 @@ in {
         in
           (builtins.concatStringsSep "," mappings) + " FiraCode Nerd Font Mono";
       }
-      // catppuccin-mocha;
+      // noir;
   };
 }
