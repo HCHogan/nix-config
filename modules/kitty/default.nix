@@ -3,6 +3,50 @@
   system,
   ...
 }: let
+  kanso = {
+    # 基本色
+    background = "#121212";
+    foreground = "#c6c8d1";
+    selection_background = "#393B42";
+    selection_foreground = "#C5C9C7";
+    url_color = "#72A7BC";
+    cursor = "#C5C9C7";
+    cursor_text_color = "#090E13";
+
+    # 选项卡
+    active_tab_foreground = "#131313";
+    active_tab_background = "#a3be8c";
+    inactive_tab_foreground = "#d5d5d5";
+    inactive_tab_background = "#323232";
+    tab_bar_background = "#131313";
+    # active_tab_background = "#090E13";
+    # active_tab_foreground = "#C5C9C7";
+    # inactive_tab_background = "#090E13";
+    # inactive_tab_foreground = "#A4A7A4";
+
+    # 普通色
+    color0 = "#0d0c0c";
+    color1 = "#c4746e";
+    color2 = "#8a9a7b";
+    color3 = "#c4b28a";
+    color4 = "#8ba4b0";
+    color5 = "#a292a3";
+    color6 = "#8ea4a2";
+    color7 = "#C8C093";
+
+    color8 = "#A4A7A4";
+    color9 = "#E46876";
+    color10 = "#87a987";
+    color11 = "#E6C384";
+    color12 = "#7FB4CA";
+    color13 = "#938AA9";
+    color14 = "#7AA89F";
+    color15 = "#C5C9C7";
+
+    # 扩展色
+    color16 = "#b6927b";
+    color17 = "#b98d7b";
+  };
   noir = {
     background = "#121212";
     foreground = "#c6c8d1";
@@ -111,6 +155,7 @@ in {
         in
           (builtins.concatStringsSep "," mappings) + " FiraCode Nerd Font Mono";
       }
-      // noir;
+      # // noir;
+      // kanso;
   };
 }
