@@ -132,6 +132,11 @@
           system = "aarch64-darwin";
         }
         {
+          hostname = "hackintosh";
+          usernames = ["hank"];
+          system = "x86_64-darwin";
+        }
+        {
           hostname = "rpi4";
           usernames = ["nix"];
           system = "aarch64-linux";
