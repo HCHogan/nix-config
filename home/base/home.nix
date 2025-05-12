@@ -35,6 +35,7 @@
     tmux
     posting
     just
+    bat
   ];
   programs.zsh.enable = true;
 
