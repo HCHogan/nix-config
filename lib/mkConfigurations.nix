@@ -29,6 +29,7 @@
       modules =
         [
           ./../modules/system.nix
+          ./../modules/nix.nix
           ./../hosts/${hostname}
           home-manager
           {

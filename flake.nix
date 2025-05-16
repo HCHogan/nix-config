@@ -73,8 +73,7 @@
   : let
     mkConfigurations = (import ./lib/mkConfigurations.nix) {inherit inputs;};
     mkHomeConfigurations = (import ./lib/mkHomeConfigurations.nix) {inherit inputs;};
-  in
-    mkConfigurations {
+    sys = mkConfigurations {
       configurations = [
         {
           hostname = "H610";
@@ -149,4 +148,29 @@
         }
       ];
     };
+    hm = mkHomeConfigurations {
+      usernames = ["hank" "nix"];
+    };
+  in {
+    nixosConfigurations = sys.nixosConfigurations;
+    darwinConfigurations = sys.darwinConfigurations;
+    homeConfigurations."hank" = inputs.home-manager.lib.homeManagerConfiguration {
+      pkgs = import inputs.nixpkgs {
+        system = "x86_64-linux";
+        overlays = [
+          inputs.hyprpanel.overlay
+          inputs.nur.overlays.default
+        ];
+      };
+      modules = [
+        (import ./home/hank.nix {username = "hank";})
+      ];
+      extraSpecialArgs = {
+        inherit inputs;
+        usernames = ["hank"];
+        system = "x86_64-linux";
+        hostname = "home";
+      };
+    };
+  };
 }

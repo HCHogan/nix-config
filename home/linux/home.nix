@@ -17,12 +17,12 @@
     # ++ pkgs.lib.optional (hostname == "b660") [../../modules/gui];
 
   # use qemu system session
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
-    };
-  };
+  # dconf.settings = {
+  #   "org/virt-manager/virt-manager/connections" = {
+  #     autoconnect = ["qemu:///system"];
+  #     uris = ["qemu:///system"];
+  #   };
+  # };
 
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
