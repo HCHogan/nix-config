@@ -71,13 +71,14 @@ in {
       preload = [
         "/home/hank/wallpapers/nixos-stroke-4k.png"
         "/home/hank/wallpapers/nixos-blue-4k.png"
+        "/home/hank/wallpapers/grid.png"
       ];
 
       wallpaper =
         if hostname == "7540u"
         then [
           "DP-2,/home/hank/wallpapers/nixos-blue-4k.png"
-          "eDP-1,/home/hank/wallpapers/nixos-blue-4k.png"
+          "eDP-1,/home/hank/wallpapers/grid.png"
         ]
         else if hostname == "H610"
         then [

@@ -72,6 +72,7 @@
   outputs = inputs
   : let
     mkConfigurations = (import ./lib/mkConfigurations.nix) {inherit inputs;};
+    mkHomeConfigurations = (import ./lib/mkHomeConfigurations.nix) {inherit inputs;};
   in
     mkConfigurations {
       configurations = [
