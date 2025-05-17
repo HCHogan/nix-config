@@ -6,6 +6,16 @@
       enable-normalization-opposite-orientation-for-nested-containers = true;
       default-root-container-layout = "accordion";
       default-root-container-orientation = "auto";
+      # on-window-detected = [
+      #   {
+      #     "com.mitchellh.ghostty" = {
+      #       "if" = "app-id";
+      #       run = [
+      #         "layout tiling"
+      #       ];
+      #     };
+      #   }
+      # ];
 
       mode = {
         main = {
