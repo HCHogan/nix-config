@@ -28,6 +28,7 @@
   networking.hostName = hostname;
   networking.computerName = hostname;
   system.defaults.smb.NetBIOSName = hostname;
+  system.primaryUser = "hank";
 
   homebrew = {
     enable = true;
