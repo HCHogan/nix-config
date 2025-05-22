@@ -7,7 +7,7 @@ if (hostname == "b660" || hostname == "7540u")
 then {
   home.packages = with pkgs; [
     blueman
-    # spotify
+    spotify
     nix-output-monitor
     nur.repos.xddxdd.baidunetdisk
     # nur.repos.nltch.spotify-adblock
