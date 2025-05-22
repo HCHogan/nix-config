@@ -67,6 +67,7 @@
     vscode-server.url = "github:nix-community/nixos-vscode-server";
     thymis.url = "github:Thymis-io/thymis/v0.3";
     steam-servers.url = "github:scottbot95/nix-steam-servers";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; # IMPORTANT
   };
 
   outputs = inputs
@@ -107,6 +108,7 @@
             inputs.daeuniverse.nixosModules.daed
             inputs.catppuccin.nixosModules.catppuccin
             inputs.vscode-server.nixosModules.default
+            inputs.chaotic.nixosModules.default
           ];
         }
         {

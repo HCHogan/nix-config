@@ -47,6 +47,7 @@
   services.displayManager.cosmic-greeter.enable = true;
 
   services.power-profiles-daemon.enable = false;
+  services.scx.enable = true;
 
   services.dae = {
     enable = false;
