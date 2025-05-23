@@ -1723,11 +1723,11 @@
     "zsh-config": {
       "flake": false,
       "locked": {
-        "lastModified": 1747477731,
-        "narHash": "sha256-N44mHtPUvmJjo2FD2aEETRlzn/tOPuajlONw8mQoZmc=",
+        "lastModified": 1747979278,
+        "narHash": "sha256-z77F5xQG+Q0DpOGDGuEoA8Ce9BsIKK6BGAoMEU40W4E=",
         "owner": "HCHogan",
         "repo": "zsh",
-        "rev": "84c9848a6a6fd4abf894cdee516683c968925172",
+        "rev": "77de5e747e819a1bd11ea64ca7acab05df777ab5",
         "type": "github"
       },
       "original": {
