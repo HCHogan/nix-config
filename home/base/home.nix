@@ -22,6 +22,16 @@
     sqlite-interactive
 
     # utils
+    evil-helix
+    hyperfine
+    xh
+    fselect
+    rusty-man
+    delta
+    ripgrep-all
+    tokei
+    mprocs
+
     fastfetch
     neofetch
     yazi
