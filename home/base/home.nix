@@ -5,7 +5,6 @@
 
   home.packages = with pkgs; [
     # neovim dependencies
-    swiftlint
     typst
     tinymist
     taplo

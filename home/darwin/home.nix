@@ -3,6 +3,7 @@
     ../../modules/kitty
   ];
   home.packages = with pkgs; [
+    swiftlint
     raycast
     warp-terminal
     jdk
