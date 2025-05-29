@@ -8,6 +8,11 @@
     swiftlint
     typst
     tinymist
+    taplo
+    yaml-language-server
+    typescript-language-server
+    astro-language-server
+    vscode-langservers-extracted
     typstyle
     marksman
     markdownlint-cli
