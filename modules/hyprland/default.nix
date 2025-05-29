@@ -11,7 +11,6 @@ in {
   programs.hyprpanel = {
     enable = hostname == "7540u" || hostname == "b660";
     systemd.enable = true;
-    # theme = "catppuccin_mocha";
     settings = {
       layout = {
         "bar.layouts" = {
@@ -29,6 +28,7 @@ in {
         };
       };
       theme.font.size = "15";
+      theme.name = "catppuccin_mocha";
       bar = {
         launcher.autoDetectIcon = true;
         workspaces = {
