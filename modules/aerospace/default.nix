@@ -20,7 +20,7 @@
       mode = {
         main = {
           binding = {
-            "alt-enter" = "exec-and-forget /Applications/WezTerm.app/Contents/MacOS/wezterm start --always-new-process";
+            "alt-enter" = "exec-and-forget kitty";
             "alt-j" = "focus down";
             "alt-k" = "focus up";
             "alt-l" = "focus right";
