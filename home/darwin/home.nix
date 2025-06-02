@@ -11,6 +11,7 @@
     spotify
     discord
     harper
+    emacs
   ];
 
   programs.direnv = {

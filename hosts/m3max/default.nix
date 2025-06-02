@@ -37,8 +37,7 @@
     casks = [
       "orbstack"
       "cherry-studio"
-      # "kitty"
-      # "goldendict"
+      "equinox"
     ];
   };
 }
