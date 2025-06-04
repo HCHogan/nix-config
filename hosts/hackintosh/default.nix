@@ -35,6 +35,7 @@
     caskArgs.no_quarantine = true;
     global.brewfile = true;
     casks = [
+      "zed"
       # "orbstack"
       # "kitty"
       # "goldendict"
