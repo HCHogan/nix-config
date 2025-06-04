@@ -16,6 +16,10 @@
     ../../modules/catppuccin
   ];
 
+  nix.settings.system-features = [
+    "gccarch-x86-64-v4"
+  ];
+
   networking.hostName = "7540u"; # Define your hostname.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
