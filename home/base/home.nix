@@ -36,6 +36,7 @@
     tokei
     mprocs
 
+    pandoc
     fastfetch
     neofetch
     yazi
