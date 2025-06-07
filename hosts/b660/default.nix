@@ -75,7 +75,7 @@
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = false;
-  services.xserver.desktopManager.gnome.enable = false;
+  services.desktopManager.gnome.enable = false;
 
   services.desktopManager.cosmic.enable = true;
   services.flatpak.enable = true;
