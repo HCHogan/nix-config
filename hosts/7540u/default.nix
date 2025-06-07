@@ -47,7 +47,7 @@
 
   services.desktopManager.cosmic.enable = true;
   services.desktopManager.plasma6.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
 
   services.power-profiles-daemon.enable = false;

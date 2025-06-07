@@ -2,7 +2,6 @@
   description = "Hank's nix configuration for both NixOS & macOS";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.follows = "nixos-cosmic/nixpkgs";
 
     # macos
     nix-darwin = {
@@ -11,7 +10,6 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     # home manager for managing user config
     home-manager = {
@@ -92,7 +90,6 @@
           usernames = ["hank"];
           system = "x86_64-linux";
           extraModules = [
-            inputs.nixos-cosmic.nixosModules.default
             inputs.catppuccin.nixosModules.catppuccin
             inputs.vscode-server.nixosModules.default
           ];
@@ -102,7 +99,6 @@
           usernames = ["hank"];
           system = "x86_64-linux";
           extraModules = [
-            inputs.nixos-cosmic.nixosModules.default
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s-amd-gen4
             inputs.daeuniverse.nixosModules.dae
             inputs.daeuniverse.nixosModules.daed
