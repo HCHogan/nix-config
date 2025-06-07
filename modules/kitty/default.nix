@@ -4,7 +4,6 @@
   ...
 }: let
   kanso = {
-    # 基本色
     background = "#121212";
     foreground = "#c6c8d1";
     selection_background = "#393B42";
@@ -13,18 +12,12 @@
     cursor = "#C5C9C7";
     cursor_text_color = "#090E13";
 
-    # 选项卡
-    active_tab_foreground = "#131313";
-    active_tab_background = "#a3be8c";
-    inactive_tab_foreground = "#d5d5d5";
-    inactive_tab_background = "#323232";
+    active_tab_background = "#090E13";
+    active_tab_foreground = "#8ba4b0";
+    inactive_tab_background = "#090E13";
+    inactive_tab_foreground = "#A4A7A4";
     tab_bar_background = "#131313";
-    # active_tab_background = "#090E13";
-    # active_tab_foreground = "#C5C9C7";
-    # inactive_tab_background = "#090E13";
-    # inactive_tab_foreground = "#A4A7A4";
 
-    # 普通色
     color0 = "#0d0c0c";
     color1 = "#c4746e";
     color2 = "#8a9a7b";
@@ -43,59 +36,9 @@
     color14 = "#7AA89F";
     color15 = "#C5C9C7";
 
-    # 扩展色
     color16 = "#b6927b";
     color17 = "#b98d7b";
   };
-  noir = {
-    background = "#121212";
-    foreground = "#c6c8d1";
-
-    selection_background = "#1e2132";
-    selection_foreground = "#c6c8d1";
-
-    cursor = "#d2d4de";
-
-    # black
-    color0 = "#121212";
-    color8 = "#212121";
-
-    # red
-    color1 = "#bf616a";
-    color9 = "#bf616a";
-
-    # green
-    color2 = "#a3be8c";
-    color10 = "#a3be8c";
-
-    # yellow/orange
-    color3 = "#ebcb8b";
-    color11 = "#ebcb8b";
-
-    # blue
-    color4 = "#8fbcbb";
-    color12 = "#8fbcbb";
-
-    # magenta/purple
-    color5 = "#a093c7";
-    color13 = "#ada0d3";
-
-    # cyan
-    color6 = "#47eae0";
-    color14 = "#47eae0";
-
-    # white
-    color7 = "#f5f5f5";
-    color15 = "#ffffff";
-
-    # tab bar
-    active_tab_foreground = "#131313";
-    active_tab_background = "#a3be8c";
-    inactive_tab_foreground = "#d5d5d5";
-    inactive_tab_background = "#323232";
-    tab_bar_background = "#131313";
-  };
-
   lib = pkgs.lib;
   isLinux = lib.hasInfix "linux" system;
 in {
@@ -105,7 +48,16 @@ in {
       if isLinux
       then "Recursive"
       else "RecMonoLinear Nerd Font Mono";
-    shellIntegration.enableZshIntegration = true;
+    extraConfig = ''
+      # kitty-scrollback.nvim Kitten alias
+      action_alias kitty_scrollback_nvim kitten /Users/hank/.local/share/nvim/lazy/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py
+      # Browse scrollback buffer in nvim
+      map kitty_mod+h kitty_scrollback_nvim
+      # Browse output of the last shell command in nvim
+      map kitty_mod+g kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
+      # Show clicked command output in nvim
+      mouse_map ctrl+shift+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output
+    '';
     settings =
       {
         font_size =
@@ -131,31 +83,61 @@ in {
         macos_titlebar_color = "system";
         macos_option_as_alt = true;
         sync_to_monitor = true;
-        symbol_map = let
-          mappings = [
-            "U+23FB-U+23FE"
-            "U+2B58"
-            "U+E200-U+E2A9"
-            "U+E0A0-U+E0A3"
-            "U+E0B0-U+E0BF"
-            "U+E0C0-U+E0C8"
-            "U+E0CC-U+E0CF"
-            "U+E0D0-U+E0D2"
-            "U+E0D4"
-            "U+E700-U+E7C5"
-            "U+F000-U+F2E0"
-            "U+2665"
-            "U+26A1"
-            "U+F400-U+F4A8"
-            "U+F67C"
-            "U+E000-U+E00A"
-            "U+F300-U+F313"
-            "U+E5FA-U+E62B"
-          ];
-        in
-          (builtins.concatStringsSep "," mappings) + " FiraCode Nerd Font Mono";
+        allow_remote_control = true;
+        listen_on = "unix:/tmp/kitty";
+        shell_integration = "enabled";
       }
-      # // noir;
       // kanso;
+    # // noir;
   };
 }
+# noir = {
+#   background = "#121212";
+#   foreground = "#c6c8d1";
+#
+#   selection_background = "#1e2132";
+#   selection_foreground = "#c6c8d1";
+#
+#   cursor = "#d2d4de";
+#
+#   # black
+#   color0 = "#121212";
+#   color8 = "#212121";
+#
+#   # red
+#   color1 = "#bf616a";
+#   color9 = "#bf616a";
+#
+#   # green
+#   color2 = "#a3be8c";
+#   color10 = "#a3be8c";
+#
+#   # yellow/orange
+#   color3 = "#ebcb8b";
+#   color11 = "#ebcb8b";
+#
+#   # blue
+#   color4 = "#8fbcbb";
+#   color12 = "#8fbcbb";
+#
+#   # magenta/purple
+#   color5 = "#a093c7";
+#   color13 = "#ada0d3";
+#
+#   # cyan
+#   color6 = "#47eae0";
+#   color14 = "#47eae0";
+#
+#   # white
+#   color7 = "#f5f5f5";
+#   color15 = "#ffffff";
+#
+#   # tab bar
+#   active_tab_foreground = "#131313";
+#   active_tab_background = "#a3be8c";
+#   inactive_tab_foreground = "#d5d5d5";
+#   inactive_tab_background = "#323232";
+#   tab_bar_background = "#131313";
+# };
+#
+

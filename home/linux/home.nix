@@ -70,6 +70,8 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb
+
+    sourcekit-lsp
   ];
 
   catppuccin.gtk = {
