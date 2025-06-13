@@ -10,7 +10,6 @@ in {
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
   programs.hyprpanel = {
     enable = hostname == "7540u" || hostname == "b660";
-    systemd.enable = true;
     settings = {
       layout = {
         "bar.layouts" = {
