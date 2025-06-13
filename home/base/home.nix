@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ../../modules/vim
+    ../../modules/helix
   ];
 
   home.packages = with pkgs; [
@@ -26,7 +27,6 @@
     sqlite-interactive
 
     # utils
-    evil-helix
     hyperfine
     xh
     fselect
