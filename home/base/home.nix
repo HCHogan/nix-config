@@ -25,6 +25,7 @@
     nodejs_22
     sqlite
     sqlite-interactive
+    tree-sitter
 
     # utils
     hyperfine
