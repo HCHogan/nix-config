@@ -26,6 +26,7 @@
     sqlite
     sqlite-interactive
     tree-sitter
+    stack
 
     # utils
     hyperfine
