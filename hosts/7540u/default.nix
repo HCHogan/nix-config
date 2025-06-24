@@ -126,9 +126,9 @@
 
   hardware.graphics = {
     enable = true;
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-    ];
+    # extraPackages = with pkgs; [
+    #   rocmPackages.clr.icd
+    # ];
   };
 
   environment = {
@@ -194,6 +194,17 @@
     corectrl
     nautilus
     # daed
+
+    # gnome
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.arc-menu
+    gnomeExtensions.just-perfection
+    gnomeExtensions.user-themes-x
+    gnomeExtensions.appindicator
+    gnomeExtensions.vitals
+    gnomeExtensions.gsconnect
+    gnomeExtensions.forge
 
     inputs.zen-browser.packages."${system}".default
   ];
