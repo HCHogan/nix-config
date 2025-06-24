@@ -14,6 +14,12 @@
   system.defaults = {
     dock.autohide = true;
     dock.mru-spaces = false;
+    dock.wvous-tl-corner = 5;
+    dock.wvous-bl-corner = 14;
+    dock.orientation = "bottom";
+    dock.magnification = false;
+    dock.scroll-to-open = true;
+    dock.tilesize = 48;
     finder.AppleShowAllExtensions = true;
     finder.FXPreferredViewStyle = "clmv";
     screencapture.location = "~/Pictures/screenshots";
