@@ -27,6 +27,9 @@ in {
   programs.jujutsu = {
     enable = true;
     settings = {
+      ui = {
+        paginate = "never";
+      };
       user = {
         email = "hnkhgn@icloud.com";
         name = "Hank Hogan";
