@@ -54,6 +54,9 @@
     posting
     just
     bat
+
+    jujutsu
+    lazyjj
   ];
   programs.zsh.enable = true;
 
