@@ -27,8 +27,10 @@ in {
   programs.jujutsu = {
     enable = true;
     settings = {
-      email = "hnkhgn@icloud.com";
-      name = "Hank Hogan";
+      user = {
+        email = "hnkhgn@icloud.com";
+        name = "Hank Hogan";
+      };
     };
   };
 
