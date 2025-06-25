@@ -54,8 +54,6 @@
     posting
     just
     bat
-
-    jujutsu
   ];
   programs.zsh.enable = true;
 

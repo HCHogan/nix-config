@@ -24,6 +24,14 @@ in {
     userEmail = "ysh2291939848@outlook.com";
   };
 
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      email = "hnkhgn@icloud.com";
+      name = "Hank Hogan";
+    };
+  };
+
   programs.emacs = {
     enable = false;
   };
