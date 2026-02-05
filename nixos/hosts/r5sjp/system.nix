@@ -410,7 +410,7 @@ in {
           settings = {
             clients = [
               {
-                id = "b7b7d2b9-576f-4f41-a9e8-a9e13a5d035e";
+                id = "2cac4128-2151-4a28-8102-ea1806f9c12b";
                 flow = "xtls-rprx-vision";
               }
             ];
@@ -421,10 +421,13 @@ in {
             security = "reality";
             realitySettings = {
               show = false;
-              dest = "www.sony.jp:443"; # 伪装目标：索尼日本官网
-              serverNames = ["www.sony.jp"];
-              privateKey = "wN-CjBx37gezcZ_ywuET5wgV6KI2fT1ZsVL0HZkNeUU";
-              shortIds = [""]; # 可以留空，也可以生成一个短 ID
+              dest = "www.yahoo.co.jp:443"; # 伪装目标：索尼日本官网
+              serverNames = [
+                "www.yahoo.co.jp"
+                "yahoo.co.jp"
+              ];
+              privateKey = "WLbD8eB4Cuid9JvDEys4tH_0eL_Bto87rgvQMTG6GHc";
+              shortIds = ["16" "1688"]; # 可以留空，也可以生成一个短 ID
             };
           };
           sniffing = {
@@ -449,6 +452,7 @@ in {
     enable = true;
     description = "ddns";
 
+    wantedBy = ["multi-user.target"];
     wants = ["network-online.target"];
     after = ["network-online.target"];
 
