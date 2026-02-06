@@ -397,57 +397,79 @@ in {
     enable = true;
     ports = [22 2200];
   };
-  services.xray = {
-    enable = true;
-    settings = {
-      log = {
-        loglevel = "warning";
-      };
-      inbounds = [
+
+  services.xray.enable = true;
+  services.xray.settings = {
+    log.loglevel = "debug";
+
+    reverse = {
+      bridges = [
         {
-          port = 1443;
-          protocol = "vless";
-          settings = {
-            clients = [
-              {
-                id = "2cac4128-2151-4a28-8102-ea1806f9c12b";
-                flow = "xtls-rprx-vision";
-              }
-            ];
-            decryption = "none";
-          };
-          streamSettings = {
-            network = "tcp";
-            security = "reality";
-            realitySettings = {
-              show = false;
-              dest = "www.yahoo.co.jp:443"; # 伪装目标：索尼日本官网
-              serverNames = [
-                "www.yahoo.co.jp"
-                "yahoo.co.jp"
-              ];
-              privateKey = "WLbD8eB4Cuid9JvDEys4tH_0eL_Bto87rgvQMTG6GHc";
-              shortIds = ["16" "1688"]; # 可以留空，也可以生成一个短 ID
-            };
-          };
-          sniffing = {
-            enabled = true;
-            destOverride = ["http" "tls"];
-          };
-        }
-      ];
-      outbounds = [
-        {
-          protocol = "freedom";
-          tag = "direct";
-        }
-        {
-          protocol = "blackhole";
-          tag = "blocked";
+          tag = "bridge";
+          domain = "reverse.hank.internal";
         }
       ];
     };
+
+    outbounds = [
+      # 1) 连接到 portal 的互联出站（你现在的 tunnel-to-wuxi）
+      {
+        tag = "interconn";
+        protocol = "vless";
+        settings = {
+          vnext = [
+            {
+              address = "r6s.imdomestic.com";
+              port = 1443;
+              users = [
+                {
+                  id = "2cac4128-2151-4a28-8102-ea1806f9c12b";
+                  flow = "xtls-rprx-vision";
+                  encryption = "none";
+                }
+              ];
+            }
+          ];
+        };
+        streamSettings = {
+          network = "tcp";
+          security = "reality";
+          realitySettings = {
+            serverName = "www.microsoft.com";
+            publicKey = "2oMfAnRmOiZN3ra85D05Zhr8ehI8hRSRqzpJ0oJUcgM";
+            fingerprint = "chrome";
+            shortId = "16";
+          };
+        };
+      }
+
+      # 2) 真正的出口（把 portal 转来的连接发出去）
+      {
+        tag = "out";
+        protocol = "freedom";
+      }
+      # 如果你想转发到本机 Web 服务：把上面 out 改成
+      # { tag="out"; protocol="freedom"; settings.redirect="127.0.0.1:80"; }
+    ];
+
+    routing.rules = [
+      # bridge 发起、目的域是 reverse 域名 => 去 interconn（注册/维持反代隧道）
+      {
+        type = "field";
+        inboundTag = ["bridge"];
+        domain = ["full:reverse.hank.internal"];
+        outboundTag = "interconn";
+      }
+
+      # portal 转发来的“真实流量”（同样从 inboundTag=bridge 进入，但域名不是上面那个）=> 去 out
+      {
+        type = "field";
+        inboundTag = ["bridge"];
+        outboundTag = "out";
+      }
+    ];
   };
+
   systemd.services.ddns-go = {
     enable = true;
     description = "ddns";
