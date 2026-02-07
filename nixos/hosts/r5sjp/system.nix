@@ -457,7 +457,7 @@ in {
               port = 2443;
               users = [
                 {
-                  id = "2cac4128-2151-4a28-8102-ea1806f9c12b";
+                  id = "4417cfd8-49e5-4ca3-bcc7-4e80f5f1bb40";
                   flow = "xtls-rprx-vision";
                   encryption = "none";
                 }
@@ -470,7 +470,7 @@ in {
           security = "reality";
           realitySettings = {
             serverName = "www.microsoft.com";
-            publicKey = "2oMfAnRmOiZN3ra85D05Zhr8ehI8hRSRqzpJ0oJUcgM"; # 复用
+            publicKey = "pfPKRWuFm6pJ6Lb7y6n5HW_YTNArhbtliYbQ3kSjkXo"; # 复用
             fingerprint = "chrome";
             shortId = "16"; # 复用
           };
