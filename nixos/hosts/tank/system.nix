@@ -531,7 +531,7 @@ in {
             dest = "www.microsoft.com:443";
             serverNames = ["www.microsoft.com" "microsoft.com"];
             privateKey = "OPcQVvCeM3LAYG7axaGuATC8O_QvjqRPKRO74FPjSlg"; # 复用你 r6s 的
-            shortIds = ["16"]; # 复用
+            shortIds = ["17"]; # 复用
           };
         };
       }
