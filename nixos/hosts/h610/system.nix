@@ -372,7 +372,9 @@ in {
     '';
 
     # 环境变量：注入 Cloudflare Token
-    environmentFile = cloudflareTokenFile;
+    environment = {
+      CLOUDFLARE_API_TOKEN = "WY4F4gK8O-VgV1P7dGnic4yNSxmtPBep5OXuh2Js";
+    };
 
     virtualHosts = {
       # Zitadel 入口
