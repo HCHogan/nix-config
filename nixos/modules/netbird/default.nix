@@ -148,6 +148,7 @@ in {
         settings = {
           AUTH_AUTHORITY = "https://${authDomain}:${toString httpsPort}";
           AUTH_CLIENT_ID = netbirdClientId;
+          AUTH_CLIENT_SECRET = "23ddPSMhzr3lkxtgljDnFngCApUYNkSKicM2RieeeWIblXHzcO4UFdXUXqrb8aZZ";
           AUTH_AUDIENCE = netbirdClientId;
 
           # 强烈建议显式给出，否则 envsubst 变量可能为空
