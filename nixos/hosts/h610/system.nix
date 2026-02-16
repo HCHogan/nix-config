@@ -30,6 +30,29 @@
             id: ""
             secret: WY4F4gK8O-VgV1P7dGnic4yNSxmtPBep5OXuh2Js
           ttl: ""
+        - name: "root"
+          ipv4:
+            enable: true
+            gettype: netInterface
+            url: https://myip.ipip.net, https://ddns.oray.com/checkip, https://ip.3322.net, https://4.ipw.cn, https://v4.yinghualuo.cn/bejson
+            netinterface: ppp0
+            cmd: ""
+            domains:
+                - imdomestic.com
+          ipv6:
+            enable: false
+            gettype: netInterface
+            url: https://speed.neu6.edu.cn/getIP.php, https://v6.ident.me, https://6.ipw.cn, https://v6.yinghualuo.cn/bejson
+            netinterface: br-lan
+            cmd: ""
+            ipv6reg: ""
+            domains:
+                - ""
+          dns:
+            name: cloudflare
+            id: ""
+            secret: WY4F4gK8O-VgV1P7dGnic4yNSxmtPBep5OXuh2Js
+          ttl: ""
     user:
         username: hank
         password: $2a$10$t8pMXiYscv9Zi4SEUjw9S.1H0XeGbDrSxcC8O0hvjDphPd./2Anh.
