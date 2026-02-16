@@ -11,7 +11,7 @@
   authDomain = "auth.${rootDomain}";
   netbirdDomain = "netbird.${rootDomain}";
 
-  netbirdClientId = "360296295379829249";
+  netbirdClientId = "360283462168543745";
 in {
   security.acme = {
     acceptTerms = true;
@@ -148,10 +148,15 @@ in {
         settings = {
           AUTH_AUTHORITY = "https://${authDomain}:${toString httpsPort}";
           AUTH_CLIENT_ID = netbirdClientId;
+          AUTH_CLIENT_SECRET = lib.mkForce "23ddPSMhzr3lkxtgljDnFngCApUYNkSKicM2RieeeWIblXHzcO4UFdXUXqrb8aZZ";
           AUTH_AUDIENCE = netbirdClientId;
 
+          # 强烈建议显式给出，否则 envsubst 变量可能为空
           AUTH_REDIRECT_URI = "/auth";
           AUTH_SILENT_REDIRECT_URI = "/silent-auth";
+
+          NETBIRD_MGMT_API_ENDPOINT = lib.mkForce "https://${netbirdDomain}:${toString httpsPort}";
+          NETBIRD_MGMT_GRPC_API_ENDPOINT = lib.mkForce "https://${netbirdDomain}:${toString httpsPort}";
 
           AUTH_SUPPORTED_SCOPES = "openid profile email offline_access api";
           USE_AUTH0 = false;
