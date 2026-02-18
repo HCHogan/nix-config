@@ -74,6 +74,16 @@
 
   time.timeZone = "Hongkong";
 
+  users.users.linwhite = {
+    isNormalUser = true;
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [
+      tree
+    ];
+  };
+
+  security.sudo.wheelNeedsPassword = false;
+
   nixpkgs.config.rocmSupport = true;
 
   services.xserver.enable = true;
