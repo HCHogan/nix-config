@@ -13,7 +13,7 @@
       user.email = "ysh2291939848@outlook.com";
       push.autoSetupRemote = true;
       gpg.format = "ssh";
-      user.signingkey = "~/.ssh/id_rsa.pub";
+      user.signingkey = "~/.ssh/id_ed25519.pub";
       commit.gpgsign = true;
       column.ui = "auto";
     };
@@ -59,7 +59,8 @@
 
   xdg.configFile = {
     kvim.source = inputs.kvim.outPath;
-    zsh.source = inputs.zsh-config.outPath;
+    nvim.source = inputs.hvim.outPath;
+    zsh.source = inputs.zsh-hank.outPath;
     wezterm.source = inputs.wezterm-config.outPath;
     neofetch = {
       source = ../../modules/neofetch;

@@ -350,16 +350,6 @@ in {
   services.displayManager.autoLogin.enable = false;
   services.getty.autologinUser = null;
 
-  # services.cockpit = {
-  #   enable = true;
-  #   openFirewall = true;
-  #   settings = {
-  #     WebService = {
-  #       AllowUnencrypted = true;
-  #     };
-  #   };
-  # };
-
   # services.jellyfin = {
   #   enable = true;
   #   openFirewall = true;
@@ -492,7 +482,7 @@ in {
     registerName = "imdomestic";
     password = "hbhbhb";
     port = 64738;
-    bandwidth = 128000; # 128kbps 已经非常顶级的音质了
+    bandwidth = 128000;
   };
 
   services.k3s = {
@@ -520,6 +510,14 @@ in {
   programs.zsh = {
     enable = true;
   };
+
+  programs.nix-index-database.comma.enable = true;
+  programs.nix-index = {
+    enableBashIntegration = false;
+    enableFishIntegration = false;
+    enableZshIntegration = false;
+  };
+  programs.command-not-found.enable = false;
 
   xdg.portal.wlr.enable = true;
   programs = {

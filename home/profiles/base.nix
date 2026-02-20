@@ -32,6 +32,7 @@ in {
     iperf3
     which
     wget
+    sops
 
     # archives
     zip
@@ -384,7 +385,7 @@ in {
   };
 
   xdg.configFile = {
-    nvim.source = inputs.hvim.outPath;
+    hvim.source = inputs.hvim.outPath;
     "zellij/layouts/evergarden_bottom.kdl".text = ''
       layout {
         pane split_direction="vertical" {
