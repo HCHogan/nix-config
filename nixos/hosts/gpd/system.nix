@@ -89,6 +89,12 @@
   services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.lightdm = {
+  #   enable = true;
+  #   extraConfig = ''
+  #     display-setup-script=xrandr --output eDP-1 --rotate right
+  #     '';
+  # };
 
   services.flatpak.enable = true;
   services.spice-vdagentd.enable = true;
