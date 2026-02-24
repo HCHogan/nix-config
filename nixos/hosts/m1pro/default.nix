@@ -1,27 +1,18 @@
 {inputs}: let
-  nixosProfiles = import ../../profiles/default.nix;
+  darwinProfiles = import ../../../darwin/profiles/default.nix;
   homeProfiles = import ../../../home/profiles/default.nix;
   userModules = import ../../../home/users/default.nix {inherit inputs;};
 in {
-  system = "x86_64-linux";
-  kind = "nixos";
+  system = "aarch64-darwin";
+  kind = "darwin";
   roles = ["desktop" "gui"];
 
-  profiles = with nixosProfiles; [
+  profiles = with darwinProfiles; [
     base
-    desktop
   ];
 
   modules = [
     ./system.nix
-    ./hardware-configuration.nix
-  ];
-
-  externalModules = [
-    inputs.catppuccin.nixosModules.catppuccin
-    inputs.vscode-server.nixosModules.default
-    inputs.noctalia.nixosModules.default
-    # inputs.niri.nixosModules.niri
   ];
 
   users = {
@@ -31,7 +22,7 @@ in {
           core
           base
           dev
-          gui.linux
+          gui.darwin
         ];
         modules = [
           userModules.linwhite.module
