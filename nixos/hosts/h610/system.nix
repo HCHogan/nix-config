@@ -67,7 +67,8 @@ in {
   imports = [
     ../../modules/dae
     ../../modules/keyd
-    # ../../modules/netbird
+    ../../modules/netbird
+    # ../../modules/minecraft/wuxi.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -379,6 +380,8 @@ in {
   services.xserver.displayManager.gdm.enable = false;
   services.xserver.desktopManager.gnome.enable = false;
 
+  services.cockpit.enable = lib.mkForce false;
+
   programs.zsh = {
     enable = true;
   };
@@ -405,6 +408,7 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    gcc
     neovim
     nginx
   ];
